@@ -1,0 +1,9 @@
+@import 'src/styles.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  height: 50px;
+  background-color: $c-white;
+}

@@ -1,1 +1,7 @@
-<p>courses-list works!</p>
+<ul>
+  <app-course-item
+    *ngFor="let course of courses"
+    [course]="course"
+  >
+  </app-course-item>
+</ul>
