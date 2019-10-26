@@ -14,7 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
-import { HomeComponent } from './pages/home/home.component';
+import { CoursesListPageComponent } from './pages/courses-list-page/courses-list-page.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -27,7 +27,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     LogoComponent,
     CoursesListComponent,
     CourseItemComponent,
-    HomeComponent,
+    CoursesListPageComponent,
     BreadcrumbsComponent,
     PanelComponent,
     UserProfileComponent,

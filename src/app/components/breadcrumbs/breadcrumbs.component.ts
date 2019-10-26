@@ -14,7 +14,7 @@ export class BreadcrumbsComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'Courses' },
+      { label: 'Courses', url: '/courses-list' },
     ];
   }
 
