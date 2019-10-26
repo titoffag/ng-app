@@ -1,0 +1,11 @@
+@import 'src/styles.scss';
+
+.search {
+  display: inline-block;
+}
+
+.panel-bottom {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}

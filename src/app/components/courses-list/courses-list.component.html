@@ -1,7 +1,8 @@
-<ul>
-  <app-course-item
-    *ngFor="let course of courses"
-    [course]="course"
-  >
+<ul class="courses-list">
+  <app-course-item *ngFor="let course of courses" [course]="course" (deletedCourse)="onDeletedCourse($event)">
   </app-course-item>
 </ul>
+<p-card styleClass="course-card load-more"
+  [style]="{ margin: '25px 0 100px', display: 'flex', justifyContent: 'center' }">
+  <a href="#" (click)="loadMoreCourses($event)">Load more</a>
+</p-card>

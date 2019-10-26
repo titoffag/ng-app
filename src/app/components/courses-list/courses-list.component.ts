@@ -1,61 +1,99 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked } from '@angular/core';
 
-import { ICourse } from 'src/app/models/course';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss']
 })
-export class CoursesListComponent implements OnInit {
-  courses: ICourse[] = [
-    {
-      creationDate: '05/29/2018',
-      description: 'Webpack, AngularCLI, TypeScript.',
-      duration: 88,
-      id: '1',
-      title: '1. Prerequisites'
-    },
-    {
-      creationDate: '06/10/2018',
-      description: 'Components, Lifecycle, Template DSL and data-binding, Custom component.',
-      duration: 27,
-      id: '2',
-      title: '2. Components'
-    },
-    {
-      creationDate: '07/14/2018',
-      description: 'Directives, Types of directives, Built-in directives, Custom directive',
-      duration: 70,
-      id: '3',
-      title: '3. Directives'
-    },
-    {
-      creationDate: '07/15/2018',
-      description: 'Services, DI, Modules, Lazy Loading.',
-      duration: 45,
-      id: '4',
-      title: '4. Modules & Services'
-    },
-    {
-      creationDate: '07/16/2018',
-      description: 'Zone.js, Flow, Immutable data structure, Push strategy.',
-      duration: 100,
-      id: '5',
-      title: '5. Change detection'
-    },
-    {
-      creationDate: '08/21/2018',
-      description: 'Routing, Lazy and preloading, CanActivate, CanDeactivate.',
-      duration: 15,
-      id: '6',
-      title: '6. Routing'
-    },
-  ];
+export class CoursesListComponent implements OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked {
 
-  constructor() { }
+  courses: Course[];
+
+  constructor() {
+    console.log('[Course List] constructor call');
+  }
 
   ngOnInit() {
+    console.log('[Course List] ngOnInit hook call');
+
+    this.courses = [
+      new Course(
+        '05/29/2018',
+        'Webpack, AngularCLI, TypeScript.',
+        88,
+        '1',
+        '1. Prerequisites',
+      ),
+      new Course(
+        '06/10/2018',
+        'Components, Lifecycle, Template DSL and data-binding, Custom component.',
+        27,
+        '2',
+        '2. Components',
+      ),
+      new Course(
+        '07/14/2018',
+        'Directives, Types of directives, Built-in directives, Custom directive',
+        70,
+        '3',
+        '3. Directives',
+      ),
+      new Course(
+        '07/15/2018',
+        'Services, DI, Modules, Lazy Loading.',
+        45,
+        '4',
+        '4. Modules & Services',
+      ),
+      new Course(
+        '07/16/2018',
+        'Zone.js, Flow, Immutable data structure, Push strategy.',
+        100,
+        '5',
+        '5. Change detection',
+      ),
+      new Course(
+        '08/21/2018',
+        'Routing, Lazy and preloading, CanActivate, CanDeactivate.',
+        15,
+        '6',
+        '6. Routing',
+      ),
+    ];
+  }
+
+  ngDoCheck(): void {
+    console.log('[Courses List] ngDoCheck hook call');
+  }
+
+  ngAfterContentInit(): void {
+    console.log('[Courses List] ngAfterContentInit hook call');
+  }
+
+  ngAfterContentChecked(): void {
+    console.log('[Courses List] ngAfterContentChecked hook call');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('[Courses List] ngAfterViewInit hook call');
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('[Courses List] ngAfterViewChecked hook call');
+  }
+
+  loadMoreCourses(event: MouseEvent): void {
+    event.preventDefault();
+    console.log('load more courses');
+  }
+
+  onDeletedCourse(id: number): void {
+    console.log('course deleted with id:', id);
+    this.courses = this.courses.filter(course => {
+      return +course.id !== id;
+    });
   }
 
 }

@@ -1,1 +1,32 @@
-<li>{{course | json}}</li>
+<li>
+  <p-card [style]="{ margin: '25px 0' }">
+    <p-header>
+      <h2 class="course-title">
+        {{course.title}}
+      </h2>
+      <span class="course-duration">
+        <fa-icon class="icon" [icon]="faClock"></fa-icon>
+        {{course.duration}} min
+      </span>
+      <span class="course-date">
+        <fa-icon class="icon" [icon]="faCalendarAlt"></fa-icon>
+        {{course.creationDate | date:'d MMM, y'}}
+      </span>
+    </p-header>
+
+    <div class="course-description">
+      {{course.description}}
+    </div>
+
+    <p-footer>
+      <p-button label="Edit" (onClick)="editCourse()"
+        [style]="{ backgroundColor: '#30b6dd', border: '1px solid #30b6dd', position: 'relative', paddingLeft: '20px' }">
+        <fa-icon class="button-icon" [icon]="faPencilAlt"></fa-icon>
+      </p-button>
+      <p-button label="Delete" (onClick)="deleteCourse()"
+        [style]="{ marginLeft: '5px', backgroundColor: '#30b6dd', border: '1px solid #30b6dd', position: 'relative', paddingLeft: '20px' }">
+        <fa-icon class="button-icon" [icon]="faTrashAlt"></fa-icon>
+      </p-button>
+    </p-footer>
+  </p-card>
+</li>

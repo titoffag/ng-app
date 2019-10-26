@@ -1,23 +1,46 @@
-$c-white: #fff;
-$c-gray: #f5f6f9;
-$c-logo: #ce2500;
+// base colors
+$dark-gray: #414452;
+$pale-gray: #f2f3f7;
+$sick-green: #9bc837;
+$dark-sky-blue: #30b6dd;
+$cloudy-blue: #b9bdce;
+$slate-grey: #525462;
+$dark: #2c2f3c;
+$silver: #c0c3ce;
+$white: #fff;
 
-$base-size: 1.5rem;
+// variables to use
+$primary-font-color: $white;
+$second-font-color: $silver;
+$third-font-color: $cloudy-blue;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+$header-color: $dark-gray;
+$page-background-color: $pale-gray;
+$footer-color: $dark-gray;
+
+$primary-button-color: $sick-green;
+$second-button-color: $dark-sky-blue;
+
+$primary-text-color: $dark;
+$second-text-color: $slate-grey;
 
 html,
 body {
   height: 100%;
 }
 
+body {
+  margin: 0;
+}
+
 .app {
-  font-size: $base-size;
   display: flex;
   flex-direction: column;
   min-height: 100%;
+}
+
+.button-icon {
+  position: absolute;
+  top: 5px;
+  left: 12.5px;
 }

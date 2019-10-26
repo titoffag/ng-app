@@ -1,0 +1,21 @@
+@import 'src/styles.scss';
+
+.course-title {
+  display: inline-block;
+  margin: 0;
+  padding: 14px;
+  color: $primary-text-color;
+}
+
+.course-duration,
+.course-date {
+  color: $third-font-color;
+}
+
+.course-date {
+  margin-left: 14px;
+}
+
+.course-description {
+  color: $primary-text-color;
+}

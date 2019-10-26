@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BreadcrumbsComponent implements OnInit {
 
+  public items: MenuItem[];
+
   constructor() { }
 
   ngOnInit() {
+    this.items = [
+      { label: 'Courses' },
+    ];
   }
 
 }

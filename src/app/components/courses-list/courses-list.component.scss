@@ -1,0 +1,11 @@
+@import 'src/styles.scss';
+
+.courses-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+}

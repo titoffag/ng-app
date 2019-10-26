@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-profile',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+
+  public faSignOutAlt = faSignOutAlt;
+  public faUser = faUser;
 
   constructor() { }
 
