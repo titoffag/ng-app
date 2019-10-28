@@ -1,4 +1,9 @@
 @import 'src/styles/colors.scss';
+@import 'src/styles/common.scss';
+
+:host li {
+  margin: 25px 0;
+}
 
 :host h2 {
   display: inline-block;
@@ -14,4 +19,13 @@
 
 :host p {
   color: $primary-text-color;
+}
+
+:host ::ng-deep .edit-course-button {
+  @include buttonWithIcon($primary-button-color);
+}
+
+:host ::ng-deep .delete-course-button {
+  margin-left: 5px;
+  @include buttonWithIcon($primary-button-color);
 }

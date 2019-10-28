@@ -1,5 +1,5 @@
 <li>
-  <p-card [style]="{ margin: '25px 0' }">
+  <p-card>
     <p-header>
       <h2>
         {{course.title}}
@@ -22,11 +22,11 @@
 
     <p-footer>
       <p-button label="Edit" (onClick)="editCourse()"
-        [style]="{ backgroundColor: '#30b6dd', border: '1px solid #30b6dd', position: 'relative', paddingLeft: '20px' }">
+        styleClass="edit-course-button">
         <fa-icon class="button-icon" [icon]="faPencilAlt"></fa-icon>
       </p-button>
       <p-button label="Delete" (onClick)="deleteCourse()"
-        [style]="{ marginLeft: '5px', backgroundColor: '#30b6dd', border: '1px solid #30b6dd', position: 'relative', paddingLeft: '20px' }">
+        styleClass="delete-course-button">
         <fa-icon class="button-icon" [icon]="faTrashAlt"></fa-icon>
       </p-button>
     </p-footer>

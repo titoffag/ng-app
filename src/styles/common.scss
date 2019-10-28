@@ -3,3 +3,14 @@
   top: 5px;
   left: 12.5px;
 }
+
+@mixin buttonWithIcon($mode-color) {
+  position: relative;
+  padding-left: 20px;
+  @include button($mode-color);
+}
+
+@mixin button($mode-color) {
+  background-color: $mode-color;
+  border: 1px solid $mode-color;
+}

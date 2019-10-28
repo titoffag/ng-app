@@ -3,12 +3,12 @@
     <input id="float-input" type="search" size="30" pInputText [(ngModel)]="searchInput">
     <label for="float-input">Text to search</label>
   </span>
-  <p-button label="Search" [style]="{ marginLeft: '5px', backgroundColor: '#9bc837', border: '1px solid #9bc837' }" (onClick)="findCourses()">
+  <p-button styleClass="second-button" label="Search" (onClick)="findCourses()">
   </p-button>
 </div>
 
 <div class="panel-bottom">
-  <p-button label="Add course" [style]="{ backgroundColor: '#30b6dd', border: '1px solid #30b6dd', position: 'relative', paddingLeft: '20px' }">
+  <p-button styleClass="primary-button" label="Add course">
     <fa-icon class="button-icon" [icon]="faPlus"></fa-icon>
   </p-button>
 </div>
