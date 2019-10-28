@@ -1,22 +1,24 @@
 <li>
   <p-card [style]="{ margin: '25px 0' }">
     <p-header>
-      <h2 class="course-title">
+      <h2>
         {{course.title}}
       </h2>
-      <span class="course-duration">
+      <span>
         <fa-icon class="icon" [icon]="faClock"></fa-icon>
         {{course.duration}} min
       </span>
-      <span class="course-date">
+      <span>
         <fa-icon class="icon" [icon]="faCalendarAlt"></fa-icon>
-        {{course.creationDate | date:'d MMM, y'}}
+        <time [dateTime]="course.creationDate">
+          {{course.creationDate | date:'d MMM, y'}}
+        </time>
       </span>
     </p-header>
 
-    <div class="course-description">
+    <p>
       {{course.description}}
-    </div>
+    </p>
 
     <p-footer>
       <p-button label="Edit" (onClick)="editCourse()"

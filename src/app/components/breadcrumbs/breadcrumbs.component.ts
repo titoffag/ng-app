@@ -8,7 +8,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class BreadcrumbsComponent implements OnInit {
 
-  public items: MenuItem[];
+  items: MenuItem[];
 
   constructor() { }
 

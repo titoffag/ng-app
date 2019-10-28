@@ -1,28 +1,4 @@
-// base colors
-$dark-gray: #414452;
-$pale-gray: #f2f3f7;
-$sick-green: #9bc837;
-$dark-sky-blue: #30b6dd;
-$cloudy-blue: #b9bdce;
-$slate-grey: #525462;
-$dark: #2c2f3c;
-$silver: #c0c3ce;
-$white: #fff;
-
-// variables to use
-$primary-font-color: $white;
-$second-font-color: $silver;
-$third-font-color: $cloudy-blue;
-
-$header-color: $dark-gray;
-$page-background-color: $pale-gray;
-$footer-color: $dark-gray;
-
-$primary-button-color: $sick-green;
-$second-button-color: $dark-sky-blue;
-
-$primary-text-color: $dark;
-$second-text-color: $slate-grey;
+@import 'src/styles/common.scss';
 
 html,
 body {
@@ -31,16 +7,4 @@ body {
 
 body {
   margin: 0;
-}
-
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-
-.button-icon {
-  position: absolute;
-  top: 5px;
-  left: 12.5px;
 }

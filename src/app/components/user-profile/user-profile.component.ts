@@ -8,8 +8,8 @@ import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 })
 export class UserProfileComponent implements OnInit {
 
-  public faSignOutAlt = faSignOutAlt;
-  public faUser = faUser;
+  faSignOutAlt = faSignOutAlt;
+  faUser = faUser;
 
   constructor() { }
 

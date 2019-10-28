@@ -1,21 +1,17 @@
-@import 'src/styles.scss';
+@import 'src/styles/colors.scss';
 
-.course-title {
+:host h2 {
   display: inline-block;
   margin: 0;
   padding: 14px;
   color: $primary-text-color;
 }
 
-.course-duration,
-.course-date {
+:host span {
+  margin-right: 14px;
   color: $third-font-color;
 }
 
-.course-date {
-  margin-left: 14px;
-}
-
-.course-description {
+:host p {
   color: $primary-text-color;
 }

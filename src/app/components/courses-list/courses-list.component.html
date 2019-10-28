@@ -1,8 +1,8 @@
-<ul class="courses-list">
-  <app-course-item *ngFor="let course of courses" [course]="course" (deletedCourse)="onDeletedCourse($event)">
+<ul>
+  <app-course-item *ngFor="let course of courses; trackBy: course ? course.id : null" [course]="course" (deletedCourse)="onDeletedCourse($event)">
   </app-course-item>
 </ul>
-<p-card styleClass="course-card load-more"
+<p-card
   [style]="{ margin: '25px 0 100px', display: 'flex', justifyContent: 'center' }">
-  <a href="#" (click)="loadMoreCourses($event)">Load more</a>
+  <button type="button" (click)="loadMoreCourses($event)">Load more</button>
 </p-card>

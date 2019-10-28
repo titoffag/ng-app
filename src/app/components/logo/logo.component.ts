@@ -8,7 +8,7 @@ import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class LogoComponent implements OnInit {
 
-  public faPlayCircle = faPlayCircle;
+  faPlayCircle = faPlayCircle;
 
   constructor() { }
 

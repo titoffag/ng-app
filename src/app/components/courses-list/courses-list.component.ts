@@ -64,36 +64,34 @@ export class CoursesListComponent implements OnInit, DoCheck, AfterContentInit, 
     ];
   }
 
-  ngDoCheck(): void {
+  ngDoCheck() {
     console.log('[Courses List] ngDoCheck hook call');
   }
 
-  ngAfterContentInit(): void {
+  ngAfterContentInit() {
     console.log('[Courses List] ngAfterContentInit hook call');
   }
 
-  ngAfterContentChecked(): void {
+  ngAfterContentChecked() {
     console.log('[Courses List] ngAfterContentChecked hook call');
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     console.log('[Courses List] ngAfterViewInit hook call');
   }
 
-  ngAfterViewChecked(): void {
+  ngAfterViewChecked() {
     console.log('[Courses List] ngAfterViewChecked hook call');
   }
 
-  loadMoreCourses(event: MouseEvent): void {
+  loadMoreCourses(event: MouseEvent) {
     event.preventDefault();
     console.log('load more courses');
   }
 
-  onDeletedCourse(id: number): void {
+  onDeletedCourse(id: string) {
     console.log('course deleted with id:', id);
-    this.courses = this.courses.filter(course => {
-      return +course.id !== id;
-    });
+    this.courses = this.courses.filter(course => course.id !== id);
   }
 
 }

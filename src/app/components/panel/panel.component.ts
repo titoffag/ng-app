@@ -8,15 +8,15 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class PanelComponent implements OnInit {
 
-  public searchInput = '';
-  public faPlus = faPlus;
+  searchInput = '';
+  faPlus = faPlus;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  findCourses(): void {
+  findCourses() {
     console.log(this.searchInput);
     this.searchInput = '';
   }
