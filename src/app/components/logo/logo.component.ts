@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,13 +6,6 @@ import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss']
 })
-export class LogoComponent implements OnInit {
-
+export class LogoComponent {
   faPlayCircle = faPlayCircle;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }
