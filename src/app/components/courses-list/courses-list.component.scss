@@ -1,10 +1,12 @@
-:host ul {
-  padding: 0;
-  list-style-type: none;
-}
+:host {
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
 
-:host ::ng-deep .load-more-block {
-  display: flex;
-  justify-content: center;
-  margin: 25px 0 50px;
+  ::ng-deep .load-more-block {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0 50px;
+  }
 }

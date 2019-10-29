@@ -1,5 +1,16 @@
-@import 'src/styles/colors.scss';
-@import 'src/styles/common.scss';
+@import 'src/styles/colors';
+@import 'src/styles/common';
+
+:host ::ng-deep {
+  .second-button {
+    margin-left: 5px;
+    @include button($second-button-color);
+  }
+
+  .primary-button {
+    @include buttonWithIcon($primary-button-color);
+  }
+}
 
 .search {
   display: inline-block;
@@ -9,13 +20,4 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 25px;
-}
-
-:host ::ng-deep .second-button {
-  margin-left: 5px;
-  @include button($second-button-color);
-}
-
-:host ::ng-deep .primary-button {
-  @include buttonWithIcon($primary-button-color);
 }

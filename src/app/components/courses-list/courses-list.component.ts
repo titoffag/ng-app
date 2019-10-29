@@ -1,4 +1,12 @@
-import { Component, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked
+} from '@angular/core';
 
 import { Course } from 'src/app/models/course';
 
@@ -7,8 +15,14 @@ import { Course } from 'src/app/models/course';
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss']
 })
-export class CoursesListComponent implements OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked {
-
+export class CoursesListComponent
+  implements
+    OnInit,
+    DoCheck,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewInit,
+    AfterViewChecked {
   courses: Course[];
 
   constructor() {
@@ -24,43 +38,43 @@ export class CoursesListComponent implements OnInit, DoCheck, AfterContentInit, 
         'Webpack, AngularCLI, TypeScript.',
         88,
         '1',
-        '1. Prerequisites',
+        '1. Prerequisites'
       ),
       new Course(
         '06/10/2018',
         'Components, Lifecycle, Template DSL and data-binding, Custom component.',
         27,
         '2',
-        '2. Components',
+        '2. Components'
       ),
       new Course(
         '07/14/2018',
         'Directives, Types of directives, Built-in directives, Custom directive',
         70,
         '3',
-        '3. Directives',
+        '3. Directives'
       ),
       new Course(
         '07/15/2018',
         'Services, DI, Modules, Lazy Loading.',
         45,
         '4',
-        '4. Modules & Services',
+        '4. Modules & Services'
       ),
       new Course(
         '07/16/2018',
         'Zone.js, Flow, Immutable data structure, Push strategy.',
         100,
         '5',
-        '5. Change detection',
+        '5. Change detection'
       ),
       new Course(
         '08/21/2018',
         'Routing, Lazy and preloading, CanActivate, CanDeactivate.',
         15,
         '6',
-        '6. Routing',
-      ),
+        '6. Routing'
+      )
     ];
   }
 
@@ -84,6 +98,10 @@ export class CoursesListComponent implements OnInit, DoCheck, AfterContentInit, 
     console.log('[Courses List] ngAfterViewChecked hook call');
   }
 
+  trackByCourseId(index: number, course: Course): string | null {
+    return course ? course.id : null;
+  }
+
   loadMoreCourses(event: MouseEvent) {
     event.preventDefault();
     console.log('load more courses');
@@ -93,5 +111,4 @@ export class CoursesListComponent implements OnInit, DoCheck, AfterContentInit, 
     console.log('course deleted with id:', id);
     this.courses = this.courses.filter(course => course.id !== id);
   }
-
 }

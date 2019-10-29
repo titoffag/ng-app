@@ -1,10 +1,10 @@
-@import 'src/styles/colors.scss';
+@import 'src/styles/colors';
 
 :host {
   text-transform: uppercase;
-}
 
-:host a {
-  margin-left: 10px;
-  color: $white;
+  a {
+    margin-left: 10px;
+    color: $white;
+  }
 }
