@@ -1,0 +1,10 @@
+@import 'src/styles/colors';
+
+:host {
+  text-transform: uppercase;
+
+  a {
+    margin-left: 10px;
+    color: $white;
+  }
+}

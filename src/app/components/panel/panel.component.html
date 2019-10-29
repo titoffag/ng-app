@@ -1,1 +1,14 @@
-<p>panel works!</p>
+<div class="panel-top">
+  <span class="ui-float-label search">
+    <input id="float-input" type="search" size="30" pInputText [(ngModel)]="searchInput">
+    <label for="float-input">Text to search</label>
+  </span>
+  <p-button styleClass="second-button" label="Search" (onClick)="findCourses()">
+  </p-button>
+</div>
+
+<div class="panel-bottom">
+  <p-button styleClass="primary-button" label="Add course">
+    <fa-icon class="button-icon" [icon]="faPlus"></fa-icon>
+  </p-button>
+</div>

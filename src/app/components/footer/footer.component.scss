@@ -1,0 +1,15 @@
+@import 'src/styles/colors';
+
+:host {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 0 0 auto;
+  padding-right: 85px;
+  width: 100%;
+  height: 50px;
+  color: $second-font-color;
+  background-color: $footer-color;
+}

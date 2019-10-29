@@ -1,0 +1,35 @@
+@import 'src/styles/colors';
+@import 'src/styles/common';
+
+:host {
+  li {
+    margin: 25px 0;
+  }
+
+  h2 {
+    display: inline-block;
+    margin: 0;
+    padding: 14px;
+    color: $primary-text-color;
+  }
+
+  span {
+    margin-right: 14px;
+    color: $third-font-color;
+  }
+
+  p {
+    color: $primary-text-color;
+  }
+
+  ::ng-deep {
+    .edit-course-button {
+      @include buttonWithIcon($primary-button-color);
+    }
+
+    .delete-course-button {
+      margin-left: 5px;
+      @include buttonWithIcon($primary-button-color);
+    }
+  }
+}
