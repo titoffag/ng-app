@@ -1,9 +1,19 @@
 <div class="panel-top">
   <span class="ui-float-label search">
-    <input id="float-input" type="search" size="30" pInputText [(ngModel)]="searchInput">
+    <input
+      id="float-input"
+      type="search"
+      size="30"
+      pInputText
+      [(ngModel)]="searchInput"
+    />
     <label for="float-input">Text to search</label>
   </span>
-  <p-button styleClass="second-button" label="Search" (onClick)="findCourses()">
+  <p-button
+    styleClass="second-button search-courses"
+    label="Search"
+    (onClick)="findCourses()"
+  >
   </p-button>
 </div>
 

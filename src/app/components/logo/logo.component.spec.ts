@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { LogoComponent } from './logo.component';
 
@@ -8,7 +9,8 @@ describe('LogoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LogoComponent]
+      declarations: [LogoComponent],
+      imports: [FontAwesomeModule]
     }).compileComponents();
   }));
 
@@ -17,4 +19,8 @@ describe('LogoComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  it('should create the component', async(() => {
+    expect(component).toBeTruthy();
+  }));
 });

@@ -103,8 +103,8 @@ export class CoursesListComponent
   }
 
   loadMoreCourses(event: MouseEvent) {
-    event.preventDefault();
     console.log('load more courses');
+    event.preventDefault();
   }
 
   onDeletedCourse(id: string) {
