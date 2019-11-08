@@ -1,11 +1,18 @@
-<ul>
+<ul *ngIf="filteredList | orderListBy: 'creationDate'; else noData">
   <app-course-item
-    *ngFor="let course of courses; trackBy: trackByCourseId"
+    *ngFor="let course of filteredList; trackBy: trackByCourseId"
     [course]="course"
     (deletedCourse)="onDeletedCourse($event)"
   >
   </app-course-item>
 </ul>
+
+<ng-template #noData>
+  <p-card styleClass="no-data-block">
+    No data. Feel free to add new course.
+  </p-card>
+</ng-template>
+
 <p-card styleClass="load-more-block">
   <button
     class="load-more-button"

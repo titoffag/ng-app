@@ -1,14 +1,16 @@
 import {
   Component,
   OnInit,
-  DoCheck,
   AfterContentInit,
   AfterContentChecked,
   AfterViewInit,
-  AfterViewChecked
+  AfterViewChecked,
+  Input,
+  DoCheck
 } from '@angular/core';
 
-import { Course } from 'src/app/models/course';
+import { Course } from 'src/app/models';
+import { SearchByListPipe } from 'src/app/pipes';
 
 @Component({
   selector: 'app-courses-list',
@@ -23,7 +25,12 @@ export class CoursesListComponent
     AfterContentChecked,
     AfterViewInit,
     AfterViewChecked {
+  @Input() searchTerm: string;
+
   courses: Course[];
+  filteredList: Course[];
+
+  searchByListPipe: SearchByListPipe;
 
   constructor() {
     console.log('[Course List] constructor call');
@@ -34,52 +41,64 @@ export class CoursesListComponent
 
     this.courses = [
       new Course(
-        '05/29/2018',
-        'Webpack, AngularCLI, TypeScript.',
-        88,
-        '1',
-        '1. Prerequisites'
-      ),
-      new Course(
-        '06/10/2018',
-        'Components, Lifecycle, Template DSL and data-binding, Custom component.',
-        27,
-        '2',
-        '2. Components'
-      ),
-      new Course(
-        '07/14/2018',
-        'Directives, Types of directives, Built-in directives, Custom directive',
-        70,
-        '3',
-        '3. Directives'
-      ),
-      new Course(
-        '07/15/2018',
+        '11/05/2019',
         'Services, DI, Modules, Lazy Loading.',
         45,
         '4',
-        '4. Modules & Services'
+        '4. Modules & Services',
+        false
       ),
       new Course(
-        '07/16/2018',
+        '11/07/2019',
         'Zone.js, Flow, Immutable data structure, Push strategy.',
         100,
         '5',
-        '5. Change detection'
+        '5. Change detection',
+        true
       ),
       new Course(
-        '08/21/2018',
+        '11/10/2019',
         'Routing, Lazy and preloading, CanActivate, CanDeactivate.',
         15,
         '6',
-        '6. Routing'
+        '6. Routing',
+        false
+      ),
+      new Course(
+        '10/20/2019',
+        'Webpack, AngularCLI, TypeScript.',
+        59,
+        '1',
+        '1. Prerequisites',
+        true
+      ),
+      new Course(
+        '10/30/2019',
+        'Components, Lifecycle, Template DSL and data-binding, Custom component.',
+        1440,
+        '2',
+        '2. Components',
+        false
+      ),
+      new Course(
+        '11/03/2019',
+        'Directives, Types of directives, Built-in directives, Custom directive',
+        70,
+        '3',
+        '3. Directives',
+        true
       )
     ];
+
+    this.searchByListPipe = new SearchByListPipe();
   }
 
   ngDoCheck() {
     console.log('[Courses List] ngDoCheck hook call');
+    this.filteredList = this.searchByListPipe.transform(
+      this.courses,
+      this.searchTerm
+    );
   }
 
   ngAfterContentInit() {

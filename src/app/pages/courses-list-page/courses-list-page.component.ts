@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './courses-list-page.component.html',
   styleUrls: ['./courses-list-page.component.scss']
 })
-export class CoursesListPageComponent {}
+export class CoursesListPageComponent {
+  searchTerm = '';
+
+  onSearchTerm(term: string) {
+    this.searchTerm = term;
+  }
+}

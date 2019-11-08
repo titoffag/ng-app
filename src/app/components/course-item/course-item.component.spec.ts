@@ -5,13 +5,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
+import { Course } from 'src/app/models';
+
 import { CourseItemComponent } from './course-item.component';
-import { Course } from 'src/app/models/course';
 
 @Component({
   selector: `app-host-component`,
   template: `
-    <app-course-item [course]="course"> </app-course-item>
+    <app-course-item [course]="course" (deletedCourse)="onDelete($event)">
+    </app-course-item>
   `
 })
 class TestHostComponent {
@@ -25,6 +27,10 @@ class TestHostComponent {
     '1',
     '1. Prerequisites'
   );
+
+  onDelete(id: string) {
+    return id;
+  }
 }
 
 describe('CourseItemComponent', () => {
@@ -62,15 +68,12 @@ describe('CourseItemComponent', () => {
   }));
 
   it('should delete course method when delete button is clicked', async(() => {
-    const spy = spyOn(
-      testHostComponent.componentUnderTestComponent,
-      'deleteCourse'
-    ).and.callThrough();
+    const spy = spyOn(testHostComponent, 'onDelete').and.callThrough();
     const deleteCourseButtonElement = testHostFixture.debugElement.query(
       By.css('.delete-course-button')
     );
 
     deleteCourseButtonElement.triggerEventHandler('click', null);
-    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith('1');
   }));
 });

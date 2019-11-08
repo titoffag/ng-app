@@ -23,6 +23,10 @@
   }
 
   ::ng-deep {
+    .top-rated {
+      color: $star-color;
+    }
+
     .edit-course-button {
       @include buttonWithIcon($primary-button-color);
     }

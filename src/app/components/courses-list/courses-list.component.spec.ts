@@ -50,6 +50,6 @@ describe('CoursesListComponent', () => {
     component.ngOnInit();
     component.onDeletedCourse(id);
     expect(spy).toHaveBeenCalledWith(id);
-    expect(component.courses.length).toEqual(6 - 1);
+    expect(component.courses.length).toEqual(5);
   }));
 });
