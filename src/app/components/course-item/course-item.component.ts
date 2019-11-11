@@ -18,7 +18,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ICourse } from 'src/app/models';
-import { setBorder } from 'src/app/utils';
 
 @Component({
   selector: 'app-course-item',
@@ -49,10 +48,6 @@ export class CourseItemComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     console.log(`[Course Item #${this.course.id}] ngOnDestroy hook call`);
-  }
-
-  setBorder(date: string) {
-    return setBorder(date);
   }
 
   editCourse() {
