@@ -17,4 +17,6 @@ describe('CoursesListPageComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  xit('checks for panel and list existence');
 });

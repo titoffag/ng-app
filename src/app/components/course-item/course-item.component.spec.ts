@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
 import { Course } from 'src/app/models';
+import { HighlightBorderDirective } from 'src/app/directives';
+import { CourseDurationPipe } from 'src/app/pipes';
 
 import { CourseItemComponent } from './course-item.component';
 
@@ -21,7 +23,7 @@ class TestHostComponent {
   componentUnderTestComponent: CourseItemComponent;
 
   course = new Course(
-    '05/29/2018',
+    new Date('2018-05-29T00:00:00.000Z'),
     'Webpack, AngularCLI, TypeScript.',
     88,
     '1',
@@ -40,7 +42,12 @@ describe('CourseItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestHostComponent, CourseItemComponent],
+      declarations: [
+        TestHostComponent,
+        CourseItemComponent,
+        HighlightBorderDirective,
+        CourseDurationPipe
+      ],
       imports: [FontAwesomeModule, ButtonModule, CardModule]
     }).compileComponents();
   }));

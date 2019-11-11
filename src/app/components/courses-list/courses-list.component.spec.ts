@@ -4,8 +4,11 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { OrderListByPipe, CourseDurationPipe } from 'src/app/pipes';
+import { HighlightBorderDirective } from 'src/app/directives';
+import { CourseItemComponent } from 'src/app/components/course-item/course-item.component';
+
 import { CoursesListComponent } from './courses-list.component';
-import { CourseItemComponent } from '../course-item/course-item.component';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
@@ -13,7 +16,13 @@ describe('CoursesListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CoursesListComponent, CourseItemComponent],
+      declarations: [
+        CoursesListComponent,
+        CourseItemComponent,
+        OrderListByPipe,
+        HighlightBorderDirective,
+        CourseDurationPipe
+      ],
       imports: [CardModule, ButtonModule, FontAwesomeModule]
     }).compileComponents();
   }));
