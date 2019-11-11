@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 
@@ -8,9 +9,9 @@ describe('BreadcrumbsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BreadcrumbsComponent ]
-    })
-    .compileComponents();
+      declarations: [BreadcrumbsComponent],
+      imports: [BreadcrumbModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('BreadcrumbsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', async(() => {
     expect(component).toBeTruthy();
-  });
+  }));
 });
