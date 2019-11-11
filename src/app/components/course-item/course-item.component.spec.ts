@@ -25,7 +25,8 @@ class TestHostComponent {
     'Webpack, AngularCLI, TypeScript.',
     88,
     '1',
-    '1. Prerequisites'
+    '1. Prerequisites',
+    true
   );
 
   onDelete(id: string) {

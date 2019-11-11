@@ -41,7 +41,7 @@ export class CoursesListComponent
 
     this.courses = [
       new Course(
-        '11/05/2019',
+        new Date('2019-11-05T00:00:00.000Z'),
         'Services, DI, Modules, Lazy Loading.',
         45,
         '4',
@@ -49,7 +49,7 @@ export class CoursesListComponent
         false
       ),
       new Course(
-        '11/07/2019',
+        new Date('2019-11-07T00:00:00.000Z'),
         'Zone.js, Flow, Immutable data structure, Push strategy.',
         100,
         '5',
@@ -57,7 +57,7 @@ export class CoursesListComponent
         true
       ),
       new Course(
-        '11/10/2019',
+        new Date('2019-11-10T00:00:00.000Z'),
         'Routing, Lazy and preloading, CanActivate, CanDeactivate.',
         15,
         '6',
@@ -65,7 +65,7 @@ export class CoursesListComponent
         false
       ),
       new Course(
-        '10/20/2019',
+        new Date('2019-10-20T00:00:00.000Z'),
         'Webpack, AngularCLI, TypeScript.',
         59,
         '1',
@@ -73,7 +73,7 @@ export class CoursesListComponent
         true
       ),
       new Course(
-        '10/30/2019',
+        new Date('2019-10-30T00:00:00.000Z'),
         'Components, Lifecycle, Template DSL and data-binding, Custom component.',
         1440,
         '2',
@@ -81,7 +81,7 @@ export class CoursesListComponent
         false
       ),
       new Course(
-        '11/03/2019',
+        new Date('2019-11-03T00:00:00.000Z'),
         'Directives, Types of directives, Built-in directives, Custom directive',
         70,
         '3',

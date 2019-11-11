@@ -1,8 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-interface TypeWithTitleField {
-  title: string;
-}
+import { TypeWithTitleField } from 'src/app/constants';
 
 @Pipe({
   name: 'searchByList'
