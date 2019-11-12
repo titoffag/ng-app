@@ -28,9 +28,8 @@ export class CoursesListComponent
   @Input() searchTerm: string;
 
   courses: Course[];
-  filteredList: Course[];
 
-  constructor(private searchByListPipe: SearchByListPipe) {
+  constructor() {
     console.log('[Course List] constructor call');
   }
 
@@ -91,10 +90,6 @@ export class CoursesListComponent
 
   ngDoCheck() {
     console.log('[Courses List] ngDoCheck hook call');
-    this.filteredList = this.searchByListPipe.transform(
-      this.courses,
-      this.searchTerm
-    );
   }
 
   ngAfterContentInit() {

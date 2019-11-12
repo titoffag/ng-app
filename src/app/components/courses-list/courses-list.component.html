@@ -1,6 +1,11 @@
-<ul *ngIf="filteredList | orderListBy: 'creationDate'; else noData">
+<ul *ngIf="courses; else noData">
   <app-course-item
-    *ngFor="let course of filteredList; trackBy: trackByCourseId"
+    *ngFor="
+      let course of courses
+        | orderListBy: 'creationDate'
+        | searchByList: searchTerm;
+      trackBy: trackByCourseId
+    "
     [course]="course"
     (deletedCourse)="onDeletedCourse($event)"
   >
