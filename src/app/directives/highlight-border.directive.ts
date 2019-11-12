@@ -7,7 +7,7 @@ import { BLUE_BORDER, GREEN_BORDER } from 'src/app/constants';
   selector: '[appHighlightBorder]'
 })
 export class HighlightBorderDirective implements OnInit {
-  @Input('appHighlightBorder') date: string;
+  @Input('appHighlightBorder') creationDate: Date;
 
   private borderStyle: string;
 
@@ -18,12 +18,11 @@ export class HighlightBorderDirective implements OnInit {
   }
 
   changeBorderStyle() {
-    const currentDate: Date = new Date();
-    const creationDate: Date = new Date(this.date);
+    const currentDate = new Date();
 
-    const isReleased: boolean = creationDate < currentDate;
-    const isFresh: boolean = differenceInDays(currentDate, creationDate) <= 14;
-    const isUpcoming: boolean = creationDate > currentDate;
+    const isReleased = this.creationDate < currentDate;
+    const isFresh = differenceInDays(currentDate, this.creationDate) <= 14;
+    const isUpcoming = this.creationDate > currentDate;
 
     if (isReleased && isFresh) {
       this.borderStyle = GREEN_BORDER;

@@ -50,7 +50,7 @@ import { SearchByListPipe } from './pipes/search-by-list.pipe';
     ButtonModule,
     CardModule
   ],
-  providers: [],
+  providers: [SearchByListPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

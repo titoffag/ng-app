@@ -1,3 +1,3 @@
-export interface TypeWithTitleField {
+export interface HasTitle {
   title: string;
 }

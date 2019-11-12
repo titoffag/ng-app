@@ -5,10 +5,7 @@
         {{ course.title | uppercase }}
       </h2>
       <span>
-        <fa-icon
-          [icon]="faStar"
-          [ngClass]="{ 'top-rated': course.topRated }"
-        ></fa-icon>
+        <fa-icon [icon]="faStar" [class.top-rated]="course.topRated"></fa-icon>
       </span>
       <span>
         <fa-icon class="icon" [icon]="faClock"></fa-icon>
