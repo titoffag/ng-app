@@ -1,32 +1,41 @@
-<li>
+<li [appHighlightBorder]="course.creationDate">
   <p-card>
     <p-header>
       <h2>
-        {{course.title}}
+        {{ course.title | uppercase }}
       </h2>
       <span>
+        <fa-icon [icon]="faStar" [class.top-rated]="course.topRated"></fa-icon>
+      </span>
+      <span>
         <fa-icon class="icon" [icon]="faClock"></fa-icon>
-        {{course.duration}} min
+        {{ course.duration | courseDuration }}
       </span>
       <span>
         <fa-icon class="icon" [icon]="faCalendarAlt"></fa-icon>
         <time [dateTime]="course.creationDate">
-          {{course.creationDate | date:'d MMM, y'}}
+          {{ course.creationDate | date: 'd MMM, y' }}
         </time>
       </span>
     </p-header>
 
     <p>
-      {{course.description}}
+      {{ course.description }}
     </p>
 
     <p-footer>
-      <p-button label="Edit" (onClick)="editCourse()"
-        styleClass="edit-course-button">
+      <p-button
+        label="Edit"
+        (onClick)="editCourse()"
+        styleClass="edit-course-button"
+      >
         <fa-icon class="button-icon" [icon]="faPencilAlt"></fa-icon>
       </p-button>
-      <p-button label="Delete" (onClick)="deleteCourse()"
-        styleClass="delete-course-button">
+      <p-button
+        label="Delete"
+        (onClick)="deleteCourse()"
+        styleClass="delete-course-button"
+      >
         <fa-icon class="button-icon" [icon]="faTrashAlt"></fa-icon>
       </p-button>
     </p-footer>

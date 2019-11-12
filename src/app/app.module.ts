@@ -18,6 +18,10 @@ import { CoursesListPageComponent } from './pages/courses-list-page/courses-list
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { HighlightBorderDirective } from './directives/highlight-border.directive';
+import { CourseDurationPipe } from './pipes/course-duration.pipe';
+import { OrderListByPipe } from './pipes/order-list-by.pipe';
+import { SearchByListPipe } from './pipes/search-by-list.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,10 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     BreadcrumbsComponent,
     PanelComponent,
     UserProfileComponent,
+    HighlightBorderDirective,
+    CourseDurationPipe,
+    OrderListByPipe,
+    SearchByListPipe
   ],
   imports: [
     BrowserModule,
@@ -40,9 +48,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     BreadcrumbModule,
     InputTextModule,
     ButtonModule,
-    CardModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,11 +7,13 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./panel.component.scss']
 })
 export class PanelComponent {
+  @Output() searchTerm = new EventEmitter<string>();
+
   searchInput = '';
   faPlus = faPlus;
 
   findCourses() {
     console.log(this.searchInput);
-    this.searchInput = '';
+    this.searchTerm.emit(this.searchInput);
   }
 }

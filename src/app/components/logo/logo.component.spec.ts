@@ -23,4 +23,6 @@ describe('LogoComponent', () => {
   it('should create the component', async(() => {
     expect(component).toBeTruthy();
   }));
+
+  xit('check content projection and link href and name');
 });

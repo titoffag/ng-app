@@ -4,9 +4,18 @@
     list-style-type: none;
   }
 
-  ::ng-deep .load-more-block {
-    display: flex;
-    justify-content: center;
-    margin: 25px 0 50px;
+  ::ng-deep {
+    .no-data-block {
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
+      text-transform: uppercase;
+    }
+
+    .load-more-block {
+      display: flex;
+      justify-content: center;
+      margin: 25px 0 50px;
+    }
   }
 }
