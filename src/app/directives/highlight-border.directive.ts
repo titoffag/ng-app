@@ -1,4 +1,11 @@
-import { Directive, ElementRef, Renderer2, OnInit, Input } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Renderer2,
+  OnInit,
+  Input,
+  NgModule
+} from '@angular/core';
 import { differenceInDays } from 'date-fns';
 
 import { BLUE_BORDER, GREEN_BORDER } from 'src/app/constants';
@@ -37,3 +44,9 @@ export class HighlightBorderDirective implements OnInit {
     );
   }
 }
+
+@NgModule({
+  declarations: [HighlightBorderDirective],
+  exports: [HighlightBorderDirective]
+})
+export class HighlightBorderDirectiveModule {}

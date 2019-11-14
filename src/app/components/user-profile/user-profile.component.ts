@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -10,3 +11,10 @@ export class UserProfileComponent {
   faSignOutAlt = faSignOutAlt;
   faUser = faUser;
 }
+
+@NgModule({
+  declarations: [UserProfileComponent],
+  imports: [FontAwesomeModule],
+  exports: [UserProfileComponent]
+})
+export class UserProfileComponentModule {}

@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, NgModule } from '@angular/core';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -9,3 +10,10 @@ import { MenuItem } from 'primeng/api';
 export class BreadcrumbsComponent {
   @Input() items: MenuItem[] | null | void;
 }
+
+@NgModule({
+  declarations: [BreadcrumbsComponent],
+  imports: [BreadcrumbModule],
+  exports: [BreadcrumbsComponent]
+})
+export class BreadcrumbsComponentModule {}

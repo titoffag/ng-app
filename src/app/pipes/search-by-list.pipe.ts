@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, NgModule } from '@angular/core';
 
 import { HasTitle } from 'src/app/constants';
 
@@ -10,3 +10,9 @@ export class SearchByListPipe implements PipeTransform {
     return list.filter(item => item.title.toLocaleLowerCase().includes(term));
   }
 }
+
+@NgModule({
+  declarations: [SearchByListPipe],
+  exports: [SearchByListPipe]
+})
+export class SearchByListPipeModule {}
