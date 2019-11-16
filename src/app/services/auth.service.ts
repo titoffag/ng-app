@@ -1,30 +1,46 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor() {}
+  private IS_SIGN_IN_KEY = 'isSignIn';
+  private LOGGED_IN_USER_KEY = 'loggedInUser';
 
-  login(key: string, value: string) {
-    console.log('store user info and token');
-    localStorage.setItem(key, JSON.stringify(value));
+  constructor(private router: Router) {}
+
+  login(login: string, password: string) {
+    localStorage.setItem(
+      this.LOGGED_IN_USER_KEY,
+      JSON.stringify({
+        login,
+        password
+      })
+    );
+    localStorage.setItem(this.IS_SIGN_IN_KEY, 'true');
+    this.router.navigate(['/courses']);
   }
 
   logout() {
-    console.log('wipe user info and token from local storage');
-    localStorage.clear();
+    localStorage.removeItem(this.LOGGED_IN_USER_KEY);
+    localStorage.setItem(this.IS_SIGN_IN_KEY, 'false');
+    this.router.navigate(['/login']);
   }
 
-  isAuthenticated(): boolean {
-    return true;
+  get isAuthenticated(): boolean {
+    return !!this.getValueFromStorage(this.IS_SIGN_IN_KEY);
   }
 
-  getUserInfo(key) {
+  get userInfo(): Object {
+    return this.getValueFromStorage(this.LOGGED_IN_USER_KEY);
+  }
+
+  getValueFromStorage(key: string): Object {
     const foundValue = localStorage.getItem(key);
 
     if (!foundValue) {
-      throw new Error('Cannot find value in local storage by key');
+      throw new Error(`Cannot find value by ${key} key`);
     }
 
     return JSON.parse(foundValue);

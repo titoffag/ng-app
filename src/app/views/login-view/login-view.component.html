@@ -1,1 +1,29 @@
-<p>login-view works!</p>
+<p-card styleClass="login-page">
+  Login
+  <form>
+    <label>
+      E-mail:
+      <input
+        type="email"
+        placeholder="Enter e-mail"
+        [(ngModel)]="emailInput"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      *required
+    </label>
+    <br />
+    <label>
+      Password:
+      <input
+        type="password"
+        placeholder="Enter password"
+        [(ngModel)]="passwordInput"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      *required
+    </label>
+    <br />
+    <a href="/login">Forgot password?</a>
+    <button type="submit" (click)="login($event)">Login</button>
+  </form>
+</p-card>

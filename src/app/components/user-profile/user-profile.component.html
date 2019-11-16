@@ -4,5 +4,7 @@
 </span>
 <span class="user-profile">
   <fa-icon [icon]="faSignOutAlt"></fa-icon>
-  <button class="log-off" type="button">Log off</button>
+  <button class="log-off" type="button" (click)="logoff($event)">
+    Log off
+  </button>
 </span>

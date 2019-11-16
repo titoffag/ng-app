@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   {
-    path: 'courses-list',
+    path: 'courses',
     loadChildren:
       'src/app/views/courses-views/courses-views.module#CoursesViewsModule'
   },
@@ -14,7 +14,7 @@ const routes: Routes = [
     loadChildren:
       'src/app/views/login-view/login-view.module#LoginViewRoutingModule'
   },
-  { path: '', redirectTo: 'courses-list', pathMatch: 'full' }
+  { path: '', redirectTo: 'courses', pathMatch: 'full' }
 ];
 
 const isDevelopmentVersion = !environment.production;
