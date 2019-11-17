@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   get isAuthenticated(): boolean {
-    return !!this.getValueFromStorage(AuthService.LOGGED_IN_USER_KEY);
+    return !!this.getValueFromStorage(AuthService.IS_SIGN_IN_KEY);
   }
 
   get userInfo(): object {
