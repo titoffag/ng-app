@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { HighlightBorderDirectiveModule } from 'src/app/directives';
@@ -24,6 +25,7 @@ import {
     CardModule,
     ButtonModule,
     InputTextModule,
+    PasswordModule,
     ConfirmDialogModule,
     // custom directives and pipes
     HighlightBorderDirectiveModule,

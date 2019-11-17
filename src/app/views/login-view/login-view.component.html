@@ -1,29 +1,33 @@
 <p-card styleClass="login-page">
-  Login
-  <form>
+  <p-header>
+    <h2>Login</h2>
+  </p-header>
+
+  <form class="login-form">
     <label>
-      E-mail:
+      <h4>E-mail:</h4>
       <input
         type="email"
         placeholder="Enter e-mail"
+        pInputText
         [(ngModel)]="emailInput"
         [ngModelOptions]="{ standalone: true }"
       />
-      *required
     </label>
-    <br />
     <label>
-      Password:
+      <h4>Password:</h4>
       <input
         type="password"
         placeholder="Enter password"
+        pPassword
         [(ngModel)]="passwordInput"
         [ngModelOptions]="{ standalone: true }"
       />
-      *required
     </label>
-    <br />
-    <a href="/login">Forgot password?</a>
-    <button type="submit" (click)="login($event)">Login</button>
+    <div class="form-footer">
+      <a href="/login">Forgot password?</a>
+      <p-button type="submit" label="Login" (onClick)="login($event)">
+      </p-button>
+    </div>
   </form>
 </p-card>

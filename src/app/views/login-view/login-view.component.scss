@@ -1,0 +1,42 @@
+@import 'src/styles/colors';
+
+:host {
+  h2 {
+    margin: 0;
+    color: $primary-text-color;
+  }
+
+  .login-form {
+    margin: 24px 0;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .form-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  ::ng-deep {
+    .login-page {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 368px;
+      height: 318px;
+      padding: 24px;
+    }
+
+    .ui-card-body {
+      padding: 0;
+    }
+  }
+}

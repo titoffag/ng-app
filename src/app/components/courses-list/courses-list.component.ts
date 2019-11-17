@@ -76,8 +76,13 @@ export class CoursesListComponent
   }
 
   onDeletedCourse(id: string) {
+    const course = this.coursesService.getBy(id);
+
     this.confirmationService.confirm({
-      message: 'Do you really want to delete this course?',
+      header: 'Delete course?',
+      message: `Do you really want to delete "${course.title}"?`,
+      acceptLabel: 'Yes, delete',
+      rejectLabel: 'Cancel',
       accept: () => {
         console.log('course deleted with id:', id);
         this.courses = this.coursesService.delete(id);
