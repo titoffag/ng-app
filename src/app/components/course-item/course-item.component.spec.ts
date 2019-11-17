@@ -5,9 +5,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
-import { Course } from 'src/app/models';
-import { HighlightBorderDirective } from 'src/app/directives';
-import { CourseDurationPipe } from 'src/app/pipes';
+import { Course } from '@models/course';
+import { HighlightBorderDirective } from '@directives/highlight-border.directive';
+import { CourseDurationPipe } from '@pipes/course-duration.pipe';
 
 import { CourseItemComponent } from './course-item.component';
 

@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-user-profile',

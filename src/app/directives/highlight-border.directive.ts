@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { differenceInDays } from 'date-fns';
 
-import { BLUE_BORDER, GREEN_BORDER } from 'src/app/constants';
+import { BLUE_BORDER, GREEN_BORDER } from '@constants/styles';
 
 @Directive({
   selector: '[appHighlightBorder]'

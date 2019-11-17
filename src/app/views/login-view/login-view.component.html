@@ -3,15 +3,15 @@
     <h2>Login</h2>
   </p-header>
 
-  <form class="login-form">
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <label>
       <h4>E-mail:</h4>
       <input
         type="email"
         placeholder="Enter e-mail"
         pInputText
-        [(ngModel)]="emailInput"
-        [ngModelOptions]="{ standalone: true }"
+        formControlName="email"
+        required
       />
     </label>
     <label>
@@ -20,13 +20,17 @@
         type="password"
         placeholder="Enter password"
         pPassword
-        [(ngModel)]="passwordInput"
-        [ngModelOptions]="{ standalone: true }"
+        formControlName="password"
+        required
       />
     </label>
     <div class="form-footer">
       <a href="/login">Forgot password?</a>
-      <p-button type="submit" label="Login" (onClick)="login()"> </p-button>
+      <p-button
+        type="submit"
+        label="Login"
+        [disabled]="loginForm.invalid"
+      ></p-button>
     </div>
   </form>
 </p-card>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Course } from 'src/app/models';
+import { Course } from '@models/course';
 
 @Injectable()
 export class CoursesService {
@@ -55,8 +55,6 @@ export class CoursesService {
     )
   ];
 
-  constructor() {}
-
   getAll(): Course[] {
     return this.store;
   }
@@ -72,19 +70,20 @@ export class CoursesService {
   }
 
   create(course: Course): Course[] {
-    this.store = this.store.concat(course);
+    this.store = [...this.store, course];
 
     return this.store;
   }
 
   update(course: Course): Course[] {
-    const filteredStore = this.store.filter(item => item.id !== course.id);
-    this.store = [...filteredStore, course];
+    this.store = this.store.map(item =>
+      item.id === course.id ? course : item
+    );
 
     return this.store;
   }
 
-  delete(id: string): Course[] {
+  remove(id: string): Course[] {
     this.store = this.store.filter(item => item.id !== id);
 
     return this.store;

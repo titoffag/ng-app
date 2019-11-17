@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 
-import { CoursesListComponentModule } from 'src/app/components/courses-list/courses-list.component';
-import { PanelComponentModule } from 'src/app/components/panel/panel.component';
+import { CoursesListComponentModule } from '@components/courses-list/courses-list.component';
+import { PanelComponentModule } from '@components/panel/panel.component';
 
 @Component({
   selector: 'app-courses-list-view',

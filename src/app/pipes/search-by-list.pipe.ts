@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform, NgModule } from '@angular/core';
 
-import { HasTitle } from 'src/app/constants';
+import { HasTitle } from '@constants/typings';
 
 @Pipe({
   name: 'searchByList'

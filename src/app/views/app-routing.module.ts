@@ -6,13 +6,17 @@ import { environment } from 'src/environments/environment';
 const routes: Routes = [
   {
     path: 'courses',
-    loadChildren:
-      'src/app/views/courses-views/courses-views.module#CoursesViewsModule'
+    loadChildren: () =>
+      import('./courses-views/courses-views.module').then(
+        routingModule => routingModule.CoursesViewsModule
+      )
   },
   {
     path: 'login',
-    loadChildren:
-      'src/app/views/login-view/login-view.module#LoginViewRoutingModule'
+    loadChildren: () =>
+      import('./login-view/login-view.module').then(
+        routingModule => routingModule.LoginViewRoutingModule
+      )
   },
   { path: '', redirectTo: 'courses', pathMatch: 'full' }
 ];

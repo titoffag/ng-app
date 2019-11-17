@@ -11,9 +11,9 @@ import {
 } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 
-import { Course } from 'src/app/models';
-import { CoursesService } from 'src/app/services/courses.service';
-import { CourseItemComponentModule } from 'src/app/components/course-item/course-item.component';
+import { Course } from '@models/course';
+import { CoursesService } from '@services/courses.service';
+import { CourseItemComponentModule } from '@components/course-item/course-item.component';
 import { SharedModule } from 'src/app/shared.module';
 
 @Component({
@@ -85,7 +85,7 @@ export class CoursesListComponent
       rejectLabel: 'Cancel',
       accept: () => {
         console.log('course deleted with id:', id);
-        this.courses = this.coursesService.delete(id);
+        this.courses = this.coursesService.remove(id);
       }
     });
   }

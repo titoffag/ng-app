@@ -1,11 +1,11 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LogoComponentModule } from 'src/app/components/logo/logo.component';
-import { UserProfileComponentModule } from 'src/app/components/user-profile/user-profile.component';
-import { BreadcrumbsComponentModule } from 'src/app/components/breadcrumbs/breadcrumbs.component';
+import { LogoComponentModule } from '@components/logo/logo.component';
+import { UserProfileComponentModule } from '@components/user-profile/user-profile.component';
+import { BreadcrumbsComponentModule } from '@components/breadcrumbs/breadcrumbs.component';
 
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-header',

@@ -18,7 +18,7 @@ import {
   faStar
 } from '@fortawesome/free-solid-svg-icons';
 
-import { ICourse } from 'src/app/models';
+import { ICourse } from '@models/course';
 import { SharedModule } from 'src/app/shared.module';
 
 @Component({

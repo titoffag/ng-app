@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   CoursesListViewComponent,
   CoursesListViewModule
-} from 'src/app/views/courses-views/courses-list-view/courses-list-view.component';
+} from './courses-list-view/courses-list-view.component';
 
 const routes: Routes = [{ path: '', component: CoursesListViewComponent }];
 
