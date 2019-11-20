@@ -1,15 +1,12 @@
 import {
   Component,
   Input,
-  OnInit,
   EventEmitter,
   Output,
-  SimpleChanges,
-  OnChanges,
-  OnDestroy,
   ChangeDetectionStrategy,
   NgModule
 } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faPencilAlt,
   faTrashAlt,
@@ -27,7 +24,7 @@ import { SharedModule } from 'src/app/shared.module';
   styleUrls: ['./course-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseItemComponent implements OnInit, OnChanges, OnDestroy {
+export class CourseItemComponent {
   @Input() course: ICourse;
   @Output() deletedCourse = new EventEmitter<string>();
 
@@ -37,23 +34,10 @@ export class CourseItemComponent implements OnInit, OnChanges, OnDestroy {
   faClock = faClock;
   faStar = faStar;
 
-  ngOnInit() {
-    console.log(`[Course Item #${this.course.id}] ngOnInit hook call`);
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(
-      `[Course Item #${this.course.id}] ngOnChanges with changes:`,
-      changes
-    );
-  }
-
-  ngOnDestroy() {
-    console.log(`[Course Item #${this.course.id}] ngOnDestroy hook call`);
-  }
+  constructor(private router: Router) {}
 
   editCourse() {
-    console.log('course edited with id:', this.course.id);
+    this.router.navigate(['courses', this.course.id]);
   }
 
   deleteCourse() {

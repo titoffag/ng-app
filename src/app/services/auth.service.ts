@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthorizedUserInfo } from '@constants/typings';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,24 +21,26 @@ export class AuthService {
       })
     );
     localStorage[AuthService.IS_SIGN_IN_KEY] = true;
-    this.router.navigate(['/courses']);
+    this.router.navigate(['courses']);
   }
 
   logout() {
     localStorage.removeItem(AuthService.LOGGED_IN_USER_KEY);
     localStorage[AuthService.IS_SIGN_IN_KEY] = false;
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
   }
 
   get isAuthenticated(): boolean {
     return !!this.getValueFromStorage(AuthService.IS_SIGN_IN_KEY);
   }
 
-  get userInfo(): object {
-    return this.getValueFromStorage(AuthService.LOGGED_IN_USER_KEY);
+  get userInfo(): AuthorizedUserInfo {
+    return this.getValueFromStorage(
+      AuthService.LOGGED_IN_USER_KEY
+    ) as AuthorizedUserInfo;
   }
 
-  getValueFromStorage(key: string): object {
+  private getValueFromStorage(key: string): object {
     const foundValue = localStorage[key];
 
     if (!foundValue) {

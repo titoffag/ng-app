@@ -15,6 +15,10 @@ export class UserProfileComponent {
 
   constructor(private authService: AuthService) {}
 
+  get userLogin(): string {
+    return this.authService.userInfo.login;
+  }
+
   logoff() {
     this.authService.logout();
   }

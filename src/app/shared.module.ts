@@ -7,8 +7,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PasswordModule } from 'primeng/password';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { CalendarModule } from 'primeng/calendar';
 
 import { HighlightBorderDirectiveModule } from '@directives/highlight-border.directive';
 import {
@@ -28,8 +32,12 @@ import {
     CardModule,
     ButtonModule,
     InputTextModule,
+    InputTextareaModule,
     PasswordModule,
+    AutoCompleteModule,
     ConfirmDialogModule,
+    KeyFilterModule,
+    CalendarModule,
     // custom directives and pipes
     HighlightBorderDirectiveModule,
     CourseDurationPipeModule,

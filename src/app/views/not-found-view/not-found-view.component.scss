@@ -1,0 +1,11 @@
+@import 'src/styles/colors';
+
+:host {
+  h2 {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding-top: 28px;
+    color: $primary-text-color;
+  }
+}

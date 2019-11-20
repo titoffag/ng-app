@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { SharedModule } from 'src/app/shared.module';
@@ -14,8 +15,13 @@ export class PanelComponent {
   searchInput = '';
   faPlus = faPlus;
 
+  constructor(private router: Router) {}
+
+  addCourse() {
+    this.router.navigate(['courses', 'new']);
+  }
+
   findCourses() {
-    console.log(this.searchInput);
     this.searchTerm.emit(this.searchInput);
   }
 }

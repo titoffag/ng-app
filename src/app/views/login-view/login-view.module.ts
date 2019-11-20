@@ -3,7 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginViewComponent, LoginViewModule } from './login-view.component';
 
-const routes: Routes = [{ path: '', component: LoginViewComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginViewComponent,
+    data: { isModuleRootComponent: true }
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes), LoginViewModule],
