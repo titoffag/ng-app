@@ -6,11 +6,15 @@ import {
   AfterViewInit,
   AfterViewChecked,
   Input,
-  DoCheck
+  DoCheck,
+  NgModule
 } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 
-import { Course } from 'src/app/models';
-import { SearchByListPipe } from 'src/app/pipes';
+import { Course } from '@models/course';
+import { CoursesService } from '@services/courses.service';
+import { CourseItemComponentModule } from '@components/course-item/course-item.component';
+import { SharedModule } from 'src/app/shared.module';
 
 @Component({
   selector: 'app-courses-list',
@@ -29,63 +33,17 @@ export class CoursesListComponent
 
   courses: Course[];
 
-  constructor() {
+  constructor(
+    private coursesService: CoursesService,
+    private confirmationService: ConfirmationService
+  ) {
     console.log('[Course List] constructor call');
   }
 
   ngOnInit() {
     console.log('[Course List] ngOnInit hook call');
 
-    this.courses = [
-      new Course(
-        new Date('2019-11-05T00:00:00.000Z'),
-        'Services, DI, Modules, Lazy Loading.',
-        45,
-        '4',
-        '4. Modules & Services',
-        false
-      ),
-      new Course(
-        new Date('2019-11-07T00:00:00.000Z'),
-        'Zone.js, Flow, Immutable data structure, Push strategy.',
-        100,
-        '5',
-        '5. Change detection',
-        true
-      ),
-      new Course(
-        new Date('2019-11-10T00:00:00.000Z'),
-        'Routing, Lazy and preloading, CanActivate, CanDeactivate.',
-        15,
-        '6',
-        '6. Routing',
-        false
-      ),
-      new Course(
-        new Date('2019-10-20T00:00:00.000Z'),
-        'Webpack, AngularCLI, TypeScript.',
-        59,
-        '1',
-        '1. Prerequisites',
-        true
-      ),
-      new Course(
-        new Date('2019-10-30T00:00:00.000Z'),
-        'Components, Lifecycle, Template DSL and data-binding, Custom component.',
-        1440,
-        '2',
-        '2. Components',
-        false
-      ),
-      new Course(
-        new Date('2019-11-03T00:00:00.000Z'),
-        'Directives, Types of directives, Built-in directives, Custom directive',
-        70,
-        '3',
-        '3. Directives',
-        true
-      )
-    ];
+    this.courses = this.coursesService.getAll();
   }
 
   ngDoCheck() {
@@ -118,7 +76,25 @@ export class CoursesListComponent
   }
 
   onDeletedCourse(id: string) {
-    console.log('course deleted with id:', id);
-    this.courses = this.courses.filter(course => course.id !== id);
+    const course = this.coursesService.getBy(id);
+
+    this.confirmationService.confirm({
+      header: 'Delete course?',
+      message: `Do you really want to delete "${course.title}"?`,
+      acceptLabel: 'Yes, delete',
+      rejectLabel: 'Cancel',
+      accept: () => {
+        console.log('course deleted with id:', id);
+        this.courses = this.coursesService.remove(id);
+      }
+    });
   }
 }
+
+@NgModule({
+  declarations: [CoursesListComponent],
+  imports: [SharedModule, CourseItemComponentModule],
+  providers: [CoursesService, ConfirmationService],
+  exports: [CoursesListComponent]
+})
+export class CoursesListComponentModule {}

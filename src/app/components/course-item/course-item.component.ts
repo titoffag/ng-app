@@ -7,7 +7,8 @@ import {
   SimpleChanges,
   OnChanges,
   OnDestroy,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  NgModule
 } from '@angular/core';
 import {
   faPencilAlt,
@@ -17,7 +18,8 @@ import {
   faStar
 } from '@fortawesome/free-solid-svg-icons';
 
-import { ICourse } from 'src/app/models';
+import { ICourse } from '@models/course';
+import { SharedModule } from 'src/app/shared.module';
 
 @Component({
   selector: 'app-course-item',
@@ -58,3 +60,10 @@ export class CourseItemComponent implements OnInit, OnChanges, OnDestroy {
     this.deletedCourse.emit(this.course.id);
   }
 }
+
+@NgModule({
+  declarations: [CourseItemComponent],
+  imports: [SharedModule],
+  exports: [CourseItemComponent]
+})
+export class CourseItemComponentModule {}

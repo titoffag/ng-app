@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -9,3 +10,10 @@ import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 export class LogoComponent {
   faPlayCircle = faPlayCircle;
 }
+
+@NgModule({
+  declarations: [LogoComponent],
+  imports: [FontAwesomeModule],
+  exports: [LogoComponent]
+})
+export class LogoComponentModule {}

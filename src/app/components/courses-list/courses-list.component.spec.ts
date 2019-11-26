@@ -4,9 +4,9 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { OrderListByPipe, CourseDurationPipe } from 'src/app/pipes';
-import { HighlightBorderDirective } from 'src/app/directives';
-import { CourseItemComponent } from 'src/app/components/course-item/course-item.component';
+import { OrderListByPipe, CourseDurationPipe } from '@pipes/index';
+import { HighlightBorderDirective } from '@directives/highlight-border.directive';
+import { CourseItemComponent } from '@components/course-item/course-item.component';
 
 import { CoursesListComponent } from './courses-list.component';
 

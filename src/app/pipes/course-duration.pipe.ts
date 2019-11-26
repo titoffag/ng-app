@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, NgModule } from '@angular/core';
 
 @Pipe({
   name: 'courseDuration'
@@ -33,3 +33,9 @@ export class CourseDurationPipe implements PipeTransform {
     return formattedDuration === '' ? this.DEFAULT_STRING : formattedDuration;
   }
 }
+
+@NgModule({
+  declarations: [CourseDurationPipe],
+  exports: [CourseDurationPipe]
+})
+export class CourseDurationPipeModule {}

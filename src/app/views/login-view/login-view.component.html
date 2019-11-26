@@ -1,0 +1,36 @@
+<p-card styleClass="login-page">
+  <p-header>
+    <h2>Login</h2>
+  </p-header>
+
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label>
+      <h4>E-mail:</h4>
+      <input
+        type="email"
+        placeholder="Enter e-mail"
+        pInputText
+        formControlName="email"
+        required
+      />
+    </label>
+    <label>
+      <h4>Password:</h4>
+      <input
+        type="password"
+        placeholder="Enter password"
+        pPassword
+        formControlName="password"
+        required
+      />
+    </label>
+    <div class="form-footer">
+      <a href="/login">Forgot password?</a>
+      <p-button
+        type="submit"
+        label="Login"
+        [disabled]="loginForm.invalid"
+      ></p-button>
+    </div>
+  </form>
+</p-card>
