@@ -6,6 +6,7 @@ import * as uuid from 'uuid';
 import { SharedModule } from 'src/app/shared.module';
 import { CoursesService } from '@services/courses.service';
 import { Course } from '@models/course';
+import { appRoutesNames } from '@views/app.routes.names';
 
 @Component({
   selector: 'app-edit-course-view',
@@ -91,11 +92,11 @@ export class EditCourseViewComponent implements OnInit {
       this.coursesService.update(newCourse);
     }
 
-    this.router.navigate(['courses']);
+    this.router.navigate([appRoutesNames.COURSES]);
   }
 
   onCancel() {
-    this.router.navigate(['courses']);
+    this.router.navigate([appRoutesNames.COURSES]);
   }
 }
 

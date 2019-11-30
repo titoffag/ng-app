@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 
+import { appRoutesNames } from '@views/app.routes.names';
+
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 
 describe('BreadcrumbsComponent', () => {
@@ -32,7 +34,7 @@ describe('BreadcrumbsComponent', () => {
   }));
 
   it('should create the component with crumbs', async(() => {
-    const crumbs = [{ label: 'Courses', url: '/courses-list' }];
+    const crumbs = [{ label: 'Courses', url: appRoutesNames.COURSES }];
     component.items = crumbs;
 
     fixture.detectChanges();

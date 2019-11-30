@@ -8,11 +8,12 @@ import {
   NotFoundViewComponent,
   NotFoundViewModule
 } from './not-found-view/not-found-view.component';
+import { appRoutesNames } from './app.routes.names';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'courses', pathMatch: 'full' },
+  { path: '', redirectTo: appRoutesNames.COURSES, pathMatch: 'full' },
   {
-    path: 'courses',
+    path: appRoutesNames.COURSES,
     loadChildren: () =>
       import('./courses-views/courses-views.module').then(
         routingModule => routingModule.CoursesViewsModule
@@ -21,7 +22,7 @@ const routes: Routes = [
     data: { label: 'Courses' }
   },
   {
-    path: 'login',
+    path: appRoutesNames.LOGIN,
     loadChildren: () =>
       import('./login-view/login-view.module').then(
         routingModule => routingModule.LoginViewRoutingModule

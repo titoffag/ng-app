@@ -4,11 +4,11 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
-  Router,
-  Resolve
+  Router
 } from '@angular/router';
 
 import { AuthService } from '@services/auth.service';
+import { appRoutesNames } from '@views/app.routes.names';
 
 @Injectable({
   providedIn: 'root'
@@ -19,23 +19,19 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean {
-    if (next && next.routeConfig) {
-      if (next.routeConfig.path !== 'login') {
-        // for unauthorized users redirect to login page
-        if (!this.authService.isAuthenticated) {
-          this.router.navigate(['login']);
-        }
+  ): boolean | UrlTree {
+    if (next.routeConfig) {
+      const { isAuthenticated } = this.authService;
 
-        return this.authService.isAuthenticated;
+      if (next.routeConfig.path === appRoutesNames.LOGIN) {
+        const coursesPageUrlTree = this.router.parseUrl(appRoutesNames.COURSES);
+
+        return !isAuthenticated || coursesPageUrlTree;
       }
 
-      // for authorized users redirect to courses list page
-      if (this.authService.isAuthenticated) {
-        this.router.navigate(['courses']);
-      }
+      const loginPageUrlTree = this.router.parseUrl(appRoutesNames.LOGIN);
 
-      return !this.authService.isAuthenticated;
+      return isAuthenticated || loginPageUrlTree;
     }
 
     return false;

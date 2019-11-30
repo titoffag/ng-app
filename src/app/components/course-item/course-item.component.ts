@@ -16,6 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ICourse } from '@models/course';
+import { appRoutesNames } from '@views/app.routes.names';
 import { SharedModule } from 'src/app/shared.module';
 
 @Component({
@@ -37,7 +38,7 @@ export class CourseItemComponent {
   constructor(private router: Router) {}
 
   editCourse() {
-    this.router.navigate(['courses', this.course.id]);
+    this.router.navigate([appRoutesNames.EDIT_COURSE(this.course.id)]);
   }
 
   deleteCourse() {
