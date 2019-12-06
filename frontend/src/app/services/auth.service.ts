@@ -33,12 +33,22 @@ export class AuthService {
   }
 
   get isAuthenticated(): boolean {
-    return !!getParsedValueFromStorage(AuthService.IS_SIGN_IN_KEY);
+    try {
+      return !!getParsedValueFromStorage(AuthService.IS_SIGN_IN_KEY)
+    } catch (e) {
+      console.error(e.message);
+      return false;
+    }
   }
 
-  get userInfo(): AuthorizedUserInfo {
-    return getParsedValueFromStorage(
-      AuthService.LOGGED_IN_USER_KEY
-    ) as AuthorizedUserInfo;
+  get userInfo(): AuthorizedUserInfo | null {
+    try {
+      return getParsedValueFromStorage(
+        AuthService.LOGGED_IN_USER_KEY
+      ) as AuthorizedUserInfo;
+    } catch (e) {
+      console.error(e.message);
+      return null;
+    }
   }
 }
