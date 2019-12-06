@@ -16,6 +16,10 @@ export class UserProfileComponent {
   constructor(private authService: AuthService) {}
 
   get userLogin(): string {
+    if (!this.authService.userInfo) {
+      return '';
+    }
+
     return this.authService.userInfo.login;
   }
 
