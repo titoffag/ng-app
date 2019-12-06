@@ -1,15 +1,42 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { CrumbsGuard } from '@guards/crumbs.guard';
+
 import {
   CoursesListViewComponent,
   CoursesListViewModule
 } from './courses-list-view/courses-list-view.component';
+import {
+  EditCourseViewComponent,
+  EditCourseViewModule
+} from './edit-course-view/edit-course-view.component';
 
-const routes: Routes = [{ path: '', component: CoursesListViewComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: CoursesListViewComponent,
+    data: { isModuleRootComponent: true }
+  },
+  {
+    path: 'new',
+    component: EditCourseViewComponent,
+    data: { label: 'New Course' }
+  },
+  {
+    path: ':id',
+    component: EditCourseViewComponent,
+    data: { label: 'Edit Course' },
+    resolve: [CrumbsGuard]
+  }
+];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), CoursesListViewModule],
+  imports: [
+    RouterModule.forChild(routes),
+    CoursesListViewModule,
+    EditCourseViewModule
+  ],
   exports: [RouterModule]
 })
 export class CoursesViewsModule {}

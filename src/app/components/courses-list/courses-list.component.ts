@@ -1,14 +1,4 @@
-import {
-  Component,
-  OnInit,
-  AfterContentInit,
-  AfterContentChecked,
-  AfterViewInit,
-  AfterViewChecked,
-  Input,
-  DoCheck,
-  NgModule
-} from '@angular/core';
+import { Component, OnInit, Input, NgModule } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 
 import { Course } from '@models/course';
@@ -21,14 +11,7 @@ import { SharedModule } from 'src/app/shared.module';
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss']
 })
-export class CoursesListComponent
-  implements
-    OnInit,
-    DoCheck,
-    AfterContentInit,
-    AfterContentChecked,
-    AfterViewInit,
-    AfterViewChecked {
+export class CoursesListComponent implements OnInit {
   @Input() searchTerm: string;
 
   courses: Course[];
@@ -36,34 +19,10 @@ export class CoursesListComponent
   constructor(
     private coursesService: CoursesService,
     private confirmationService: ConfirmationService
-  ) {
-    console.log('[Course List] constructor call');
-  }
+  ) {}
 
   ngOnInit() {
-    console.log('[Course List] ngOnInit hook call');
-
     this.courses = this.coursesService.getAll();
-  }
-
-  ngDoCheck() {
-    console.log('[Courses List] ngDoCheck hook call');
-  }
-
-  ngAfterContentInit() {
-    console.log('[Courses List] ngAfterContentInit hook call');
-  }
-
-  ngAfterContentChecked() {
-    console.log('[Courses List] ngAfterContentChecked hook call');
-  }
-
-  ngAfterViewInit() {
-    console.log('[Courses List] ngAfterViewInit hook call');
-  }
-
-  ngAfterViewChecked() {
-    console.log('[Courses List] ngAfterViewChecked hook call');
   }
 
   trackByCourseId(index: number, course: Course): string | null {
@@ -84,7 +43,6 @@ export class CoursesListComponent
       acceptLabel: 'Yes, delete',
       rejectLabel: 'Cancel',
       accept: () => {
-        console.log('course deleted with id:', id);
         this.courses = this.coursesService.remove(id);
       }
     });
@@ -94,7 +52,7 @@ export class CoursesListComponent
 @NgModule({
   declarations: [CoursesListComponent],
   imports: [SharedModule, CourseItemComponentModule],
-  providers: [CoursesService, ConfirmationService],
+  providers: [ConfirmationService],
   exports: [CoursesListComponent]
 })
 export class CoursesListComponentModule {}

@@ -1,7 +1,9 @@
 import { Component, Output, EventEmitter, NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { SharedModule } from 'src/app/shared.module';
+import { appRoutesNames } from '@views/app.routes.names';
 
 @Component({
   selector: 'app-panel',
@@ -14,8 +16,13 @@ export class PanelComponent {
   searchInput = '';
   faPlus = faPlus;
 
+  constructor(private router: Router) {}
+
+  addCourse() {
+    this.router.navigate([appRoutesNames.NEW_COURSE]);
+  }
+
   findCourses() {
-    console.log(this.searchInput);
     this.searchTerm.emit(this.searchInput);
   }
 }

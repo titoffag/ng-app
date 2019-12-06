@@ -18,7 +18,11 @@
 </div>
 
 <div class="panel-bottom">
-  <p-button styleClass="primary-button" label="Add course">
+  <p-button
+    styleClass="primary-button"
+    label="Add course"
+    (onClick)="addCourse()"
+  >
     <fa-icon class="button-icon" [icon]="faPlus"></fa-icon>
   </p-button>
 </div>

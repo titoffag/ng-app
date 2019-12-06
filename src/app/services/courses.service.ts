@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { Course } from '@models/course';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CoursesService {
   store: Course[] = [
     new Course(

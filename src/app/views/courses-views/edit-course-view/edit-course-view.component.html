@@ -1,0 +1,63 @@
+<p-card styleClass="edit-course-page">
+  <p-header>
+    <h2>{{ isCreating ? 'New course' : 'Edit course' }}</h2>
+  </p-header>
+  <form class="form" [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
+    <label>
+      <h4>Title:</h4>
+      <input
+        class="full-size"
+        type="text"
+        placeholder="Enter title"
+        pInputText
+        formControlName="title"
+        required
+      />
+    </label>
+    <label>
+      <h4>Description:</h4>
+      <textarea
+        class="full-size"
+        rows="5"
+        pInputTextarea
+        autoResize="autoResize"
+        placeholder="Enter description"
+        formControlName="description"
+        required
+      ></textarea>
+    </label>
+    <!-- separate component -->
+    <label>
+      <h4>Date:</h4>
+      <p-calendar
+        placeholder="Enter date"
+        formControlName="creationDate"
+        required
+      ></p-calendar>
+    </label>
+    <!-- separate component -->
+    <label>
+      <h4>Duration:</h4>
+      <input
+        type="number"
+        pInputText
+        pKeyFilter="pint"
+        placeholder="Enter duration"
+        formControlName="duration"
+        required
+      />
+    </label>
+    <span class="total-duration">{{
+      editCourseForm.value.duration | courseDuration
+    }}</span>
+    <div class="form-footer">
+      <p-button type="button" label="Cancel" (click)="onCancel()"></p-button>
+      <p-button
+        styleClass="submit-button"
+        type="submit"
+        label="Save"
+        [disabled]="editCourseForm.invalid"
+      ></p-button>
+    </div>
+  </form>
+</p-card>

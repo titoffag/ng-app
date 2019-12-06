@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthorizedUserInfo } from '@constants/typings';
+import { appRoutesNames } from '@views/app.routes.names';
+import { getParsedValueFromStorage } from '@tools/get-storage-value';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,30 +23,22 @@ export class AuthService {
       })
     );
     localStorage[AuthService.IS_SIGN_IN_KEY] = true;
-    this.router.navigate(['/courses']);
+    this.router.navigate([appRoutesNames.COURSES]);
   }
 
   logout() {
     localStorage.removeItem(AuthService.LOGGED_IN_USER_KEY);
     localStorage[AuthService.IS_SIGN_IN_KEY] = false;
-    this.router.navigate(['/login']);
+    this.router.navigate([appRoutesNames.LOGIN]);
   }
 
   get isAuthenticated(): boolean {
-    return !!this.getValueFromStorage(AuthService.IS_SIGN_IN_KEY);
+    return !!getParsedValueFromStorage(AuthService.IS_SIGN_IN_KEY);
   }
 
-  get userInfo(): object {
-    return this.getValueFromStorage(AuthService.LOGGED_IN_USER_KEY);
-  }
-
-  getValueFromStorage(key: string): object {
-    const foundValue = localStorage[key];
-
-    if (!foundValue) {
-      throw new Error(`Cannot find value by ${key} key`);
-    }
-
-    return JSON.parse(foundValue);
+  get userInfo(): AuthorizedUserInfo {
+    return getParsedValueFromStorage(
+      AuthService.LOGGED_IN_USER_KEY
+    ) as AuthorizedUserInfo;
   }
 }

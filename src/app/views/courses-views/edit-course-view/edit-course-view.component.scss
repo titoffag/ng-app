@@ -1,0 +1,40 @@
+@import 'src/styles/colors';
+
+:host {
+  h2 {
+    margin: 0;
+    color: $primary-text-color;
+  }
+
+  .form {
+    margin: 24px 0;
+  }
+
+  .full-size {
+    width: 100%;
+  }
+
+  .total-duration {
+    margin-left: 12px;
+  }
+
+  .form-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+  }
+
+  ::ng-deep {
+    .edit-course-page {
+      padding: 24px;
+    }
+
+    .submit-button {
+      margin-left: 12px;
+    }
+
+    .ui-card-body {
+      padding: 0;
+    }
+  }
+}
