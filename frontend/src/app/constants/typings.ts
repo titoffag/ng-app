@@ -1,5 +1,5 @@
 export interface HasTitle {
-  title: string;
+  name: string;
 }
 
 export interface AuthorizedUserInfo {

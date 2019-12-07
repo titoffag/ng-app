@@ -17,7 +17,7 @@ export class EditCourseViewComponent implements OnInit {
   isCreating = false;
   private editedCourse: Course;
   editCourseForm = new FormGroup({
-    title: new FormControl(null, [
+    name: new FormControl(null, [
       Validators.required,
       Validators.maxLength(50)
     ]),
@@ -25,8 +25,8 @@ export class EditCourseViewComponent implements OnInit {
       Validators.required,
       Validators.maxLength(500)
     ]),
-    creationDate: new FormControl(null, Validators.required),
-    duration: new FormControl(null, Validators.required)
+    date: new FormControl(null, Validators.required),
+    length: new FormControl(null, Validators.required)
   });
 
   constructor(
@@ -45,54 +45,56 @@ export class EditCourseViewComponent implements OnInit {
         throw new Error('Cannot get id from url params');
       }
 
-      this.editedCourse = this.coursesService.getBy(courseId);
-      const { title, description, creationDate, duration } = this.editedCourse;
+      this.coursesService.getBy(+courseId).subscribe({
+        next: (course: Course) => {
+          this.editedCourse = course;
 
-      this.editCourseForm.setValue({
-        title,
-        description,
-        creationDate,
-        duration
+          const { name, description, date, length } = this.editedCourse;
+
+          this.editCourseForm.setValue({
+            name,
+            description,
+            date: new Date(date),
+            length
+          });
+        }
       });
     }
   }
 
   onSubmit() {
-    const {
-      title,
-      description,
-      creationDate,
-      duration
-    } = this.editCourseForm.value;
+    const { name, description, date, length } = this.editCourseForm.value;
 
     if (this.isCreating) {
-      const guid = uuid.v4();
+      const newId = 0;
       const defaultTopRated = false;
       const newCourse = new Course(
-        creationDate,
+        date,
         description,
-        duration,
-        guid,
-        title,
+        length,
+        newId,
+        name,
         defaultTopRated
       );
 
-      this.coursesService.create(newCourse);
+      this.coursesService.create(newCourse).subscribe({
+        complete: () => this.router.navigate([appRoutesNames.COURSES])
+      });
     } else {
-      const { id, topRated } = this.editedCourse;
+      const { id, isTopRated } = this.editedCourse;
       const newCourse = new Course(
-        creationDate,
+        date,
         description,
-        duration,
+        length,
         id,
-        title,
-        topRated
+        name,
+        isTopRated
       );
 
-      this.coursesService.update(newCourse);
+      this.coursesService.update(newCourse).subscribe({
+        complete: () => this.router.navigate([appRoutesNames.COURSES])
+      });
     }
-
-    this.router.navigate([appRoutesNames.COURSES]);
   }
 
   onCancel() {

@@ -1,6 +1,7 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuItem } from 'primeng/api';
 
@@ -15,8 +16,9 @@ import { CrumbsService } from '@services/crumbs.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   crumbs: MenuItem[] | void;
+  eventSub: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -26,12 +28,16 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.router.events
+    this.eventSub = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(
-        () =>
+      .subscribe({
+        next: () =>
           (this.crumbs = this.crumbsService.createBreadcrumbs(this.route.root))
-      );
+      });
+  }
+
+  ngOnDestroy() {
+    this.eventSub.unsubscribe();
   }
 
   get isLoggedIn() {

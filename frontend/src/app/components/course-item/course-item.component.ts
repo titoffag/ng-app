@@ -27,7 +27,7 @@ import { SharedModule } from 'src/app/shared.module';
 })
 export class CourseItemComponent {
   @Input() course: ICourse;
-  @Output() deletedCourse = new EventEmitter<string>();
+  @Output() deletedCourse = new EventEmitter<number>();
 
   faPencilAlt = faPencilAlt;
   faTrashAlt = faTrashAlt;

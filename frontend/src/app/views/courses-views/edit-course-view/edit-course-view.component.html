@@ -8,9 +8,9 @@
       <input
         class="full-size"
         type="text"
-        placeholder="Enter title"
+        placeholder="Enter name"
         pInputText
-        formControlName="title"
+        formControlName="name"
         required
       />
     </label>
@@ -31,7 +31,7 @@
       <h4>Date:</h4>
       <p-calendar
         placeholder="Enter date"
-        formControlName="creationDate"
+        formControlName="date"
         required
       ></p-calendar>
     </label>
@@ -42,13 +42,13 @@
         type="number"
         pInputText
         pKeyFilter="pint"
-        placeholder="Enter duration"
-        formControlName="duration"
+        placeholder="Enter length"
+        formControlName="length"
         required
       />
     </label>
     <span class="total-duration">{{
-      editCourseForm.value.duration | courseDuration
+      editCourseForm.value.length | courseDuration
     }}</span>
     <div class="form-footer">
       <p-button type="button" label="Cancel" (click)="onCancel()"></p-button>

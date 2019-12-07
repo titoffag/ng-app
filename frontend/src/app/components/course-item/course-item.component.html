@@ -1,20 +1,23 @@
-<li [appHighlightBorder]="course.creationDate">
+<li [appHighlightBorder]="course.date">
   <p-card>
     <p-header>
       <h2>
-        {{ course.title | uppercase }}
+        {{ course.name | uppercase }}
       </h2>
       <span>
-        <fa-icon [icon]="faStar" [class.top-rated]="course.topRated"></fa-icon>
+        <fa-icon
+          [icon]="faStar"
+          [class.top-rated]="course.isTopRated"
+        ></fa-icon>
       </span>
       <span>
         <fa-icon class="icon" [icon]="faClock"></fa-icon>
-        {{ course.duration | courseDuration }}
+        {{ course.length | courseDuration }}
       </span>
       <span>
         <fa-icon class="icon" [icon]="faCalendarAlt"></fa-icon>
-        <time [dateTime]="course.creationDate">
-          {{ course.creationDate | date: 'd MMM, y' }}
+        <time [dateTime]="course.date">
+          {{ course.date | date: 'd MMM, y' }}
         </time>
       </span>
     </p-header>

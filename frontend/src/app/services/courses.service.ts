@@ -1,93 +1,78 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { Course } from '@models/course';
+import { apiUrlNames } from '@constants/api.names';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
-  store: Course[] = [
-    new Course(
-      new Date('2019-11-05T00:00:00.000Z'),
-      'Services, DI, Modules, Lazy Loading.',
-      45,
-      '4',
-      '4. Modules & Services',
-      false
-    ),
-    new Course(
-      new Date('2019-11-07T00:00:00.000Z'),
-      'Zone.js, Flow, Immutable data structure, Push strategy.',
-      100,
-      '5',
-      '5. Change detection',
-      true
-    ),
-    new Course(
-      new Date('2019-11-10T00:00:00.000Z'),
-      'Routing, Lazy and preloading, CanActivate, CanDeactivate.',
-      15,
-      '6',
-      '6. Routing',
-      false
-    ),
-    new Course(
-      new Date('2019-10-20T00:00:00.000Z'),
-      'Webpack, AngularCLI, TypeScript.',
-      59,
-      '1',
-      '1. Prerequisites',
-      true
-    ),
-    new Course(
-      new Date('2019-10-30T00:00:00.000Z'),
-      'Components, Lifecycle, Template DSL and data-binding, Custom component.',
-      1440,
-      '2',
-      '2. Components',
-      false
-    ),
-    new Course(
-      new Date('2019-11-03T00:00:00.000Z'),
-      'Directives, Types of directives, Built-in directives, Custom directive',
-      70,
-      '3',
-      '3. Directives',
-      true
-    )
-  ];
+  private url = apiUrlNames.COURSES;
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
-  getAll(): Course[] {
-    return this.store;
+  private requestOptions = {
+    start: 0,
+    count: 5
+  };
+  private loadedCoursesCount: number | void;
+
+  isMaxCountCourses = false;
+
+  constructor(private http: HttpClient) {}
+
+  getAll({ searchTerm = '', loadedCoursesCount = 0 } = {}): Observable<
+    Course[]
+  > {
+    return this.http
+      .get<Course[]>(this.url, {
+        params: {
+          start: this.requestOptions.start.toString(),
+          count: this.requestOptions.count.toString(),
+          sort: 'date',
+          textFragment: searchTerm
+        }
+      })
+      .pipe(
+        tap(() => {
+          if (loadedCoursesCount) {
+            this.loadedCoursesCount = loadedCoursesCount;
+
+            if (this.loadedCoursesCount < this.requestOptions.count - 5) {
+              this.isMaxCountCourses = true;
+            }
+
+            this.requestOptions.count += 5;
+          }
+        })
+      );
   }
 
-  getBy(id: string): Course {
-    const foundCourse = this.store.find(item => item.id === id);
-
-    if (!foundCourse) {
-      throw new Error('Cannot find course in store');
-    }
-
-    return foundCourse;
+  getBy(id: number): Observable<Course> {
+    return this.http.get<Course>(`${this.url}/${id}`);
   }
 
-  create(course: Course): Course[] {
-    this.store = [...this.store, course];
-
-    return this.store;
-  }
-
-  update(course: Course): Course[] {
-    this.store = this.store.map(item =>
-      item.id === course.id ? course : item
+  create(course: Course): Observable<Course> {
+    return this.http.post<Course>(
+      this.url,
+      JSON.stringify(course),
+      this.httpOptions
     );
-
-    return this.store;
   }
 
-  remove(id: string): Course[] {
-    this.store = this.store.filter(item => item.id !== id);
+  update(course: Course): Observable<Course> {
+    return this.http.patch<Course>(
+      `${this.url}/${course.id}`,
+      JSON.stringify(course),
+      this.httpOptions
+    );
+  }
 
-    return this.store;
+  remove(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 }

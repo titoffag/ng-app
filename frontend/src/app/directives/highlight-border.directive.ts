@@ -6,7 +6,7 @@ import {
   Input,
   NgModule
 } from '@angular/core';
-import { differenceInDays } from 'date-fns';
+import { differenceInDays, parseISO } from 'date-fns';
 
 import { BLUE_BORDER, GREEN_BORDER } from '@constants/styles';
 
@@ -14,7 +14,7 @@ import { BLUE_BORDER, GREEN_BORDER } from '@constants/styles';
   selector: '[appHighlightBorder]'
 })
 export class HighlightBorderDirective implements OnInit {
-  @Input('appHighlightBorder') creationDate: Date;
+  @Input('appHighlightBorder') date: string;
 
   private borderStyle: string;
 
@@ -26,10 +26,11 @@ export class HighlightBorderDirective implements OnInit {
 
   changeBorderStyle() {
     const currentDate = new Date();
+    const relatedDate = parseISO(this.date);
 
-    const isReleased = this.creationDate < currentDate;
-    const isFresh = differenceInDays(currentDate, this.creationDate) <= 14;
-    const isUpcoming = this.creationDate > currentDate;
+    const isReleased = relatedDate < currentDate;
+    const isFresh = differenceInDays(currentDate, relatedDate) <= 14;
+    const isUpcoming = relatedDate > currentDate;
 
     if (isReleased && isFresh) {
       this.borderStyle = GREEN_BORDER;

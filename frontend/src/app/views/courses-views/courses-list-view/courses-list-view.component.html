@@ -1,4 +1,4 @@
 <main>
   <app-panel (searchTerm)="onSearchTerm($event)"></app-panel>
-  <app-courses-list [searchTerm]="searchTerm"></app-courses-list>
+  <app-courses-list [courses]="filteredCourses"></app-courses-list>
 </main>

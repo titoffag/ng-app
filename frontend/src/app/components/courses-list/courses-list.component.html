@@ -1,15 +1,20 @@
 <ul *ngIf="courses; else noData">
   <app-course-item
-    *ngFor="
-      let course of courses
-        | orderListBy: 'creationDate'
-        | searchByList: searchTerm;
-      trackBy: trackByCourseId
-    "
+    *ngFor="let course of courses; trackBy: trackByCourseId"
     [course]="course"
-    (deletedCourse)="onDeletedCourse($event)"
+    (deletedCourse)="onDeletedCourse($event, course)"
   >
   </app-course-item>
+
+  <p-card *ngIf="!isMaxCountCourses" styleClass="load-more-block">
+    <button
+      class="load-more-button"
+      type="button"
+      (click)="loadMoreCourses($event, course)"
+    >
+      Load more
+    </button>
+  </p-card>
 </ul>
 
 <ng-template #noData>
@@ -17,16 +22,6 @@
     No data. Feel free to add new course.
   </p-card>
 </ng-template>
-
-<p-card styleClass="load-more-block">
-  <button
-    class="load-more-button"
-    type="button"
-    (click)="loadMoreCourses($event)"
-  >
-    Load more
-  </button>
-</p-card>
 
 <p-confirmDialog
   header="Confirmation"
