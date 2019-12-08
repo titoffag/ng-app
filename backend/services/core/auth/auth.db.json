@@ -2,22 +2,22 @@
 	"users": [
   {
     "id": 1,
-    "fakeToken": "58ebfdf7f1f558c5c86e17f6",
+    "token": "58ebfdf7f1f558c5c86e17f6",
     "name": {
-      "first": "FirstName",
-      "last": "LastName"
+      "firstName": "FirstName",
+      "lastName": "LastName"
     },
     "login": "flastname",
     "password": "flastname"
   },
   {
     "id": 2,
-    "fakeToken": "58ebfdf7ec92657b493b24da",
+    "token": "58ebfdf7ec92657b493b24da",
     "name": {
-      "first": "Brock",
-      "last": "Beasley"
+      "firstName": "Brock",
+      "lastName": "Beasley"
     },
-    "login": "Morales",
+    "login": "morales",
     "password": "id"
   }
 ]

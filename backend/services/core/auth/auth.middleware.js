@@ -14,7 +14,7 @@ module.exports = (server) => {
 		if(!matchedUser) {
 			res.status(401).send('Wrong username');
 		} else if(matchedUser.password === req.body.password) {
-			res.json({ token: matchedUser.fakeToken});
+			res.json({ token: matchedUser.token});
 		} else {
 			res.status(401).send("Wrong password");
 		}
@@ -24,7 +24,7 @@ module.exports = (server) => {
 		let users = server.db.getState().users,
 			matchedUser = users.find((user) => {
 				console.log(user);
-				return user.fakeToken === req.body.token;//('Authorization');
+				return user.token === req.body.token;
 			});
 			
 		if(!matchedUser) {

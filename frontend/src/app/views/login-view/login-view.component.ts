@@ -13,7 +13,7 @@ import { appRoutesNames } from '@views/app.routes.names';
 })
 export class LoginViewComponent {
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.required),
+    login: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
   loginLink = appRoutesNames.LOGIN;
@@ -21,8 +21,7 @@ export class LoginViewComponent {
   constructor(private authService: AuthService) {}
 
   onSubmit() {
-    const { email, password } = this.loginForm.value;
-    this.authService.login(email, password);
+    this.authService.login(this.loginForm.value);
   }
 }
 

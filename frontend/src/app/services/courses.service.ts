@@ -20,6 +20,7 @@ export class CoursesService {
     count: 5
   };
   private loadedCoursesCount: number | void;
+  private paginationStep = 5;
 
   isMaxCountCourses = false;
 
@@ -42,11 +43,14 @@ export class CoursesService {
           if (loadedCoursesCount) {
             this.loadedCoursesCount = loadedCoursesCount;
 
-            if (this.loadedCoursesCount < this.requestOptions.count - 5) {
+            if (
+              this.loadedCoursesCount <
+              this.requestOptions.count - this.paginationStep
+            ) {
               this.isMaxCountCourses = true;
             }
 
-            this.requestOptions.count += 5;
+            this.requestOptions.count += this.paginationStep;
           }
         })
       );
