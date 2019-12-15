@@ -20,6 +20,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   crumbs: MenuItem[] | void;
   eventSub: Subscription;
 
+  get isLoggedIn() {
+    return this.authService.isAuthenticated;
+  }
+
   constructor(
     private authService: AuthService,
     private crumbsService: CrumbsService,
@@ -38,10 +42,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.eventSub.unsubscribe();
-  }
-
-  get isLoggedIn() {
-    return this.authService.isAuthenticated;
   }
 }
 

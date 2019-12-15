@@ -9,7 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormControl } from '@angular/forms';
-import { Observable, Subscribable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 
 import { SharedModule } from 'src/app/shared.module';
@@ -34,9 +34,15 @@ export class PanelComponent implements OnInit, OnDestroy {
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
-        filter(value => value.length >= 3)
+        filter(this.isMoreThanCharsOrEmptyString(3))
       )
       .subscribe(searchValue => this.searchTerm.emit(searchValue));
+  }
+
+  isMoreThanCharsOrEmptyString(amount: number) {
+    return (value: string): boolean => {
+      return value.length >= amount || value === '';
+    };
   }
 
   addCourse() {

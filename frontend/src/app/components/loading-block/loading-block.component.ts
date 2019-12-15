@@ -1,8 +1,8 @@
 import { Component, NgModule, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 import { LoadingBlockService } from '@services/loading-block.service';
+import { SharedModule } from 'src/app/shared.module';
 
 @Component({
   selector: 'app-loading-block',
@@ -28,7 +28,7 @@ export class LoadingBlockComponent implements OnInit, OnDestroy {
 
 @NgModule({
   declarations: [LoadingBlockComponent],
-  imports: [CommonModule],
+  imports: [SharedModule],
   exports: [LoadingBlockComponent]
 })
 export class LoadingBlockModule {}
