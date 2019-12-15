@@ -12,11 +12,11 @@ import { CourseDurationPipe } from '@pipes/course-duration.pipe';
 import { CourseItemComponent } from './course-item.component';
 
 @Component({
-  selector: `app-host-component`
-  // template: `
-  //   <app-course-item [course]="course" (deletedCourse)="onDelete($event)">
-  //   </app-course-item>
-  // `
+  selector: `app-host-component`,
+  template: `
+    <app-course-item [course]="course" (deletedCourse)="onDelete($event)">
+    </app-course-item>
+  `
 })
 class TestHostComponent {
   @ViewChild(CourseItemComponent, { static: true })

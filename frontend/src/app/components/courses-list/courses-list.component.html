@@ -2,16 +2,12 @@
   <app-course-item
     *ngFor="let course of courses; trackBy: trackByCourseId"
     [course]="course"
-    (deletedCourse)="onDeletedCourse($event, course)"
+    (deletedCourse)="onDeletedCourse($event, course.name)"
   >
   </app-course-item>
 
   <p-card *ngIf="!isMaxCountCourses" styleClass="load-more-block">
-    <button
-      class="load-more-button"
-      type="button"
-      (click)="loadMoreCourses($event)"
-    >
+    <button class="load-more-button" type="button" (click)="loadMoreCourses()">
       Load more
     </button>
   </p-card>

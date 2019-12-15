@@ -30,10 +30,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.eventSub = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe({
-        next: () =>
+      .subscribe(
+        () =>
           (this.crumbs = this.crumbsService.createBreadcrumbs(this.route.root))
-      });
+      );
   }
 
   ngOnDestroy() {

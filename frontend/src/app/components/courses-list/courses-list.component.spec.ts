@@ -7,6 +7,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { OrderListByPipe, CourseDurationPipe } from '@pipes/index';
 import { HighlightBorderDirective } from '@directives/highlight-border.directive';
 import { CourseItemComponent } from '@components/course-item/course-item.component';
+import { Course } from '@models/course';
+
 import { CoursesListComponent } from './courses-list.component';
 
 describe('CoursesListComponent', () => {
@@ -38,7 +40,7 @@ describe('CoursesListComponent', () => {
 
   it('should initialize courses list after ngOnInit is called', async(() => {
     component.ngOnInit();
-    // expect(component.courses.length).toEqual(6);
+    expect(component.courses.length).toEqual(6);
   }));
 
   it('should call load more method when load more button is clicked', async(() => {
@@ -56,7 +58,7 @@ describe('CoursesListComponent', () => {
     const id = 5;
 
     component.ngOnInit();
-    // component.onDeletedCourse(id);
+    component.onDeletedCourse(id, 'deleted course name');
     expect(spy).toHaveBeenCalledWith(id);
     expect(component.courses.length).toEqual(5);
   }));

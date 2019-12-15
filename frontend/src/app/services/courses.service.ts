@@ -10,8 +10,9 @@ import { apiUrlNames } from '@constants/api.names';
   providedIn: 'root'
 })
 export class CoursesService {
-  private url = apiUrlNames.COURSES;
-  private httpOptions = {
+  private static url = apiUrlNames.COURSES;
+  private static paginationStep = 5;
+  private static httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
@@ -19,8 +20,7 @@ export class CoursesService {
     start: 0,
     count: 5
   };
-  private loadedCoursesCount: number | void;
-  private paginationStep = 5;
+  private loadedCoursesCount: number | void = 0;
 
   isMaxCountCourses = false;
 
@@ -30,7 +30,7 @@ export class CoursesService {
     Course[]
   > {
     return this.http
-      .get<Course[]>(this.url, {
+      .get<Course[]>(CoursesService.url, {
         params: {
           start: this.requestOptions.start.toString(),
           count: this.requestOptions.count.toString(),
@@ -45,38 +45,38 @@ export class CoursesService {
 
             if (
               this.loadedCoursesCount <
-              this.requestOptions.count - this.paginationStep
+              this.requestOptions.count - CoursesService.paginationStep
             ) {
               this.isMaxCountCourses = true;
             }
 
-            this.requestOptions.count += this.paginationStep;
+            this.requestOptions.count += CoursesService.paginationStep;
           }
         })
       );
   }
 
   getBy(id: number): Observable<Course> {
-    return this.http.get<Course>(`${this.url}/${id}`);
+    return this.http.get<Course>(`${CoursesService.url}/${id}`);
   }
 
   create(course: Course): Observable<Course> {
     return this.http.post<Course>(
-      this.url,
+      CoursesService.url,
       JSON.stringify(course),
-      this.httpOptions
+      CoursesService.httpOptions
     );
   }
 
   update(course: Course): Observable<Course> {
     return this.http.patch<Course>(
-      `${this.url}/${course.id}`,
+      `${CoursesService.url}/${course.id}`,
       JSON.stringify(course),
-      this.httpOptions
+      CoursesService.httpOptions
     );
   }
 
   remove(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
+    return this.http.delete<void>(`${CoursesService.url}/${id}`);
   }
 }

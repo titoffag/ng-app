@@ -21,9 +21,7 @@ export class CoursesListViewComponent {
       .getAll({
         searchTerm
       })
-      .subscribe({
-        next: filteredCourses => (this.filteredCourses = filteredCourses)
-      });
+      .subscribe(filteredCourses => (this.filteredCourses = filteredCourses));
   }
 }
 

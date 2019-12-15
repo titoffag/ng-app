@@ -22,38 +22,35 @@ export class CoursesListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.coursesService.getAll().subscribe({
-      next: courses => (this.courses = courses)
-    });
+    this.coursesService.getAll().subscribe(courses => (this.courses = courses));
   }
 
   trackByCourseId(index: number, course: Course): number | null {
     return course ? course.id : null;
   }
 
-  loadMoreCourses(event: MouseEvent) {
+  loadMoreCourses() {
     const loadedCoursesCount = this.courses.length;
     this.isMaxCountCourses = this.coursesService.isMaxCountCourses;
 
     if (!this.isMaxCountCourses) {
-      this.coursesService.getAll({ loadedCoursesCount }).subscribe({
-        next: courses => (this.courses = courses)
-      });
+      this.coursesService
+        .getAll({ loadedCoursesCount })
+        .subscribe(courses => (this.courses = courses));
     }
   }
 
-  onDeletedCourse(id: number, course: Course) {
+  onDeletedCourse(id: number, courseName: string) {
     this.confirmationService.confirm({
       header: 'Delete course?',
-      message: `Do you really want to delete "${course.name}"?`,
+      message: `Do you really want to delete "${courseName}"?`,
       acceptLabel: 'Yes, delete',
       rejectLabel: 'Cancel',
       accept: () => {
-        this.coursesService.remove(id).subscribe({
-          complete: () =>
-            this.coursesService
-              .getAll()
-              .subscribe(courses => (this.courses = courses))
+        this.coursesService.remove(id).subscribe(() => {
+          this.coursesService
+            .getAll()
+            .subscribe(courses => (this.courses = courses));
         });
       }
     });

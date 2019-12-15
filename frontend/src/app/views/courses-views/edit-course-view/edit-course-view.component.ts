@@ -45,19 +45,17 @@ export class EditCourseViewComponent implements OnInit {
         throw new Error('Cannot get id from url params');
       }
 
-      this.coursesService.getBy(+courseId).subscribe({
-        next: (course: Course) => {
-          this.editedCourse = course;
+      this.coursesService.getBy(+courseId).subscribe((course: Course) => {
+        this.editedCourse = course;
 
-          const { name, description, date, length } = this.editedCourse;
+        const { name, description, date, length } = this.editedCourse;
 
-          this.editCourseForm.setValue({
-            name,
-            description,
-            date: new Date(date),
-            length
-          });
-        }
+        this.editCourseForm.setValue({
+          name,
+          description,
+          date: new Date(date),
+          length
+        });
       });
     }
   }
@@ -77,9 +75,9 @@ export class EditCourseViewComponent implements OnInit {
         defaultTopRated
       );
 
-      this.coursesService.create(newCourse).subscribe({
-        complete: () => this.router.navigate([appRoutesNames.COURSES])
-      });
+      this.coursesService
+        .create(newCourse)
+        .subscribe(() => this.router.navigate([appRoutesNames.COURSES]));
     } else {
       const { id, isTopRated } = this.editedCourse;
       const newCourse = new Course(
@@ -91,9 +89,9 @@ export class EditCourseViewComponent implements OnInit {
         isTopRated
       );
 
-      this.coursesService.update(newCourse).subscribe({
-        complete: () => this.router.navigate([appRoutesNames.COURSES])
-      });
+      this.coursesService
+        .update(newCourse)
+        .subscribe(() => this.router.navigate([appRoutesNames.COURSES]));
     }
   }
 

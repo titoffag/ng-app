@@ -11,39 +11,8 @@ import { User } from '@models/user';
   providedIn: 'root'
 })
 export class AuthService {
-  static TOKEN_KEY = 'token';
+  private static TOKEN_KEY = 'token';
   private static LOGGED_IN_USER_KEY = 'loggedInUser';
-
-  constructor(private router: Router, private http: HttpClient) {}
-
-  login(loginInfo: Login) {
-    this.http.post<Token>(apiUrlNames.LOGIN, loginInfo).subscribe({
-      next: tokenInfo => {
-        localStorage.setItem(AuthService.TOKEN_KEY, tokenInfo.token);
-
-        this.loadUserInfo(tokenInfo);
-      }
-    });
-  }
-
-  loadUserInfo(tokenInfo: Token) {
-    this.http.post<User>(apiUrlNames.USER_INFO, tokenInfo).subscribe({
-      next: userInfo => {
-        const userName = `${userInfo.name.firstName} ${userInfo.name.lastName}`;
-
-        localStorage.setItem(AuthService.LOGGED_IN_USER_KEY, userName);
-      },
-      complete: () => {
-        this.router.navigate([appRoutesNames.COURSES]);
-      }
-    });
-  }
-
-  logout() {
-    localStorage.removeItem(AuthService.LOGGED_IN_USER_KEY);
-    localStorage.removeItem(AuthService.TOKEN_KEY);
-    this.router.navigate([appRoutesNames.LOGIN]);
-  }
 
   get isAuthenticated(): boolean {
     return !!localStorage.getItem(AuthService.TOKEN_KEY);
@@ -51,5 +20,34 @@ export class AuthService {
 
   get userInfo(): string | null {
     return localStorage.getItem(AuthService.LOGGED_IN_USER_KEY);
+  }
+
+  get tokenInfo(): string | null {
+    return localStorage.getItem(AuthService.TOKEN_KEY);
+  }
+
+  constructor(private router: Router, private http: HttpClient) {}
+
+  login(loginInfo: Login) {
+    this.http.post<Token>(apiUrlNames.LOGIN, loginInfo).subscribe(tokenInfo => {
+      localStorage.setItem(AuthService.TOKEN_KEY, tokenInfo.token);
+      this.loadUserInfo(tokenInfo);
+    });
+  }
+
+  loadUserInfo(tokenInfo: Token) {
+    this.http
+      .post<User>(apiUrlNames.USER_INFO, tokenInfo)
+      .subscribe(userInfo => {
+        const userName = `${userInfo.name.firstName} ${userInfo.name.lastName}`;
+        localStorage.setItem(AuthService.LOGGED_IN_USER_KEY, userName);
+        this.router.navigate([appRoutesNames.COURSES]);
+      });
+  }
+
+  logout() {
+    localStorage.removeItem(AuthService.LOGGED_IN_USER_KEY);
+    localStorage.removeItem(AuthService.TOKEN_KEY);
+    this.router.navigate([appRoutesNames.LOGIN]);
   }
 }
