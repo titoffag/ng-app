@@ -20,7 +20,7 @@ import {
   OrderListByPipeModule,
   SearchByListPipeModule
 } from '@pipes/index';
-import { TokenInterceptor } from './interceptors/token.interceptor';
+import { TokenInterceptor, LoadingInterceptor } from '@interceptors/index';
 
 @NgModule({
   exports: [
@@ -48,6 +48,11 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true
     }
   ]
