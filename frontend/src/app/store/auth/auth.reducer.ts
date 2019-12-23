@@ -3,7 +3,7 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import { Course } from '@models/course';
 
-import * as coursesActions from './course.actions';
+import * as coursesActions from './auth.actions';
 
 export const coursesFeatureKey = 'courses';
 

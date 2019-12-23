@@ -29,7 +29,7 @@ export class CoursesListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(fromCourses.loadCourses({}));
+    this.store.dispatch(fromCourses.loadCourses());
     this.courses$ = this.store.pipe(
       select(getCoursesState),
       select(selectAllCourses)

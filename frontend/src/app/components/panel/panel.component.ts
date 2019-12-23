@@ -31,7 +31,7 @@ export class PanelComponent implements OnInit, OnDestroy {
         distinctUntilChanged()
       )
       .subscribe(search =>
-        this.store.dispatch(fromCourses.loadCourses({ search }))
+        this.store.dispatch(fromCourses.searchCourses({ search }))
       );
   }
 

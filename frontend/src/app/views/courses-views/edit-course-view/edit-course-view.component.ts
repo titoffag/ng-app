@@ -63,19 +63,16 @@ export class EditCourseViewComponent implements OnInit {
           }
 
           this.editedCourse = course;
+
+          const { name, description, date, length } = this.editedCourse;
+
+          this.editCourseForm.setValue({
+            name,
+            description,
+            date: new Date(date),
+            length
+          });
         });
-      // this.coursesService.getBy(+courseId).subscribe((course: Course) => {
-      //   this.editedCourse = course;
-
-      //   const { name, description, date, length } = this.editedCourse;
-
-      //   this.editCourseForm.setValue({
-      //     name,
-      //     description,
-      //     date: new Date(date),
-      //     length
-      //   });
-      // });
     }
   }
 
@@ -85,7 +82,7 @@ export class EditCourseViewComponent implements OnInit {
     if (this.isCreating) {
       const newId = 0;
       const defaultTopRated = false;
-      const newCourse = new Course(
+      const course = new Course(
         date,
         description,
         length,
@@ -94,12 +91,10 @@ export class EditCourseViewComponent implements OnInit {
         defaultTopRated
       );
 
-      // this.coursesService
-      //   .create(newCourse)
-      //   .subscribe(() => this.router.navigate([appRoutesNames.COURSES]));
+      this.store.dispatch(fromCourses.addCourse({ course }));
     } else {
       const { id, isTopRated } = this.editedCourse;
-      const newCourse = new Course(
+      const course = new Course(
         date,
         description,
         length,
@@ -108,9 +103,7 @@ export class EditCourseViewComponent implements OnInit {
         isTopRated
       );
 
-      // this.coursesService
-      //   .update(newCourse)
-      //   .subscribe(() => this.router.navigate([appRoutesNames.COURSES]));
+      this.store.dispatch(fromCourses.updateCourse({ course }));
     }
   }
 

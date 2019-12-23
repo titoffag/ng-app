@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { mergeMap, map, catchError, tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { of, from } from 'rxjs';
+import { mergeMap, map, catchError } from 'rxjs/operators';
 
 import { CoursesService } from '@services/courses.service';
 import * as fromCourses from '@store/courses';
-import { appRoutesNames } from '@views/app.routes.names';
 
 @Injectable()
 export class CourseEffects {
@@ -69,11 +67,6 @@ export class CourseEffects {
     )
   );
 
-  addCourseSuccess$ = this.actions$.pipe(
-    ofType(fromCourses.addCourseSuccess),
-    tap(() => this.router.navigate([appRoutesNames.COURSES]))
-  );
-
   updateCourse$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromCourses.updateCourse),
@@ -87,11 +80,6 @@ export class CourseEffects {
         )
       )
     )
-  );
-
-  updateCourseSuccess$ = this.actions$.pipe(
-    ofType(fromCourses.updateCourseSuccess),
-    tap(() => this.router.navigate([appRoutesNames.COURSES]))
   );
 
   deleteCourse$ = createEffect(() =>
@@ -111,7 +99,6 @@ export class CourseEffects {
 
   constructor(
     private actions$: Actions,
-    private coursesService: CoursesService,
-    private router: Router
+    private coursesService: CoursesService
   ) {}
 }
