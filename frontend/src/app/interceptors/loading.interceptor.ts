@@ -12,7 +12,7 @@ import { LoadingBlockService } from '@services/loading-block.service';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
-  activeRequests = 0;
+  private activeRequests = 0;
 
   constructor(private loadingBlockService: LoadingBlockService) {}
 
@@ -24,11 +24,11 @@ export class LoadingInterceptor implements HttpInterceptor {
       this.loadingBlockService.startLoading();
     }
 
-    this.activeRequests += 1;
+    this.activeRequests++;
 
     return next.handle(request).pipe(
       finalize(() => {
-        this.activeRequests -= 1;
+        this.activeRequests--;
         if (this.activeRequests === 0) {
           this.loadingBlockService.stopLoading();
         }

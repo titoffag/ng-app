@@ -1,12 +1,17 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import * as uuid from 'uuid';
+import { Store, select } from '@ngrx/store';
 
 import { SharedModule } from 'src/app/shared.module';
-import { CoursesService } from '@services/courses.service';
 import { Course } from '@models/course';
 import { appRoutesNames } from '@views/app.routes.names';
+import { AppState } from '@store/reducers';
+import * as fromCourses from '@store/courses';
+import {
+  getCoursesState,
+  getCourseById
+} from '@store/courses/course.selectors';
 
 @Component({
   selector: 'app-edit-course-view',
@@ -28,11 +33,12 @@ export class EditCourseViewComponent implements OnInit {
     date: new FormControl(null, Validators.required),
     length: new FormControl(null, Validators.required)
   });
+  editedCourseSub: any;
 
   constructor(
     private router: Router,
-    private coursesService: CoursesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
@@ -45,18 +51,31 @@ export class EditCourseViewComponent implements OnInit {
         throw new Error('Cannot get id from url params');
       }
 
-      this.coursesService.getBy(+courseId).subscribe((course: Course) => {
-        this.editedCourse = course;
+      this.store.dispatch(fromCourses.getCourse({ id: +courseId }));
+      this.editedCourseSub = this.store
+        .pipe(
+          select(getCoursesState),
+          select(getCourseById, { id: +courseId })
+        )
+        .subscribe(course => {
+          if (!course) {
+            throw new Error('Cannot get course by id');
+          }
 
-        const { name, description, date, length } = this.editedCourse;
-
-        this.editCourseForm.setValue({
-          name,
-          description,
-          date: new Date(date),
-          length
+          this.editedCourse = course;
         });
-      });
+      // this.coursesService.getBy(+courseId).subscribe((course: Course) => {
+      //   this.editedCourse = course;
+
+      //   const { name, description, date, length } = this.editedCourse;
+
+      //   this.editCourseForm.setValue({
+      //     name,
+      //     description,
+      //     date: new Date(date),
+      //     length
+      //   });
+      // });
     }
   }
 
@@ -75,9 +94,9 @@ export class EditCourseViewComponent implements OnInit {
         defaultTopRated
       );
 
-      this.coursesService
-        .create(newCourse)
-        .subscribe(() => this.router.navigate([appRoutesNames.COURSES]));
+      // this.coursesService
+      //   .create(newCourse)
+      //   .subscribe(() => this.router.navigate([appRoutesNames.COURSES]));
     } else {
       const { id, isTopRated } = this.editedCourse;
       const newCourse = new Course(
@@ -89,9 +108,9 @@ export class EditCourseViewComponent implements OnInit {
         isTopRated
       );
 
-      this.coursesService
-        .update(newCourse)
-        .subscribe(() => this.router.navigate([appRoutesNames.COURSES]));
+      // this.coursesService
+      //   .update(newCourse)
+      //   .subscribe(() => this.router.navigate([appRoutesNames.COURSES]));
     }
   }
 
