@@ -11,7 +11,7 @@ import { AppRoutingModule } from '@views/app-routing.module';
 import { HeaderComponentModule } from '@components/header/header.component';
 import { FooterComponentModule } from '@components/footer/footer.component';
 import { LoadingBlockModule } from '@components/loading-block/loading-block.component';
-import { CourseEffects } from '@store/courses/course.effects';
+import { rootEffects } from '@store/effects';
 import { reducers, metaReducers } from '@store/reducers';
 import { environment } from 'src/environments/environment';
 
@@ -41,7 +41,7 @@ import { AppComponent } from './app.component';
           logOnly: environment.production
         })
       : [],
-    EffectsModule.forRoot([CourseEffects]),
+    EffectsModule.forRoot(rootEffects),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' })
   ],
   bootstrap: [AppComponent]

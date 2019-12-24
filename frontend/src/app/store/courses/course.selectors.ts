@@ -5,21 +5,21 @@ import { Course } from '@models/course';
 import * as fromCourses from '@store/courses';
 import { adapter } from './courses.reducer';
 
-const {
-  selectIds,
-  selectEntities,
-  selectAll,
-  selectTotal
-} = adapter.getSelectors();
+const { selectEntities, selectAll } = adapter.getSelectors();
 
 export const getCoursesState = createFeatureSelector(
   fromCourses.coursesFeatureKey
 );
 
-export const selectCourseIds = selectIds;
-export const selectCourseEntities = selectEntities;
-export const selectAllCourses = selectAll;
-export const selectCourseTotal = selectTotal;
+export const selectCourseEntities = createSelector(
+  getCoursesState,
+  (state: fromCourses.State) => selectEntities(state)
+);
+
+export const selectAllCourses = createSelector(
+  getCoursesState,
+  (state: fromCourses.State) => selectAll(state)
+);
 
 export const getCourseById = createSelector(
   selectCourseEntities,

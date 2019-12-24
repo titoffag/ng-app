@@ -7,10 +7,7 @@ import { CourseItemComponentModule } from '@components/course-item/course-item.c
 import { SharedModule } from 'src/app/shared.module';
 import { AppState } from '@store/reducers';
 import * as fromCourses from '@store/courses';
-import {
-  getCoursesState,
-  selectAllCourses
-} from '@store/courses/course.selectors';
+import { selectAllCourses } from '@store/courses/course.selectors';
 
 @Component({
   selector: 'app-courses-list',
@@ -30,10 +27,7 @@ export class CoursesListComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(fromCourses.loadCourses());
-    this.courses$ = this.store.pipe(
-      select(getCoursesState),
-      select(selectAllCourses)
-    );
+    this.courses$ = this.store.pipe(select(selectAllCourses));
   }
 
   trackByCourseId(index: number, course: Course): number | null {
@@ -41,13 +35,7 @@ export class CoursesListComponent implements OnInit {
   }
 
   loadMoreCourses() {
-    // const loadedCoursesCount = this.courses.length;
-    // this.isMaxCountCourses = this.coursesService.isMaxCountCourses;
-    // if (!this.isMaxCountCourses) {
-    //   this.coursesService
-    //     .getAll({ loadedCoursesCount })
-    //     .subscribe(courses => (this.courses = courses));
-    // }
+    this.store.dispatch(fromCourses.loadCourses());
   }
 
   onDeletedCourse(id: number, courseName: string) {

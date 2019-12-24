@@ -22,17 +22,20 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | UrlTree {
     if (next.routeConfig) {
-      const { isAuthenticated } = this.authService;
+      this.authService.isAuthenticated.subscribe(isAuthenticated => {
+        // @ts-ignore
+        if (next.routeConfig.path === appRoutesNames.LOGIN) {
+          const coursesPageUrlTree = this.router.parseUrl(
+            appRoutesNames.COURSES
+          );
 
-      if (next.routeConfig.path === appRoutesNames.LOGIN) {
-        const coursesPageUrlTree = this.router.parseUrl(appRoutesNames.COURSES);
+          return of(!isAuthenticated) || coursesPageUrlTree;
+        }
 
-        return of(!isAuthenticated) || coursesPageUrlTree;
-      }
+        const loginPageUrlTree = this.router.parseUrl(appRoutesNames.LOGIN);
 
-      const loginPageUrlTree = this.router.parseUrl(appRoutesNames.LOGIN);
-
-      return of(isAuthenticated) || loginPageUrlTree;
+        return of(isAuthenticated) || loginPageUrlTree;
+      });
     }
 
     return of(false);

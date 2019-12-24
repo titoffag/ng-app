@@ -1,10 +1,12 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
 import { SharedModule } from 'src/app/shared.module';
-import { AuthService } from '@services/auth.service';
 import { appRoutesNames } from '@views/app.routes.names';
+import { AppState } from '@store/reducers';
+import * as fromAuth from '@store/auth';
 
 @Component({
   selector: 'app-login-view',
@@ -18,10 +20,10 @@ export class LoginViewComponent {
   });
   loginLink = appRoutesNames.LOGIN;
 
-  constructor(private authService: AuthService) {}
+  constructor(private store: Store<AppState>) {}
 
   onSubmit() {
-    this.authService.login(this.loginForm.value);
+    this.store.dispatch(fromAuth.login({ loginInfo: this.loginForm.value }));
   }
 }
 

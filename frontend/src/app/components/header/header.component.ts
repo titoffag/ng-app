@@ -4,12 +4,14 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuItem } from 'primeng/api';
+import { select, Store } from '@ngrx/store';
 
 import { LogoComponentModule } from '@components/logo/logo.component';
 import { UserProfileComponentModule } from '@components/user-profile/user-profile.component';
 import { BreadcrumbsComponentModule } from '@components/breadcrumbs/breadcrumbs.component';
-import { AuthService } from '@services/auth.service';
 import { CrumbsService } from '@services/crumbs.service';
+import { AppState } from '@store/reducers';
+import { getAuthenticated } from '@store/auth/auth.selectors';
 
 @Component({
   selector: 'app-header',
@@ -19,13 +21,10 @@ import { CrumbsService } from '@services/crumbs.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   crumbs: MenuItem[] | void;
   eventSub: Subscription;
-
-  get isLoggedIn() {
-    return this.authService.isAuthenticated;
-  }
+  isLoggedIn$ = this.store.pipe(select(getAuthenticated));
 
   constructor(
-    private authService: AuthService,
+    private store: Store<AppState>,
     private crumbsService: CrumbsService,
     private router: Router,
     private route: ActivatedRoute

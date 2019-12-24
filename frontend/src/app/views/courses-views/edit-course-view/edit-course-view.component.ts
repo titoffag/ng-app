@@ -8,10 +8,7 @@ import { Course } from '@models/course';
 import { appRoutesNames } from '@views/app.routes.names';
 import { AppState } from '@store/reducers';
 import * as fromCourses from '@store/courses';
-import {
-  getCoursesState,
-  getCourseById
-} from '@store/courses/course.selectors';
+import { getCourseById } from '@store/courses/course.selectors';
 
 @Component({
   selector: 'app-edit-course-view',
@@ -53,10 +50,7 @@ export class EditCourseViewComponent implements OnInit {
 
       this.store.dispatch(fromCourses.getCourse({ id: +courseId }));
       this.editedCourseSub = this.store
-        .pipe(
-          select(getCoursesState),
-          select(getCourseById, { id: +courseId })
-        )
+        .pipe(select(getCourseById, { id: +courseId }))
         .subscribe(course => {
           if (!course) {
             throw new Error('Cannot get course by id');

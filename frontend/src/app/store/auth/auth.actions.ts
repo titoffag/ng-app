@@ -1,86 +1,35 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Course } from '@models/course';
+import { Login, User, Token } from '@models/index';
 
-// Get all courses
-export const loadCourses = createAction('[Courses Page] Load Courses');
-
-export const loadCoursesSuccess = createAction(
-  '[Courses Page] Load Courses Success',
-  props<{ courses: Course[] }>()
+export const login = createAction(
+  '[Login Page] Login',
+  props<{ loginInfo: Login }>()
 );
 
-export const loadCoursesFailure = createAction(
-  '[Courses Page] Load Courses Failure',
+export const loginSuccess = createAction(
+  '[Login Page] Login Success',
+  props<{ token: Token }>()
+);
+
+export const loginFailure = createAction(
+  '[Login Page] Login Failure',
   props<{ error: string }>()
 );
 
-// Search courses by criteria
-export const searchCourses = createAction(
-  '[Courses Page] Search Courses',
-  props<{ search: string }>()
+export const getUserInfo = createAction(
+  '[Login Page] Get User Info',
+  props<{ token: Token }>()
 );
 
-// Get course by id
-export const getCourse = createAction(
-  '[Courses Page] Get Course',
-  props<{ id: number }>()
+export const getUserInfoSuccess = createAction(
+  '[Login Page] Get User Info Success',
+  props<{ userInfo: User }>()
 );
 
-export const getCourseSuccess = createAction(
-  '[Courses Page] Get Course Success',
-  props<{ course: Course }>()
-);
-
-export const getCourseFailure = createAction(
-  '[Courses Page] Get Course Failure',
+export const getUserInfoFailure = createAction(
+  '[Login Page] Get User Info Failure',
   props<{ error: string }>()
 );
 
-// Add new course
-export const addCourse = createAction(
-  '[Courses Page] Add Course',
-  props<{ course: Course }>()
-);
-
-export const addCourseSuccess = createAction(
-  '[Courses Page] Add Course Success',
-  props<{ course: Course }>()
-);
-
-export const addCourseFailure = createAction(
-  '[Courses Page] Add Course Failure',
-  props<{ error: string }>()
-);
-
-// Update exist course
-export const updateCourse = createAction(
-  '[Courses Page] Update Course',
-  props<{ course: Course }>()
-);
-
-export const updateCourseSuccess = createAction(
-  '[Courses Page] Update Course Success',
-  props<{ course: Course }>()
-);
-
-export const updateCourseFailure = createAction(
-  '[Courses Page] Update Course Failure',
-  props<{ error: string }>()
-);
-
-// Delete course
-export const deleteCourse = createAction(
-  '[Courses Page] Delete Course',
-  props<{ id: number }>()
-);
-
-export const deleteCourseSuccess = createAction(
-  '[Courses Page] Delete Course Success',
-  props<{ id: number }>()
-);
-
-export const deleteCourseFailure = createAction(
-  '[Courses Page] Delete Course Failure',
-  props<{ error: string }>()
-);
+export const logout = createAction('[Login Page] Logout');

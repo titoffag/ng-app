@@ -1,6 +1,6 @@
 <span>
   <fa-icon [icon]="faUser"></fa-icon>
-  {{ userLogin }}
+  {{ userLogin$ | async }}
 </span>
 <span class="user-profile">
   <fa-icon [icon]="faSignOutAlt"></fa-icon>

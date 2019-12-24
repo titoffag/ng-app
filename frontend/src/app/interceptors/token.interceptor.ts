@@ -16,19 +16,19 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
-    const token = this.authService.tokenInfo;
+  ): Observable<HttpEvent<unknown>> | any {
+    this.authService.tokenInfo.subscribe(token => {
+      if (token) {
+        const clonedRequest = request.clone({
+          setHeaders: {
+            Authorization: token
+          }
+        });
 
-    if (token) {
-      const clonedRequest = request.clone({
-        setHeaders: {
-          Authorization: token
-        }
-      });
-
-      return next.handle(clonedRequest);
-    } else {
-      return next.handle(request);
-    }
+        return next.handle(clonedRequest);
+      } else {
+        return next.handle(request);
+      }
+    });
   }
 }
