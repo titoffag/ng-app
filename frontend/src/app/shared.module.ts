@@ -13,6 +13,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { CalendarModule } from 'primeng/calendar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { HighlightBorderDirectiveModule } from '@directives/highlight-border.directive';
 import {
@@ -20,7 +21,7 @@ import {
   OrderListByPipeModule,
   SearchByListPipeModule
 } from '@pipes/index';
-import { TokenInterceptor } from './interceptors/token.interceptor';
+import { TokenInterceptor, LoadingInterceptor } from '@interceptors/index';
 
 @NgModule({
   exports: [
@@ -38,6 +39,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     ConfirmDialogModule,
     KeyFilterModule,
     CalendarModule,
+    ProgressSpinnerModule,
     // custom directives and pipes
     HighlightBorderDirectiveModule,
     CourseDurationPipeModule,
@@ -48,6 +50,11 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true
     }
   ]

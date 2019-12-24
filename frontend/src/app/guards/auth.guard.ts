@@ -6,6 +6,7 @@ import {
   UrlTree,
   Router
 } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
 import { appRoutesNames } from '@views/app.routes.names';
@@ -19,21 +20,21 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean | UrlTree {
+  ): Observable<boolean> | UrlTree {
     if (next.routeConfig) {
       const { isAuthenticated } = this.authService;
 
       if (next.routeConfig.path === appRoutesNames.LOGIN) {
         const coursesPageUrlTree = this.router.parseUrl(appRoutesNames.COURSES);
 
-        return !isAuthenticated || coursesPageUrlTree;
+        return of(!isAuthenticated) || coursesPageUrlTree;
       }
 
       const loginPageUrlTree = this.router.parseUrl(appRoutesNames.LOGIN);
 
-      return isAuthenticated || loginPageUrlTree;
+      return of(isAuthenticated) || loginPageUrlTree;
     }
 
-    return false;
+    return of(false);
   }
 }
