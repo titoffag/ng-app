@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { OrderListByPipe, CourseDurationPipe } from '@pipes/index';
 import { HighlightBorderDirective } from '@directives/highlight-border.directive';
 import { CourseItemComponent } from '@components/course-item/course-item.component';
+import { Course } from '@models/course';
 
 import { CoursesListComponent } from './courses-list.component';
 
@@ -54,10 +55,10 @@ describe('CoursesListComponent', () => {
 
   it('should delete course from courses list by given id', async(() => {
     const spy = spyOn(component, 'onDeletedCourse').and.callThrough();
-    const id = '5';
+    const id = 5;
 
     component.ngOnInit();
-    component.onDeletedCourse(id);
+    component.onDeletedCourse(id, 'deleted course name');
     expect(spy).toHaveBeenCalledWith(id);
     expect(component.courses.length).toEqual(5);
   }));

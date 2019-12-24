@@ -1,7 +1,10 @@
 import { Component, NgModule } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { CoursesListComponentModule } from '@components/courses-list/courses-list.component';
 import { PanelComponentModule } from '@components/panel/panel.component';
+import { CoursesService } from '@services/courses.service';
+import { Course } from '@models/course';
 
 @Component({
   selector: 'app-courses-list-view',
@@ -9,10 +12,16 @@ import { PanelComponentModule } from '@components/panel/panel.component';
   styleUrls: ['./courses-list-view.component.scss']
 })
 export class CoursesListViewComponent {
-  searchTerm = '';
+  filteredCourses: Course[];
 
-  onSearchTerm(term: string) {
-    this.searchTerm = term;
+  constructor(private coursesService: CoursesService) {}
+
+  onSearchTerm(searchTerm: string) {
+    this.coursesService
+      .getAll({
+        searchTerm
+      })
+      .subscribe(filteredCourses => (this.filteredCourses = filteredCourses));
   }
 }
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardModule } from 'primeng/card';
@@ -20,12 +20,12 @@ import {
   OrderListByPipeModule,
   SearchByListPipeModule
 } from '@pipes/index';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   exports: [
     // Angular modules
     CommonModule,
-    FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     // PrimeNG modules
@@ -43,6 +43,13 @@ import {
     CourseDurationPipeModule,
     OrderListByPipeModule,
     SearchByListPipeModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ]
 })
 export class SharedModule {}

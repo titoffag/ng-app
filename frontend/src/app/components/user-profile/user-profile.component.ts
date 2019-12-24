@@ -20,7 +20,7 @@ export class UserProfileComponent {
       return '';
     }
 
-    return this.authService.userInfo.login;
+    return this.authService.userInfo;
   }
 
   logoff() {

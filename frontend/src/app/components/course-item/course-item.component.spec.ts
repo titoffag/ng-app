@@ -26,7 +26,7 @@ class TestHostComponent {
     new Date('2018-05-29T00:00:00.000Z'),
     'Webpack, AngularCLI, TypeScript.',
     88,
-    '1',
+    1,
     '1. Prerequisites',
     true
   );

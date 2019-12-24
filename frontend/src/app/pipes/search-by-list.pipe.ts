@@ -7,7 +7,7 @@ import { HasTitle } from '@constants/typings';
 })
 export class SearchByListPipe implements PipeTransform {
   transform<T extends HasTitle>(list: Array<T>, term: string): Array<T> {
-    return list.filter(item => item.title.toLocaleLowerCase().includes(term));
+    return list.filter(item => item.name.toLocaleLowerCase().includes(term));
   }
 }
 

@@ -12,9 +12,9 @@ import { SharedModule } from 'src/app/shared.module';
   styleUrls: ['./courses-list.component.scss']
 })
 export class CoursesListComponent implements OnInit {
-  @Input() searchTerm: string;
+  @Input() courses: Course[];
 
-  courses: Course[];
+  isMaxCountCourses: boolean;
 
   constructor(
     private coursesService: CoursesService,
@@ -22,28 +22,36 @@ export class CoursesListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.courses = this.coursesService.getAll();
+    this.coursesService.getAll().subscribe(courses => (this.courses = courses));
   }
 
-  trackByCourseId(index: number, course: Course): string | null {
+  trackByCourseId(index: number, course: Course): number | null {
     return course ? course.id : null;
   }
 
-  loadMoreCourses(event: MouseEvent) {
-    console.log('load more courses');
-    event.preventDefault();
+  loadMoreCourses() {
+    const loadedCoursesCount = this.courses.length;
+    this.isMaxCountCourses = this.coursesService.isMaxCountCourses;
+
+    if (!this.isMaxCountCourses) {
+      this.coursesService
+        .getAll({ loadedCoursesCount })
+        .subscribe(courses => (this.courses = courses));
+    }
   }
 
-  onDeletedCourse(id: string) {
-    const course = this.coursesService.getBy(id);
-
+  onDeletedCourse(id: number, courseName: string) {
     this.confirmationService.confirm({
       header: 'Delete course?',
-      message: `Do you really want to delete "${course.title}"?`,
+      message: `Do you really want to delete "${courseName}"?`,
       acceptLabel: 'Yes, delete',
       rejectLabel: 'Cancel',
       accept: () => {
-        this.courses = this.coursesService.remove(id);
+        this.coursesService.remove(id).subscribe(() => {
+          this.coursesService
+            .getAll()
+            .subscribe(courses => (this.courses = courses));
+        });
       }
     });
   }

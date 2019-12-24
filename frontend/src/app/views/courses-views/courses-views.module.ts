@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CrumbsGuard } from '@guards/crumbs.guard';
-
 import {
   CoursesListViewComponent,
   CoursesListViewModule
@@ -26,8 +24,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: EditCourseViewComponent,
-    data: { label: 'Edit Course' },
-    resolve: [CrumbsGuard]
+    data: { label: 'Edit Course' }
   }
 ];
 
