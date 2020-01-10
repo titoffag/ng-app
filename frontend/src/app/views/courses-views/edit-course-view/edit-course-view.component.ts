@@ -1,7 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import * as uuid from 'uuid';
 
 import { SharedModule } from 'src/app/shared.module';
 import { CoursesService } from '@services/courses.service';

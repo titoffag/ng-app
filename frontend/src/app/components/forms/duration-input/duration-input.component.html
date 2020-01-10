@@ -1,0 +1,14 @@
+<label>
+  <h4>Duration:</h4>
+  <input
+    type="number"
+    pInputText
+    pKeyFilter="pint"
+    placeholder="Enter length"
+    formControlName="length"
+    required
+  />
+</label>
+<span class="total-duration">{{
+  editCourseForm.value.length | courseDuration
+}}</span>
