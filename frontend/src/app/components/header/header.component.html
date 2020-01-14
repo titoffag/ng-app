@@ -1,6 +1,7 @@
 <header>
   <div class="header-top">
     <app-logo>Video course</app-logo>
+    <app-language-picker></app-language-picker>
     <app-user-profile *ngIf="isLoggedIn"></app-user-profile>
   </div>
   <app-breadcrumbs *ngIf="isLoggedIn" [items]="crumbs"></app-breadcrumbs>

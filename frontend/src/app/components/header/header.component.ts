@@ -8,6 +8,7 @@ import { MenuItem } from 'primeng/api';
 import { LogoComponentModule } from '@components/logo/logo.component';
 import { UserProfileComponentModule } from '@components/user-profile/user-profile.component';
 import { BreadcrumbsComponentModule } from '@components/breadcrumbs/breadcrumbs.component';
+import { LanguagePickerModule } from '@components/language-picker/language-picker.component';
 import { AuthService } from '@services/auth.service';
 import { CrumbsService } from '@services/crumbs.service';
 
@@ -51,7 +52,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     CommonModule,
     LogoComponentModule,
     UserProfileComponentModule,
-    BreadcrumbsComponentModule
+    BreadcrumbsComponentModule,
+    LanguagePickerModule
   ],
   exports: [HeaderComponent]
 })

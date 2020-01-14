@@ -1,0 +1,12 @@
+{
+  "PAGES": {
+    "LOGIN_PAGE": {},
+    "COURSES_PAGE": {},
+    "EDIT_COURSE_PAGE": {},
+    "NOT_FOUND_PAGE": {}
+  },
+  "SHARED": {
+    "HEADER": {},
+    "FOOTER.COPYRIGHT": "Copyright © Video courses. All rights reserved"
+  }
+}
