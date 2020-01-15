@@ -1,10 +1,16 @@
 <p-card styleClass="edit-course-page">
   <p-header>
-    <h2>{{ isCreating ? 'New course' : 'Edit course' }}</h2>
+    <h2>
+      {{
+        (isCreating
+          ? 'PAGES.EDIT_COURSE_PAGE.ADD_PAGE_TITLE'
+          : 'PAGES.EDIT_COURSE_PAGE.EDIT_PAGE_TITLE') | translate
+      }}
+    </h2>
   </p-header>
   <form class="form" [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
     <label>
-      <h4>Title:</h4>
+      <h4>{{ 'PAGES.EDIT_COURSE_PAGE.TITLE' | translate }}:</h4>
       <input
         class="full-size"
         type="text"
@@ -15,7 +21,7 @@
       />
     </label>
     <label>
-      <h4>Description:</h4>
+      <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DESCRIPTION' | translate }}:</h4>
       <textarea
         class="full-size"
         rows="5"
@@ -27,7 +33,7 @@
       ></textarea>
     </label>
     <label>
-      <h4>Date:</h4>
+      <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DATE' | translate }}:</h4>
       <p-calendar
         placeholder="Enter date"
         formControlName="date"
@@ -35,7 +41,7 @@
       ></p-calendar>
     </label>
     <label>
-      <h4>Duration:</h4>
+      <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DURATION' | translate }}:</h4>
       <input
         type="number"
         pInputText
@@ -49,11 +55,15 @@
       editCourseForm.value.length | courseDuration
     }}</span>
     <div class="form-footer">
-      <p-button type="button" label="Cancel" (click)="onCancel()"></p-button>
+      <p-button
+        type="button"
+        label="{{ 'SHARED.FORMS.CANCEL_BUTTON' | translate }}"
+        (click)="onCancel()"
+      ></p-button>
       <p-button
         styleClass="submit-button"
         type="submit"
-        label="Save"
+        label="{{ 'SHARED.FORMS.ACCEPT_BUTTON' | translate }}"
         [disabled]="editCourseForm.invalid"
       ></p-button>
     </div>

@@ -4,6 +4,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuItem } from 'primeng/api';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { LogoComponentModule } from '@components/logo/logo.component';
 import { UserProfileComponentModule } from '@components/user-profile/user-profile.component';
@@ -53,7 +54,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     LogoComponentModule,
     UserProfileComponentModule,
     BreadcrumbsComponentModule,
-    LanguagePickerModule
+    LanguagePickerModule,
+    TranslateModule
   ],
   exports: [HeaderComponent]
 })

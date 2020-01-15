@@ -1,12 +1,40 @@
 {
   "PAGES": {
-    "LOGIN_PAGE": {},
-    "COURSES_PAGE": {},
-    "EDIT_COURSE_PAGE": {},
-    "NOT_FOUND_PAGE": {}
+    "LOGIN_PAGE": {
+      "PAGE_TITLE": "Login",
+      "EMAIL": "E-mail",
+      "PASSWORD": "Password",
+      "FORGOT_PASSWORD": "Forgot password",
+      "LOGIN_BUTTON": "Login"
+    },
+    "COURSES_PAGE": {
+      "PAGE_TITLE": "Courses",
+      "SEARCH_COURSES_LABEL": "Text to search",
+      "ADD_COURSE_BUTTON": "Add course",
+      "EDIT_COURSE_BUTTON": "Edit",
+      "DELETE_COURSE_BUTTON": "Delete"
+    },
+    "EDIT_COURSE_PAGE": {
+      "ADD_PAGE_TITLE": "New course",
+      "EDIT_PAGE_TITLE": "Edit course",
+      "TITLE": "Title",
+      "DESCRIPTION": "Description",
+      "DATE": "Date",
+      "DURATION": "Duration",
+      "AUTHORS": "Authors"
+    },
+    "NOT_FOUND_PAGE.PAGE_TITLE": "Not Found"
   },
   "SHARED": {
-    "HEADER": {},
-    "FOOTER.COPYRIGHT": "Copyright © Video courses. All rights reserved"
+    "HEADER": {
+      "LOGO": "Video course",
+      "LOGOFF_BUTTON": "Log off"
+    },
+    "FOOTER.COPYRIGHT": "Copyright © Video courses. All rights reserved",
+    "FORMS": {
+      "ACCEPT_BUTTON": "Save",
+      "CONFIRM_BUTTON": "Yes",
+      "CANCEL_BUTTON": "Cancel"
+    }
   }
 }

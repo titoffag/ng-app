@@ -1,12 +1,34 @@
 {
   "PAGES": {
-    "LOGIN_PAGE": {},
+    "LOGIN_PAGE": {
+      "PAGE_TITLE": "Zaloguj sie",
+      "EMAIL": "Poczta",
+      "PASSWORD": "Hasło",
+      "FORGOT_PASSWORD": "Zapomniałeś hasła",
+      "LOGIN_BUTTON": "Zaloguj sie"
+    },
     "COURSES_PAGE": {},
-    "EDIT_COURSE_PAGE": {},
-    "NOT_FOUND_PAGE": {}
+    "EDIT_COURSE_PAGE": {
+      "ADD_PAGE_TITLE": "Nowy kurs",
+      "EDIT_PAGE_TITLE": "Edytuj kurs",
+      "TITLE": "Tytuł",
+      "DESCRIPTION": "Opis",
+      "DATE": "Data",
+      "DURATION": "Trwanie",
+      "AUTHORS": "Autorski"
+    },
+    "NOT_FOUND_PAGE.PAGE_TITLE": "Nie Znaleziono"
   },
   "SHARED": {
-    "HEADER": {},
-    "FOOTER.COPYRIGHT": "Prawa autorskie © Kursy wideo. Wszelkie prawa zastrzeżone"
+    "HEADER": {
+      "LOGO": "Kursy wideo",
+      "LOGOFF_BUTTON": "Wyloguj"
+    },
+    "FOOTER.COPYRIGHT": "Prawa autorskie © Kursy wideo. Wszelkie prawa zastrzeżone",
+    "FORMS": {
+      "ACCEPT_BUTTON": "Zapisać",
+      "CONFIRM_BUTTON": "Nie",
+      "CANCEL_BUTTON": "Anuluj"
+    }
   }
 }

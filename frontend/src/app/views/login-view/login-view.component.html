@@ -1,11 +1,11 @@
 <p-card styleClass="login-page">
   <p-header>
-    <h2>Login</h2>
+    <h2>{{ 'PAGES.LOGIN_PAGE.PAGE_TITLE' | translate }}</h2>
   </p-header>
 
   <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <label>
-      <h4>E-mail:</h4>
+      <h4>{{ 'PAGES.LOGIN_PAGE.EMAIL' | translate }}:</h4>
       <input
         type="email"
         placeholder="Enter e-mail"
@@ -15,7 +15,7 @@
       />
     </label>
     <label>
-      <h4>Password:</h4>
+      <h4>{{ 'PAGES.LOGIN_PAGE.PASSWORD' | translate }}:</h4>
       <input
         type="password"
         placeholder="Enter password"
@@ -25,12 +25,15 @@
       />
     </label>
     <div class="form-footer">
-      <a [routerLink]="['/', loginLink]">Forgot password?</a>
+      <a [routerLink]="['/', loginLink]"
+        >{{ 'PAGES.LOGIN_PAGE.FORGOT_PASSWORD' | translate }}?</a
+      >
       <p-button
         type="submit"
-        label="Login"
+        label="{{ 'PAGES.LOGIN_PAGE.LOGIN_BUTTON' | translate }}"
         [disabled]="loginForm.invalid"
-      ></p-button>
+      >
+      </p-button>
     </div>
   </form>
 </p-card>

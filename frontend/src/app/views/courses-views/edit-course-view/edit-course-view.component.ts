@@ -1,6 +1,7 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from 'src/app/shared.module';
 import { CoursesService } from '@services/courses.service';
@@ -101,7 +102,7 @@ export class EditCourseViewComponent implements OnInit {
 
 @NgModule({
   declarations: [EditCourseViewComponent],
-  imports: [SharedModule],
+  imports: [SharedModule, TranslateModule],
   exports: [EditCourseViewComponent]
 })
 export class EditCourseViewModule {}

@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from 'src/app/shared.module';
 import { AuthService } from '@services/auth.service';
@@ -27,7 +28,7 @@ export class LoginViewComponent {
 
 @NgModule({
   declarations: [LoginViewComponent],
-  imports: [SharedModule, RouterModule],
+  imports: [SharedModule, RouterModule, TranslateModule],
   exports: [LoginViewComponent]
 })
 export class LoginViewModule {}
