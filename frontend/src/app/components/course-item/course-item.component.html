@@ -17,7 +17,7 @@
       <span>
         <fa-icon class="icon" [icon]="faCalendarAlt"></fa-icon>
         <time [dateTime]="course.date">
-          {{ course.date | date: 'd MMM, y' }}
+          {{ course.date | date: 'd MMM, y':undefined:locale }}
         </time>
       </span>
     </p-header>
