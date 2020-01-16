@@ -63,7 +63,8 @@ export function translateCacheFactory(
   providers: [
     {
       provide: LOCALE_ID,
-      useFactory: translateService => translateService.currentLang,
+      useFactory: (translateService: TranslateService) =>
+        translateService.currentLang,
       deps: [TranslateService]
     }
   ],
