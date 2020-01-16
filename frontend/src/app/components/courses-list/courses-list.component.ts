@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, NgModule } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Course } from '@models/course';
 import { CoursesService } from '@services/courses.service';
@@ -18,7 +19,8 @@ export class CoursesListComponent implements OnInit {
 
   constructor(
     private coursesService: CoursesService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -42,10 +44,14 @@ export class CoursesListComponent implements OnInit {
 
   onDeletedCourse(id: number, courseName: string) {
     this.confirmationService.confirm({
-      header: 'Delete course?',
-      message: `Do you really want to delete "${courseName}"?`,
-      acceptLabel: 'Yes, delete',
-      rejectLabel: 'Cancel',
+      header: `${this.translateService.instant(
+        'SHARED.MODALS.DELETE_MODAL.TITLE'
+      )}?`,
+      message: `${this.translateService.instant(
+        'SHARED.MODALS.DELETE_MODAL.BODY'
+      )} "${courseName}"?`,
+      acceptLabel: this.translateService.instant('SHARED.FORMS.ACCEPT_BUTTON'),
+      rejectLabel: this.translateService.instant('SHARED.FORMS.CANCEL_BUTTON'),
       accept: () => {
         this.coursesService.remove(id).subscribe(() => {
           this.coursesService

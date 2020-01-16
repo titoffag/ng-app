@@ -7,14 +7,16 @@
       pInputText
       [formControl]="search"
     />
-    <label for="float-input">Text to search</label>
+    <label for="float-input">
+      {{ 'PAGES.COURSES_PAGE.SEARCH_COURSES_LABEL' | translate }}
+    </label>
   </span>
 </div>
 
 <div class="panel-bottom">
   <p-button
     styleClass="primary-button"
-    label="Add course"
+    label="{{ 'PAGES.COURSES_PAGE.ADD_COURSE_BUTTON' | translate }}"
     (onClick)="addCourse()"
   >
     <fa-icon class="button-icon" [icon]="faPlus"></fa-icon>

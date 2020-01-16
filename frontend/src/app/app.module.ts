@@ -7,6 +7,11 @@ import {
   TranslateService
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {
+  TranslateCacheModule,
+  TranslateCacheSettings,
+  TranslateCacheService
+} from 'ngx-translate-cache';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
@@ -18,8 +23,15 @@ import { LoadingBlockModule } from '@components/loading-block/loading-block.comp
 
 import { AppComponent } from './app.component';
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function translateCacheFactory(
+  translateService: TranslateService,
+  translateCacheSettings: TranslateCacheSettings
+) {
+  return new TranslateCacheService(translateService, translateCacheSettings);
 }
 
 @NgModule({
@@ -35,9 +47,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
+        useFactory: httpLoaderFactory,
         deps: [HttpClient]
       }
+    }),
+    TranslateCacheModule.forRoot({
+      cacheService: {
+        provide: TranslateCacheService,
+        useFactory: translateCacheFactory,
+        deps: [TranslateService, TranslateCacheSettings]
+      },
+      cacheMechanism: 'Cookie'
     })
   ],
   providers: [
@@ -50,7 +70,17 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {
+  constructor(
+    translate: TranslateService,
+    translateCacheService: TranslateCacheService
+  ) {
     registerLocaleData(localePl, 'pl');
+
+    translateCacheService.init();
+    translate.addLangs(['en', 'pl']);
+
+    const browserLang =
+      translateCacheService.getCachedLanguage() || translate.getBrowserLang();
+    translate.use(browserLang.match(/en|pl/) ? browserLang : 'en');
   }
 }

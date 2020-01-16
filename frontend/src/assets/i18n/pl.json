@@ -7,7 +7,15 @@
       "FORGOT_PASSWORD": "Zapomniałeś hasła",
       "LOGIN_BUTTON": "Zaloguj sie"
     },
-    "COURSES_PAGE": {},
+    "COURSES_PAGE": {
+      "PAGE_TITLE": "Kursy",
+      "SEARCH_COURSES_LABEL": "Tekst do wyszukiwania",
+      "ADD_COURSE_BUTTON": "Dodaj kurs",
+      "EDIT_COURSE_BUTTON": "Edytuj",
+      "DELETE_COURSE_BUTTON": "Usuń",
+      "LOAD_MORE_BUTTON": "Załaduj więcej",
+      "NO_DATA": "Brak danych. Możesz dodać nowy kurs"
+    },
     "EDIT_COURSE_PAGE": {
       "ADD_PAGE_TITLE": "Nowy kurs",
       "EDIT_PAGE_TITLE": "Edytuj kurs",
@@ -29,6 +37,12 @@
       "ACCEPT_BUTTON": "Zapisać",
       "CONFIRM_BUTTON": "Nie",
       "CANCEL_BUTTON": "Anuluj"
+    },
+    "MODALS": {
+      "DELETE_MODAL": {
+        "TITLE": "Usuń kurs",
+        "BODY": "Czy na pewno chcesz usunąć"
+      }
     }
   }
 }

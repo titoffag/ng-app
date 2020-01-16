@@ -14,6 +14,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { CalendarModule } from 'primeng/calendar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { HighlightBorderDirectiveModule } from '@directives/highlight-border.directive';
 import {
@@ -44,7 +45,9 @@ import { TokenInterceptor, LoadingInterceptor } from '@interceptors/index';
     HighlightBorderDirectiveModule,
     CourseDurationPipeModule,
     OrderListByPipeModule,
-    SearchByListPipeModule
+    SearchByListPipeModule,
+    // translate module
+    TranslateModule
   ],
   providers: [
     {

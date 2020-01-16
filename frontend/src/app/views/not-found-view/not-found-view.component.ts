@@ -1,5 +1,4 @@
 import { Component, NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from 'src/app/shared.module';
 
@@ -12,7 +11,7 @@ export class NotFoundViewComponent {}
 
 @NgModule({
   declarations: [NotFoundViewComponent],
-  imports: [SharedModule, TranslateModule],
+  imports: [SharedModule],
   exports: [NotFoundViewComponent]
 })
 export class NotFoundViewModule {}

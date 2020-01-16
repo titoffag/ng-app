@@ -12,7 +12,9 @@
       "SEARCH_COURSES_LABEL": "Text to search",
       "ADD_COURSE_BUTTON": "Add course",
       "EDIT_COURSE_BUTTON": "Edit",
-      "DELETE_COURSE_BUTTON": "Delete"
+      "DELETE_COURSE_BUTTON": "Delete",
+      "LOAD_MORE_BUTTON": "Load more",
+      "NO_DATA": "No data. Feel free to add new course"
     },
     "EDIT_COURSE_PAGE": {
       "ADD_PAGE_TITLE": "New course",
@@ -35,6 +37,12 @@
       "ACCEPT_BUTTON": "Save",
       "CONFIRM_BUTTON": "Yes",
       "CANCEL_BUTTON": "Cancel"
+    },
+    "MODALS": {
+      "DELETE_MODAL": {
+        "TITLE": "Delete course",
+        "BODY": "Do you really want to delete"
+      }
     }
   }
 }

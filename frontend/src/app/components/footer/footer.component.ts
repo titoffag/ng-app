@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+
+import { SharedModule } from 'src/app/shared.module';
 
 @Component({
   selector: 'app-footer',
@@ -10,7 +11,7 @@ export class FooterComponent {}
 
 @NgModule({
   declarations: [FooterComponent],
-  imports: [TranslateModule],
+  imports: [SharedModule],
   exports: [FooterComponent]
 })
 export class FooterComponentModule {}
