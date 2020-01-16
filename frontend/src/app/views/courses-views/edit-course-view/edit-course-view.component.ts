@@ -1,11 +1,12 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
 import { CoursesService } from '@services/courses.service';
 import { Course } from '@models/course';
 import { appRoutesNames } from '@views/app.routes.names';
+import { TextInputModule } from '@components/forms/text-input/text-input.component';
 
 @Component({
   selector: 'app-edit-course-view',
@@ -15,20 +16,22 @@ import { appRoutesNames } from '@views/app.routes.names';
 export class EditCourseViewComponent implements OnInit {
   isCreating = false;
   private editedCourse: Course;
-  editCourseForm = new FormGroup({
-    name: new FormControl(null, [
+  editCourseForm = this.form.group({
+    name: this.form.control(null, [
       Validators.required,
       Validators.maxLength(50)
     ]),
-    description: new FormControl(null, [
+    description: this.form.control(null, [
       Validators.required,
       Validators.maxLength(500)
     ]),
-    date: new FormControl(null, Validators.required),
-    length: new FormControl(null, Validators.required)
+    date: this.form.control(null, Validators.required),
+    length: this.form.control(null, Validators.required)
   });
+  test = this.form.control('test');
 
   constructor(
+    private form: FormBuilder,
     private router: Router,
     private coursesService: CoursesService,
     private route: ActivatedRoute
@@ -101,7 +104,7 @@ export class EditCourseViewComponent implements OnInit {
 
 @NgModule({
   declarations: [EditCourseViewComponent],
-  imports: [SharedModule],
+  imports: [SharedModule, TextInputModule],
   exports: [EditCourseViewComponent]
 })
 export class EditCourseViewModule {}

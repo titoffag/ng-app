@@ -5,7 +5,9 @@
     type="text"
     placeholder="Enter name"
     pInputText
-    formControlName="name"
+    [value]="value"
+    (input)="onTouched(); onChange($event.target.value)"
+    (blur)="onTouched()"
     required
   />
 </label>

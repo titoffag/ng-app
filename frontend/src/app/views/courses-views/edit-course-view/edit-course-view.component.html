@@ -9,17 +9,7 @@
     </h2>
   </p-header>
   <form class="form" [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
-    <label>
-      <h4>{{ 'PAGES.EDIT_COURSE_PAGE.TITLE' | translate }}:</h4>
-      <input
-        class="full-size"
-        type="text"
-        placeholder="Enter name"
-        pInputText
-        formControlName="name"
-        required
-      />
-    </label>
+    <app-text-input [formControl]="test"></app-text-input>
     <label>
       <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DESCRIPTION' | translate }}:</h4>
       <textarea
@@ -54,6 +44,9 @@
     <span class="total-duration">{{
       editCourseForm.value.length | courseDuration
     }}</span>
+
+    <pre>{{ test.value | json }}</pre>
+
     <div class="form-footer">
       <p-button
         type="button"
