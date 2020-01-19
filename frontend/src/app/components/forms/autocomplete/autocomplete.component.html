@@ -1,7 +1,8 @@
 <label>
   <h4>{{ 'PAGES.EDIT_COURSE_PAGE.AUTHORS' | translate }}:</h4>
   <p-autoComplete
-    [(ngModel)]="texts"
+    [(ngModel)]="value"
+    (blur)="onTouched()"
     [suggestions]="results$ | async"
     (completeMethod)="search($event)"
     [dropdown]="true"

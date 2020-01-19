@@ -5,8 +5,7 @@
     type="text"
     placeholder="Enter name"
     pInputText
-    [value]="value"
-    (input)="onTouched(); onChange($event.target.value)"
+    [(ngModel)]="value"
     (blur)="onTouched()"
     required
   />

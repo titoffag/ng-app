@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
+import { Author } from '@models/author';
 
 @Component({
   selector: 'app-text-input',
@@ -21,24 +22,34 @@ import { SharedModule } from 'src/app/shared.module';
   ]
 })
 export class TextInputComponent implements ControlValueAccessor {
-  private value: string;
+  private text: string;
   private onTouched: () => void = () => {};
   private onChange: (value: string) => void = () => {};
 
-  registerOnChange(fn: () => void) {
+  get value(): string {
+    return this.text;
+  }
+
+  set value(val: string) {
+    if (val !== this.text) {
+      this.text = val;
+      this.onChange(val);
+    }
+  }
+
+  registerOnTouched(fn: () => void) {
     this.onTouched = fn;
   }
 
-  registerOnTouched(fn: (value: string) => void) {
-    this.onChange = val => {
-      console.log('onChange', val);
-      fn(val);
-    };
+  registerOnChange(fn: (value: string) => void) {
+    this.onChange = fn;
   }
 
-  writeValue(value: string) {
-    this.value = value;
-    this.onChange(value);
+  writeValue(value: string | null) {
+    if (value !== null) {
+      this.value = value;
+      this.onChange(value);
+    }
   }
 }
 

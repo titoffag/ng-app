@@ -1,3 +1,5 @@
+import { Author } from '@models/author';
+
 export interface ICourse {
   id: number;
   name: string;
@@ -5,6 +7,7 @@ export interface ICourse {
   length: number;
   description: string;
   isTopRated: boolean;
+  authors: Author[];
 }
 
 export class Course implements ICourse {
@@ -14,6 +17,7 @@ export class Course implements ICourse {
     public length: number,
     public id: number,
     public name: string,
-    public isTopRated: boolean
+    public isTopRated: boolean,
+    public authors: Author[]
   ) {}
 }

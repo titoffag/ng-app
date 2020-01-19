@@ -9,7 +9,7 @@
     </h2>
   </p-header>
   <form class="form" [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
-    <app-text-input [formControl]="test"></app-text-input>
+    <app-text-input formControlName="name"></app-text-input>
     <label>
       <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DESCRIPTION' | translate }}:</h4>
       <textarea
@@ -45,8 +45,7 @@
     <span class="total-duration">{{
       editCourseForm.value.length | courseDuration
     }}</span>
-
-    <app-autocomplete></app-autocomplete>
+    <app-autocomplete formControlName="authors"></app-autocomplete>
 
     <div class="form-footer">
       <p-button
@@ -62,4 +61,6 @@
       ></p-button>
     </div>
   </form>
+
+  <pre>{{ editCourseForm.value | json }}</pre>
 </p-card>

@@ -17,22 +17,22 @@ import { CustomAutocompleteModule } from '@components/forms/autocomplete/autocom
 export class EditCourseViewComponent implements OnInit {
   isCreating = false;
   private editedCourse: Course;
-  editCourseForm = this.form.group({
-    name: this.form.control(null, [
+  editCourseForm = this.formBuilder.group({
+    name: this.formBuilder.control(null, [
       Validators.required,
       Validators.maxLength(50)
     ]),
-    description: this.form.control(null, [
+    description: this.formBuilder.control(null, [
       Validators.required,
       Validators.maxLength(500)
     ]),
-    date: this.form.control(null, Validators.required),
-    length: this.form.control(null, Validators.required)
+    date: this.formBuilder.control(null, Validators.required),
+    length: this.formBuilder.control(null, Validators.required),
+    authors: this.formBuilder.control(null, Validators.required)
   });
-  test = this.form.control('test');
 
   constructor(
-    private form: FormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router,
     private coursesService: CoursesService,
     private route: ActivatedRoute
@@ -51,20 +51,27 @@ export class EditCourseViewComponent implements OnInit {
       this.coursesService.getBy(+courseId).subscribe((course: Course) => {
         this.editedCourse = course;
 
-        const { name, description, date, length } = this.editedCourse;
+        const { name, description, date, length, authors } = this.editedCourse;
 
         this.editCourseForm.setValue({
           name,
           description,
           date: new Date(date),
-          length
+          length,
+          authors
         });
       });
     }
   }
 
   onSubmit() {
-    const { name, description, date, length } = this.editCourseForm.value;
+    const {
+      name,
+      description,
+      date,
+      length,
+      authors
+    } = this.editCourseForm.value;
 
     if (this.isCreating) {
       const newId = 0;
@@ -75,7 +82,8 @@ export class EditCourseViewComponent implements OnInit {
         length,
         newId,
         name,
-        defaultTopRated
+        defaultTopRated,
+        authors
       );
 
       this.coursesService
@@ -89,7 +97,8 @@ export class EditCourseViewComponent implements OnInit {
         length,
         id,
         name,
-        isTopRated
+        isTopRated,
+        authors
       );
 
       this.coursesService
