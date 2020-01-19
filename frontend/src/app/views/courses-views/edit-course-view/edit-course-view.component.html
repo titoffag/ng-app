@@ -27,6 +27,7 @@
       <p-calendar
         placeholder="Enter date"
         formControlName="date"
+        dateFormat="dd.mm.yy"
         required
       ></p-calendar>
     </label>
@@ -45,7 +46,7 @@
       editCourseForm.value.length | courseDuration
     }}</span>
 
-    <pre>{{ test.value | json }}</pre>
+    <app-autocomplete></app-autocomplete>
 
     <div class="form-footer">
       <p-button

@@ -1,1 +1,12 @@
-<p>autocomplete works!</p>
+<label>
+  <h4>{{ 'PAGES.EDIT_COURSE_PAGE.AUTHORS' | translate }}:</h4>
+  <p-autoComplete
+    [(ngModel)]="texts"
+    [suggestions]="results$ | async"
+    (completeMethod)="search($event)"
+    [dropdown]="true"
+    [multiple]="true"
+    [forceSelection]="true"
+    field="name"
+  ></p-autoComplete>
+</label>

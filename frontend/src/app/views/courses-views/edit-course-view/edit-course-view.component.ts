@@ -7,6 +7,7 @@ import { CoursesService } from '@services/courses.service';
 import { Course } from '@models/course';
 import { appRoutesNames } from '@views/app.routes.names';
 import { TextInputModule } from '@components/forms/text-input/text-input.component';
+import { CustomAutocompleteModule } from '@components/forms/autocomplete/autocomplete.component';
 
 @Component({
   selector: 'app-edit-course-view',
@@ -104,7 +105,7 @@ export class EditCourseViewComponent implements OnInit {
 
 @NgModule({
   declarations: [EditCourseViewComponent],
-  imports: [SharedModule, TextInputModule],
+  imports: [SharedModule, TextInputModule, CustomAutocompleteModule],
   exports: [EditCourseViewComponent]
 })
 export class EditCourseViewModule {}
