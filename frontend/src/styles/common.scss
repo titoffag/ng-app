@@ -4,6 +4,11 @@
   left: 12.5px;
 }
 
+.alert {
+  margin-top: 5px;
+  color: #a80000;
+}
+
 @mixin buttonWithIcon($mode-color) {
   position: relative;
   padding-left: 20px;

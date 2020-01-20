@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { AuthService } from '@services/auth.service';
 
@@ -30,7 +31,7 @@ export class UserProfileComponent {
 
 @NgModule({
   declarations: [UserProfileComponent],
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, TranslateModule],
   exports: [UserProfileComponent]
 })
 export class UserProfileComponentModule {}

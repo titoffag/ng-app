@@ -1,0 +1,9 @@
+<label>
+  <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DATE' | translate }}:</h4>
+  <p-calendar
+    placeholder="Enter date"
+    [(ngModel)]="value"
+    (blur)="onTouched()"
+    dateFormat="dd.mm.yy"
+  ></p-calendar>
+</label>

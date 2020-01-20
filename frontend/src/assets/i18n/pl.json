@@ -1,0 +1,58 @@
+{
+  "PAGES": {
+    "LOGIN_PAGE": {
+      "PAGE_TITLE": "Zaloguj sie",
+      "EMAIL": "Poczta",
+      "PASSWORD": "Hasło",
+      "FORGOT_PASSWORD": "Zapomniałeś hasła",
+      "LOGIN_BUTTON": "Zaloguj sie"
+    },
+    "COURSES_PAGE": {
+      "PAGE_TITLE": "Kursy",
+      "SEARCH_COURSES_LABEL": "Tekst do wyszukiwania",
+      "ADD_COURSE_BUTTON": "Dodaj kurs",
+      "EDIT_COURSE_BUTTON": "Edytuj",
+      "DELETE_COURSE_BUTTON": "Usuń",
+      "LOAD_MORE_BUTTON": "Załaduj więcej",
+      "NO_DATA": "Brak danych. Możesz dodać nowy kurs"
+    },
+    "EDIT_COURSE_PAGE": {
+      "ADD_PAGE_TITLE": "Nowy kurs",
+      "EDIT_PAGE_TITLE": "Edytuj kurs",
+      "TITLE": "Tytuł",
+      "DESCRIPTION": "Opis",
+      "DATE": "Data",
+      "DURATION": "Trwanie",
+      "AUTHORS": "Autorski"
+    },
+    "NOT_FOUND_PAGE.PAGE_TITLE": "Nie Znaleziono"
+  },
+  "SHARED": {
+    "HEADER": {
+      "LOGO": "Kursy wideo",
+      "LOGOFF_BUTTON": "Wyloguj"
+    },
+    "FOOTER.COPYRIGHT": "Prawa autorskie © Kursy wideo. Wszelkie prawa zastrzeżone",
+    "FORMS": {
+      "ACCEPT_BUTTON": "Zapisać",
+      "CONFIRM_BUTTON": "Nie",
+      "CANCEL_BUTTON": "Anuluj"
+    },
+    "VALIDATORS": {
+      "NAME_REQUIRED": "Nazwa jest wymagana",
+      "NAME_MAXLENGTH": "Nazwa nie może zawierać więcej niż 50 znaków",
+      "DESCRIPTION_REQUIRED": "Opis jest wymagany",
+      "DESCRIPTION_MAXLENGTH": "Opis nie może być dłuższy niż 500 znaków",
+      "DATE_REQUIRED": "Data jest wymagana",
+      "DURATION_REQUIRED": "Wymagany czas trwania",
+      "DURATION_NEGATIVE_VALUE": "Czas trwania powinien być wartością dodatnią",
+      "AUTHORS_EMPTY_SELECTOR": "Należy wybrać co najmniej jednego autora"
+    },
+    "MODALS": {
+      "DELETE_MODAL": {
+        "TITLE": "Usuń kurs",
+        "BODY": "Czy na pewno chcesz usunąć"
+      }
+    }
+  }
+}

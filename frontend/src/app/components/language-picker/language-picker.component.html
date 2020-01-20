@@ -1,0 +1,10 @@
+<label>
+  <select #picker (change)="useLanguage(picker.value)">
+    <option
+      *ngFor="let language of languages"
+      [value]="language"
+      [selected]="language === translate.currentLang"
+      >{{ language }}</option
+    >
+  </select>
+</label>

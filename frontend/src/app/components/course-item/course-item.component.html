@@ -17,7 +17,7 @@
       <span>
         <fa-icon class="icon" [icon]="faCalendarAlt"></fa-icon>
         <time [dateTime]="course.date">
-          {{ course.date | date: 'd MMM, y' }}
+          {{ course.date | date: 'd MMM, y':undefined:locale }}
         </time>
       </span>
     </p-header>
@@ -28,14 +28,14 @@
 
     <p-footer>
       <p-button
-        label="Edit"
+        label="{{ 'PAGES.COURSES_PAGE.EDIT_COURSE_BUTTON' | translate }}"
         (onClick)="editCourse()"
         styleClass="edit-course-button"
       >
         <fa-icon class="button-icon" [icon]="faPencilAlt"></fa-icon>
       </p-button>
       <p-button
-        label="Delete"
+        label="{{ 'PAGES.COURSES_PAGE.DELETE_COURSE_BUTTON' | translate }}"
         (onClick)="deleteCourse()"
         styleClass="delete-course-button"
       >

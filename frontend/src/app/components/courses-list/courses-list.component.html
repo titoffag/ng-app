@@ -8,14 +8,14 @@
 
   <p-card *ngIf="!isMaxCountCourses" styleClass="load-more-block">
     <button class="load-more-button" type="button" (click)="loadMoreCourses()">
-      Load more
+      {{ 'PAGES.COURSES_PAGE.LOAD_MORE_BUTTON' | translate }}
     </button>
   </p-card>
 </ul>
 
 <ng-template #noData>
   <p-card styleClass="no-data-block">
-    No data. Feel free to add new course.
+    {{ 'PAGES.COURSES_PAGE.NO_DATA' | translate }}
   </p-card>
 </ng-template>
 

@@ -1,0 +1,11 @@
+<label>
+  <h4>{{ 'PAGES.EDIT_COURSE_PAGE.TITLE' | translate }}:</h4>
+  <input
+    class="full-size"
+    type="text"
+    placeholder="Enter name"
+    pInputText
+    [(ngModel)]="value"
+    (blur)="onTouched()"
+  />
+</label>

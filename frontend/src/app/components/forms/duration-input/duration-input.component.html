@@ -1,0 +1,11 @@
+<label>
+  <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DURATION' | translate }}:</h4>
+  <input
+    type="number"
+    pInputText
+    placeholder="Enter length"
+    [(ngModel)]="value"
+    (blur)="onTouched()"
+  />
+</label>
+<span class="total-duration">{{ value | courseDuration }}</span>

@@ -1,0 +1,12 @@
+<label>
+  <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DESCRIPTION' | translate }}:</h4>
+  <textarea
+    class="full-size"
+    rows="5"
+    pInputTextarea
+    autoResize="autoResize"
+    placeholder="Enter description"
+    [(ngModel)]="value"
+    (blur)="onTouched()"
+  ></textarea>
+</label>

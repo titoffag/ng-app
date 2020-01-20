@@ -9,6 +9,7 @@ import { FooterComponentModule } from '@components/footer/footer.component';
 import { LoadingBlockModule } from '@components/loading-block/loading-block.component';
 
 import { AppComponent } from './app.component';
+import { I18nModule } from './i18n.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     HeaderComponentModule,
     FooterComponentModule,
-    LoadingBlockModule
+    LoadingBlockModule,
+    I18nModule
   ],
   bootstrap: [AppComponent]
 })

@@ -1,61 +1,100 @@
 <p-card styleClass="edit-course-page">
   <p-header>
-    <h2>{{ isCreating ? 'New course' : 'Edit course' }}</h2>
+    <h2>
+      {{
+        (isCreating
+          ? 'PAGES.EDIT_COURSE_PAGE.ADD_PAGE_TITLE'
+          : 'PAGES.EDIT_COURSE_PAGE.EDIT_PAGE_TITLE') | translate
+      }}
+    </h2>
   </p-header>
   <form class="form" [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
-    <label>
-      <h4>Title:</h4>
-      <input
-        class="full-size"
-        type="text"
-        placeholder="Enter name"
-        pInputText
-        formControlName="name"
-        required
-      />
-    </label>
-    <label>
-      <h4>Description:</h4>
-      <textarea
-        class="full-size"
-        rows="5"
-        pInputTextarea
-        autoResize="autoResize"
-        placeholder="Enter description"
-        formControlName="description"
-        required
-      ></textarea>
-    </label>
-    <!-- separate component -->
-    <label>
-      <h4>Date:</h4>
-      <p-calendar
-        placeholder="Enter date"
-        formControlName="date"
-        required
-      ></p-calendar>
-    </label>
-    <!-- separate component -->
-    <label>
-      <h4>Duration:</h4>
-      <input
-        type="number"
-        pInputText
-        pKeyFilter="pint"
-        placeholder="Enter length"
-        formControlName="length"
-        required
-      />
-    </label>
-    <span class="total-duration">{{
-      editCourseForm.value.length | courseDuration
-    }}</span>
+    <app-text-input formControlName="name"></app-text-input>
+    <div
+      *ngIf="
+        getField('name').invalid &&
+        (getField('name').dirty || getField('name').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('name', 'required')">
+        {{ 'SHARED.VALIDATORS.NAME_REQUIRED' | translate }}.
+      </div>
+      <div *ngIf="hasError('name', 'maxlength')">
+        {{ 'SHARED.VALIDATORS.NAME_MAXLENGTH' | translate }}.
+      </div>
+    </div>
+
+    <app-description-input
+      formControlName="description"
+    ></app-description-input>
+    <div
+      *ngIf="
+        getField('description').invalid &&
+        (getField('description').dirty || getField('description').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('description', 'required')">
+        {{ 'SHARED.VALIDATORS.DESCRIPTION_REQUIRED' | translate }}.
+      </div>
+      <div *ngIf="hasError('description', 'maxlength')">
+        {{ 'SHARED.VALIDATORS.DESCRIPTION_MAXLENGTH' | translate }}.
+      </div>
+    </div>
+
+    <app-date-input formControlName="date"></app-date-input>
+    <div
+      *ngIf="
+        getField('date').invalid &&
+        (getField('date').dirty || getField('date').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('date', 'required')">
+        {{ 'SHARED.VALIDATORS.DATE_REQUIRED' | translate }}.
+      </div>
+    </div>
+
+    <app-duration-input formControlName="length"></app-duration-input>
+    <div
+      *ngIf="
+        getField('length').invalid &&
+        (getField('length').dirty || getField('length').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('length', 'required')">
+        {{ 'SHARED.VALIDATORS.DURATION_REQUIRED' | translate }}.
+      </div>
+      <div *ngIf="hasError('length', 'negativeValue')">
+        {{ 'SHARED.VALIDATORS.DURATION_NEGATIVE_VALUE' | translate }}.
+      </div>
+    </div>
+
+    <app-autocomplete formControlName="authors"></app-autocomplete>
+    <div
+      *ngIf="
+        getField('authors').invalid &&
+        (getField('authors').dirty || getField('authors').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('authors', 'emptySelector')">
+        {{ 'SHARED.VALIDATORS.AUTHORS_EMPTY_SELECTOR' | translate }}.
+      </div>
+    </div>
+
     <div class="form-footer">
-      <p-button type="button" label="Cancel" (click)="onCancel()"></p-button>
+      <p-button
+        type="button"
+        label="{{ 'SHARED.FORMS.CANCEL_BUTTON' | translate }}"
+        (click)="onCancel()"
+      ></p-button>
       <p-button
         styleClass="submit-button"
         type="submit"
-        label="Save"
+        label="{{ 'SHARED.FORMS.ACCEPT_BUTTON' | translate }}"
         [disabled]="editCourseForm.invalid"
       ></p-button>
     </div>

@@ -1,4 +1,5 @@
 @import 'src/styles/colors';
+@import 'src/styles/common';
 
 :host {
   h2 {
@@ -8,14 +9,6 @@
 
   .form {
     margin: 24px 0;
-  }
-
-  .full-size {
-    width: 100%;
-  }
-
-  .total-duration {
-    margin-left: 12px;
   }
 
   .form-footer {

@@ -1,12 +1,13 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import * as uuid from 'uuid';
+import { Validators, FormBuilder, AbstractControl } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
+import { CustomFormsModule } from '@components/forms/forms.module';
 import { CoursesService } from '@services/courses.service';
 import { Course } from '@models/course';
 import { appRoutesNames } from '@views/app.routes.names';
+import { CustomValidators } from '@components/forms/custom-validators';
 
 @Component({
   selector: 'app-edit-course-view',
@@ -16,20 +17,25 @@ import { appRoutesNames } from '@views/app.routes.names';
 export class EditCourseViewComponent implements OnInit {
   isCreating = false;
   private editedCourse: Course;
-  editCourseForm = new FormGroup({
-    name: new FormControl(null, [
+  editCourseForm = this.formBuilder.group({
+    name: this.formBuilder.control(null, [
       Validators.required,
       Validators.maxLength(50)
     ]),
-    description: new FormControl(null, [
+    description: this.formBuilder.control(null, [
       Validators.required,
       Validators.maxLength(500)
     ]),
-    date: new FormControl(null, Validators.required),
-    length: new FormControl(null, Validators.required)
+    date: this.formBuilder.control(null, Validators.required),
+    length: this.formBuilder.control(null, [
+      Validators.required,
+      CustomValidators.negativeValue
+    ]),
+    authors: this.formBuilder.control(null, CustomValidators.emptySelector)
   });
 
   constructor(
+    private formBuilder: FormBuilder,
     private router: Router,
     private coursesService: CoursesService,
     private route: ActivatedRoute
@@ -48,20 +54,37 @@ export class EditCourseViewComponent implements OnInit {
       this.coursesService.getBy(+courseId).subscribe((course: Course) => {
         this.editedCourse = course;
 
-        const { name, description, date, length } = this.editedCourse;
+        const { name, description, date, length, authors } = this.editedCourse;
 
         this.editCourseForm.setValue({
           name,
           description,
           date: new Date(date),
-          length
+          length,
+          authors
         });
       });
     }
   }
 
+  getField(key: string): AbstractControl | null {
+    return this.editCourseForm.get(key);
+  }
+
+  hasError(key: string, errorCode: string): boolean {
+    const control = this.getField(key);
+
+    return control ? control.hasError(errorCode) : false;
+  }
+
   onSubmit() {
-    const { name, description, date, length } = this.editCourseForm.value;
+    const {
+      name,
+      description,
+      date,
+      length,
+      authors
+    } = this.editCourseForm.value;
 
     if (this.isCreating) {
       const newId = 0;
@@ -72,7 +95,8 @@ export class EditCourseViewComponent implements OnInit {
         length,
         newId,
         name,
-        defaultTopRated
+        defaultTopRated,
+        authors
       );
 
       this.coursesService
@@ -86,7 +110,8 @@ export class EditCourseViewComponent implements OnInit {
         length,
         id,
         name,
-        isTopRated
+        isTopRated,
+        authors
       );
 
       this.coursesService
@@ -102,7 +127,7 @@ export class EditCourseViewComponent implements OnInit {
 
 @NgModule({
   declarations: [EditCourseViewComponent],
-  imports: [SharedModule],
+  imports: [SharedModule, CustomFormsModule],
   exports: [EditCourseViewComponent]
 })
 export class EditCourseViewModule {}
