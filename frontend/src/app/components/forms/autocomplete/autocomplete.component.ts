@@ -7,7 +7,7 @@ import { SharedModule } from 'src/app/shared.module';
 import { AuthorsService } from '@services/authors.service';
 import { Author } from '@models/author';
 import { BaseInput } from '@components/forms/base-input';
-import { validateEmptySelector } from '@components/forms/validators';
+import { CustomValidators } from '@components/forms/custom-validators';
 
 @Component({
   selector: 'app-autocomplete',
@@ -21,7 +21,7 @@ import { validateEmptySelector } from '@components/forms/validators';
     },
     {
       provide: NG_VALIDATORS,
-      useValue: validateEmptySelector,
+      useValue: CustomValidators.emptySelector,
       multi: true
     }
   ]
