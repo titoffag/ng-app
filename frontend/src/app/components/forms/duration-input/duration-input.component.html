@@ -1,14 +1,13 @@
 <label>
-  <h4>Duration:</h4>
+  <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DURATION' | translate }}:</h4>
   <input
     type="number"
     pInputText
     pKeyFilter="pint"
     placeholder="Enter length"
-    formControlName="length"
+    [(ngModel)]="value"
+    (blur)="onTouched()"
     required
   />
 </label>
-<span class="total-duration">{{
-  editCourseForm.value.length | courseDuration
-}}</span>
+<span class="total-duration">{{ value | courseDuration }}</span>

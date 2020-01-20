@@ -16,7 +16,7 @@ const routes: Routes = [
     path: appRoutesNames.COURSES,
     loadChildren: () =>
       import('./courses-views/courses-views.module').then(
-        routingModule => routingModule.CoursesViewsModule
+        routingModule => routingModule.CoursesViewsRoutingModule
       ),
     canActivate: [AuthGuard],
     data: { label: 'Courses' }

@@ -1,12 +1,13 @@
 <label>
-  <h4>Description:</h4>
+  <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DESCRIPTION' | translate }}:</h4>
   <textarea
     class="full-size"
     rows="5"
     pInputTextarea
     autoResize="autoResize"
     placeholder="Enter description"
-    formControlName="description"
+    [(ngModel)]="value"
+    (blur)="onTouched()"
     required
   ></textarea>
 </label>

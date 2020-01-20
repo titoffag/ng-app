@@ -2,7 +2,6 @@ import { Component, forwardRef, NgModule } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
-  FormsModule,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR
 } from '@angular/forms';
@@ -12,6 +11,7 @@ import { map } from 'rxjs/operators';
 import { SharedModule } from 'src/app/shared.module';
 import { AuthorsService } from '@services/authors.service';
 import { Author } from '@models/author';
+import { BaseInput } from '@components/forms/base-input';
 
 @Component({
   selector: 'app-autocomplete',
@@ -38,39 +38,11 @@ import { Author } from '@models/author';
     }
   ]
 })
-export class AutocompleteComponent implements ControlValueAccessor {
-  texts: Author[] = [];
+export class AutocompleteComponent extends BaseInput<Author[]> {
   results$: Observable<Author[]>;
 
-  private onTouched: () => void = () => {};
-  private onChange: (value: Author[]) => void = () => {};
-
-  constructor(private authorsService: AuthorsService) {}
-
-  get value(): Author[] {
-    return this.texts;
-  }
-
-  set value(val: Author[]) {
-    if (val.length !== this.texts.length) {
-      this.texts = val;
-      this.onChange(val);
-    }
-  }
-
-  registerOnChange(fn: (value: Author[]) => void) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void) {
-    this.onTouched = fn;
-  }
-
-  writeValue(value: Author[] | null) {
-    if (value !== null) {
-      this.texts.push(...value);
-      this.onChange(value);
-    }
+  constructor(private authorsService: AuthorsService) {
+    super();
   }
 
   search(event) {
@@ -79,7 +51,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
         authors.filter(author => {
           let isNotSelectedOption = true;
 
-          this.texts.forEach(text => {
+          this.value.forEach(text => {
             if (author.id === text.id) {
               isNotSelectedOption = false;
             }
@@ -94,7 +66,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
 @NgModule({
   declarations: [AutocompleteComponent],
-  imports: [SharedModule, FormsModule],
+  imports: [SharedModule],
   exports: [AutocompleteComponent]
 })
 export class CustomAutocompleteModule {}

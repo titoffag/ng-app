@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -28,9 +28,10 @@ import { TokenInterceptor, LoadingInterceptor } from '@interceptors/index';
   exports: [
     // Angular modules
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    // PrimeNG modules
+    // PrimeNG components
     CardModule,
     ButtonModule,
     InputTextModule,

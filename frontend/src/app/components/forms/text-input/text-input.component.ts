@@ -1,13 +1,8 @@
 import { Component, forwardRef, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  ControlValueAccessor,
-  FormsModule,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
-import { Author } from '@models/author';
+import { BaseInput } from '@components/forms/base-input';
 
 @Component({
   selector: 'app-text-input',
@@ -21,41 +16,11 @@ import { Author } from '@models/author';
     }
   ]
 })
-export class TextInputComponent implements ControlValueAccessor {
-  private text: string;
-  private onTouched: () => void = () => {};
-  private onChange: (value: string) => void = () => {};
-
-  get value(): string {
-    return this.text;
-  }
-
-  set value(val: string) {
-    if (val !== this.text) {
-      this.text = val;
-      this.onChange(val);
-    }
-  }
-
-  registerOnTouched(fn: () => void) {
-    this.onTouched = fn;
-  }
-
-  registerOnChange(fn: (value: string) => void) {
-    this.onChange = fn;
-  }
-
-  writeValue(value: string | null) {
-    if (value !== null) {
-      this.value = value;
-      this.onChange(value);
-    }
-  }
-}
+export class TextInputComponent extends BaseInput<string> {}
 
 @NgModule({
   declarations: [TextInputComponent],
-  imports: [CommonModule, SharedModule, FormsModule],
+  imports: [SharedModule],
   exports: [TextInputComponent]
 })
 export class TextInputModule {}

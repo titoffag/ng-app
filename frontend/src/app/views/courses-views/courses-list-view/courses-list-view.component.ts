@@ -1,5 +1,4 @@
 import { Component, NgModule } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { CoursesListComponentModule } from '@components/courses-list/courses-list.component';
 import { PanelComponentModule } from '@components/panel/panel.component';

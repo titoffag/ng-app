@@ -10,41 +10,11 @@
   </p-header>
   <form class="form" [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
     <app-text-input formControlName="name"></app-text-input>
-    <label>
-      <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DESCRIPTION' | translate }}:</h4>
-      <textarea
-        class="full-size"
-        rows="5"
-        pInputTextarea
-        autoResize="autoResize"
-        placeholder="Enter description"
-        formControlName="description"
-        required
-      ></textarea>
-    </label>
-    <label>
-      <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DATE' | translate }}:</h4>
-      <p-calendar
-        placeholder="Enter date"
-        formControlName="date"
-        dateFormat="dd.mm.yy"
-        required
-      ></p-calendar>
-    </label>
-    <label>
-      <h4>{{ 'PAGES.EDIT_COURSE_PAGE.DURATION' | translate }}:</h4>
-      <input
-        type="number"
-        pInputText
-        pKeyFilter="pint"
-        placeholder="Enter length"
-        formControlName="length"
-        required
-      />
-    </label>
-    <span class="total-duration">{{
-      editCourseForm.value.length | courseDuration
-    }}</span>
+    <app-description-input
+      formControlName="description"
+    ></app-description-input>
+    <app-date-input formControlName="date"></app-date-input>
+    <app-duration-input formControlName="length"></app-duration-input>
     <app-autocomplete formControlName="authors"></app-autocomplete>
 
     <div class="form-footer">
@@ -61,6 +31,4 @@
       ></p-button>
     </div>
   </form>
-
-  <pre>{{ editCourseForm.value | json }}</pre>
 </p-card>
