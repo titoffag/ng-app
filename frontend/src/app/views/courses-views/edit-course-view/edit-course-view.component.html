@@ -10,12 +10,80 @@
   </p-header>
   <form class="form" [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
     <app-text-input formControlName="name"></app-text-input>
+    <div
+      *ngIf="
+        getField('name').invalid &&
+        (getField('name').dirty || getField('name').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('name', 'required')">
+        Name is required.
+      </div>
+      <div *ngIf="hasError('name', 'maxlength')">
+        Name must be no more than 50 characters.
+      </div>
+    </div>
+
     <app-description-input
       formControlName="description"
     ></app-description-input>
+    <div
+      *ngIf="
+        getField('description').invalid &&
+        (getField('description').dirty || getField('description').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('description', 'required')">
+        Description is required.
+      </div>
+      <div *ngIf="hasError('description', 'maxlength')">
+        Description must be no more than 500 characters.
+      </div>
+    </div>
+
     <app-date-input formControlName="date"></app-date-input>
+    <div
+      *ngIf="
+        getField('date').invalid &&
+        (getField('date').dirty || getField('date').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('date', 'required')">
+        Date is required.
+      </div>
+    </div>
+
     <app-duration-input formControlName="length"></app-duration-input>
+    <div
+      *ngIf="
+        getField('length').invalid &&
+        (getField('length').dirty || getField('length').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('length', 'required')">
+        Duration is required.
+      </div>
+      <div *ngIf="hasError('length', 'negativeValue')">
+        Duration should be a positive value.
+      </div>
+    </div>
+
     <app-autocomplete formControlName="authors"></app-autocomplete>
+    <div
+      *ngIf="
+        getField('authors').invalid &&
+        (getField('authors').dirty || getField('authors').touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="hasError('authors', 'emptySelector')">
+        At least one author should be selected.
+      </div>
+    </div>
 
     <div class="form-footer">
       <p-button

@@ -10,6 +10,10 @@ export class CourseDurationPipe implements PipeTransform {
   private DAY_IN_MINUTES = this.DAY_IN_HOURS * this.HOUR_IN_MINUTES;
 
   transform(duration: number): string {
+    if (duration < 0) {
+      return this.DEFAULT_STRING;
+    }
+
     let formattedDuration = '';
 
     const days = Math.floor(duration / this.DAY_IN_MINUTES);

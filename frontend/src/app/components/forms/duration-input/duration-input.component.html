@@ -3,11 +3,9 @@
   <input
     type="number"
     pInputText
-    pKeyFilter="pint"
     placeholder="Enter length"
     [(ngModel)]="value"
     (blur)="onTouched()"
-    required
   />
 </label>
 <span class="total-duration">{{ value | courseDuration }}</span>

@@ -1,8 +1,9 @@
 import { Component, forwardRef, NgModule } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
 import { BaseInput } from '@components/forms/base-input';
+import { validateNegativeValue } from '@components/forms/validators';
 
 @Component({
   selector: 'app-duration-input',
@@ -12,6 +13,11 @@ import { BaseInput } from '@components/forms/base-input';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DurationInputComponent),
+      multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
+      useValue: validateNegativeValue,
       multi: true
     }
   ]

@@ -1,12 +1,16 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, AbstractControl } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
 import { CustomFormsModule } from '@components/forms/forms.module';
 import { CoursesService } from '@services/courses.service';
 import { Course } from '@models/course';
 import { appRoutesNames } from '@views/app.routes.names';
+import {
+  validateEmptySelector,
+  validateNegativeValue
+} from '@components/forms/validators';
 
 @Component({
   selector: 'app-edit-course-view',
@@ -26,8 +30,11 @@ export class EditCourseViewComponent implements OnInit {
       Validators.maxLength(500)
     ]),
     date: this.formBuilder.control(null, Validators.required),
-    length: this.formBuilder.control(null, Validators.required),
-    authors: this.formBuilder.control(null, Validators.required)
+    length: this.formBuilder.control(null, [
+      Validators.required,
+      validateNegativeValue
+    ]),
+    authors: this.formBuilder.control(null, validateEmptySelector)
   });
 
   constructor(
@@ -61,6 +68,16 @@ export class EditCourseViewComponent implements OnInit {
         });
       });
     }
+  }
+
+  getField(key: string): AbstractControl | null {
+    return this.editCourseForm.get(key);
+  }
+
+  hasError(key: string, errorCode: string): boolean {
+    const control = this.getField(key);
+
+    return control ? control.hasError(errorCode) : false;
   }
 
   onSubmit() {

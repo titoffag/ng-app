@@ -1,10 +1,5 @@
 import { Component, forwardRef, NgModule } from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormControl,
-  NG_VALIDATORS,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,6 +7,7 @@ import { SharedModule } from 'src/app/shared.module';
 import { AuthorsService } from '@services/authors.service';
 import { Author } from '@models/author';
 import { BaseInput } from '@components/forms/base-input';
+import { validateEmptySelector } from '@components/forms/validators';
 
 @Component({
   selector: 'app-autocomplete',
@@ -25,15 +21,7 @@ import { BaseInput } from '@components/forms/base-input';
     },
     {
       provide: NG_VALIDATORS,
-      useValue: (control: FormControl) => {
-        const error = {
-          rangeError: {
-            given: control.value
-          }
-        };
-
-        return control.value && control.value.length > 0 ? null : error;
-      },
+      useValue: validateEmptySelector,
       multi: true
     }
   ]
@@ -51,11 +39,13 @@ export class AutocompleteComponent extends BaseInput<Author[]> {
         authors.filter(author => {
           let isNotSelectedOption = true;
 
-          this.value.forEach(text => {
-            if (author.id === text.id) {
-              isNotSelectedOption = false;
-            }
-          });
+          if (Array.isArray(this.value)) {
+            this.value.forEach(text => {
+              if (author.id === text.id) {
+                isNotSelectedOption = false;
+              }
+            });
+          }
 
           return isNotSelectedOption;
         })
