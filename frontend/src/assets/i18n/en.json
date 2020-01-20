@@ -38,6 +38,16 @@
       "CONFIRM_BUTTON": "Yes",
       "CANCEL_BUTTON": "Cancel"
     },
+    "VALIDATORS": {
+      "NAME_REQUIRED": "Name is required",
+      "NAME_MAXLENGTH": "Name must be no more than 50 characters",
+      "DESCRIPTION_REQUIRED": "Description is required",
+      "DESCRIPTION_MAXLENGTH": "Description must be no more than 500 characters",
+      "DATE_REQUIRED": "Date is required",
+      "DURATION_REQUIRED": "Duration is required",
+      "DURATION_NEGATIVE_VALUE": "Duration should be a positive value",
+      "AUTHORS_EMPTY_SELECTOR": "At least one author should be selected"
+    },
     "MODALS": {
       "DELETE_MODAL": {
         "TITLE": "Delete course",

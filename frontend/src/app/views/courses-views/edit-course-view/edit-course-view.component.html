@@ -18,10 +18,10 @@
       class="alert"
     >
       <div *ngIf="hasError('name', 'required')">
-        Name is required.
+        {{ 'SHARED.VALIDATORS.NAME_REQUIRED' | translate }}.
       </div>
       <div *ngIf="hasError('name', 'maxlength')">
-        Name must be no more than 50 characters.
+        {{ 'SHARED.VALIDATORS.NAME_MAXLENGTH' | translate }}.
       </div>
     </div>
 
@@ -36,10 +36,10 @@
       class="alert"
     >
       <div *ngIf="hasError('description', 'required')">
-        Description is required.
+        {{ 'SHARED.VALIDATORS.DESCRIPTION_REQUIRED' | translate }}.
       </div>
       <div *ngIf="hasError('description', 'maxlength')">
-        Description must be no more than 500 characters.
+        {{ 'SHARED.VALIDATORS.DESCRIPTION_MAXLENGTH' | translate }}.
       </div>
     </div>
 
@@ -52,7 +52,7 @@
       class="alert"
     >
       <div *ngIf="hasError('date', 'required')">
-        Date is required.
+        {{ 'SHARED.VALIDATORS.DATE_REQUIRED' | translate }}.
       </div>
     </div>
 
@@ -65,10 +65,10 @@
       class="alert"
     >
       <div *ngIf="hasError('length', 'required')">
-        Duration is required.
+        {{ 'SHARED.VALIDATORS.DURATION_REQUIRED' | translate }}.
       </div>
       <div *ngIf="hasError('length', 'negativeValue')">
-        Duration should be a positive value.
+        {{ 'SHARED.VALIDATORS.DURATION_NEGATIVE_VALUE' | translate }}.
       </div>
     </div>
 
@@ -81,7 +81,7 @@
       class="alert"
     >
       <div *ngIf="hasError('authors', 'emptySelector')">
-        At least one author should be selected.
+        {{ 'SHARED.VALIDATORS.AUTHORS_EMPTY_SELECTOR' | translate }}.
       </div>
     </div>
 

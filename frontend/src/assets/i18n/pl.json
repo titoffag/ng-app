@@ -38,6 +38,16 @@
       "CONFIRM_BUTTON": "Nie",
       "CANCEL_BUTTON": "Anuluj"
     },
+    "VALIDATORS": {
+      "NAME_REQUIRED": "Nazwa jest wymagana",
+      "NAME_MAXLENGTH": "Nazwa nie może zawierać więcej niż 50 znaków",
+      "DESCRIPTION_REQUIRED": "Opis jest wymagany",
+      "DESCRIPTION_MAXLENGTH": "Opis nie może być dłuższy niż 500 znaków",
+      "DATE_REQUIRED": "Data jest wymagana",
+      "DURATION_REQUIRED": "Wymagany czas trwania",
+      "DURATION_NEGATIVE_VALUE": "Czas trwania powinien być wartością dodatnią",
+      "AUTHORS_EMPTY_SELECTOR": "Należy wybrać co najmniej jednego autora"
+    },
     "MODALS": {
       "DELETE_MODAL": {
         "TITLE": "Usuń kurs",
