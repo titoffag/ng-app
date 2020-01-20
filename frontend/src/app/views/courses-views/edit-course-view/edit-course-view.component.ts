@@ -7,10 +7,7 @@ import { CustomFormsModule } from '@components/forms/forms.module';
 import { CoursesService } from '@services/courses.service';
 import { Course } from '@models/course';
 import { appRoutesNames } from '@views/app.routes.names';
-import {
-  validateEmptySelector,
-  validateNegativeValue
-} from '@components/forms/validators';
+import { CustomValidators } from '@components/forms/custom-validators';
 
 @Component({
   selector: 'app-edit-course-view',
@@ -32,9 +29,9 @@ export class EditCourseViewComponent implements OnInit {
     date: this.formBuilder.control(null, Validators.required),
     length: this.formBuilder.control(null, [
       Validators.required,
-      validateNegativeValue
+      CustomValidators.negativeValue
     ]),
-    authors: this.formBuilder.control(null, validateEmptySelector)
+    authors: this.formBuilder.control(null, CustomValidators.emptySelector)
   });
 
   constructor(
