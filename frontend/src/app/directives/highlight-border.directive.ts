@@ -28,7 +28,7 @@ export class HighlightBorderDirective implements OnInit {
     const currentDate = new Date();
     const relatedDate = parseISO(this.date);
 
-    const isReleased = relatedDate < currentDate;
+    const isReleased = relatedDate <= currentDate;
     const isFresh = differenceInDays(currentDate, relatedDate) <= 14;
     const isUpcoming = relatedDate > currentDate;
 

@@ -12,9 +12,6 @@ import { apiUrlNames } from '@constants/api.names';
 export class CoursesService {
   private static url = apiUrlNames.COURSES;
   private static paginationStep = 5;
-  private static httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   private requestOptions = {
     start: 0,
@@ -61,18 +58,13 @@ export class CoursesService {
   }
 
   create(course: Course): Observable<Course> {
-    return this.http.post<Course>(
-      CoursesService.url,
-      JSON.stringify(course),
-      CoursesService.httpOptions
-    );
+    return this.http.post<Course>(CoursesService.url, course);
   }
 
   update(course: Course): Observable<Course> {
     return this.http.patch<Course>(
       `${CoursesService.url}/${course.id}`,
-      JSON.stringify(course),
-      CoursesService.httpOptions
+      course
     );
   }
 
