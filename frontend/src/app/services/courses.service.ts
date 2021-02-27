@@ -23,16 +23,14 @@ export class CoursesService {
 
   constructor(private http: HttpClient) {}
 
-  getAll({ searchTerm = '', loadedCoursesCount = 0 } = {}): Observable<
-    Course[]
-  > {
+  getAll({ search = '', loadedCoursesCount = 0 } = {}): Observable<Course[]> {
     return this.http
       .get<Course[]>(CoursesService.url, {
         params: {
           start: this.requestOptions.start.toString(),
           count: this.requestOptions.count.toString(),
           sort: 'date',
-          textFragment: searchTerm
+          textFragment: search
         }
       })
       .pipe(

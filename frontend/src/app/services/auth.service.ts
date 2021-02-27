@@ -1,53 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
 
-import { appRoutesNames } from '@views/app.routes.names';
 import { apiUrlNames } from '@constants/api.names';
 import { Login, Token } from '@models/login';
 import { User } from '@models/user';
+import { AppState } from '@store/reducers';
+import { getAuthenticated, getTokenInfo } from '@store/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private static TOKEN_KEY = 'token';
-  private static LOGGED_IN_USER_KEY = 'loggedInUser';
-
-  get isAuthenticated(): boolean {
-    return !!localStorage.getItem(AuthService.TOKEN_KEY);
+  get tokenInfo() {
+    return this.store.pipe(select(getTokenInfo));
   }
 
-  get userInfo(): string | null {
-    return localStorage.getItem(AuthService.LOGGED_IN_USER_KEY);
+  get isAuthenticated() {
+    return this.store.pipe(select(getAuthenticated));
   }
 
-  get tokenInfo(): string | null {
-    return localStorage.getItem(AuthService.TOKEN_KEY);
+  constructor(private http: HttpClient, private store: Store<AppState>) {}
+
+  login(loginInfo: Login): Observable<Token> {
+    return this.http.post<Token>(apiUrlNames.LOGIN, loginInfo);
   }
 
-  constructor(private router: Router, private http: HttpClient) {}
-
-  login(loginInfo: Login) {
-    this.http.post<Token>(apiUrlNames.LOGIN, loginInfo).subscribe(tokenInfo => {
-      localStorage.setItem(AuthService.TOKEN_KEY, tokenInfo.token);
-      this.loadUserInfo(tokenInfo);
-    });
-  }
-
-  loadUserInfo(tokenInfo: Token) {
-    this.http
-      .post<User>(apiUrlNames.USER_INFO, tokenInfo)
-      .subscribe(userInfo => {
-        const userName = `${userInfo.name.firstName} ${userInfo.name.lastName}`;
-        localStorage.setItem(AuthService.LOGGED_IN_USER_KEY, userName);
-        this.router.navigate([appRoutesNames.COURSES]);
-      });
-  }
-
-  logout() {
-    localStorage.removeItem(AuthService.LOGGED_IN_USER_KEY);
-    localStorage.removeItem(AuthService.TOKEN_KEY);
-    this.router.navigate([appRoutesNames.LOGIN]);
+  loadUserInfo(tokenInfo: Token): Observable<User> {
+    return this.http.post<User>(apiUrlNames.USER_INFO, tokenInfo);
   }
 }

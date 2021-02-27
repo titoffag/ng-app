@@ -1,19 +1,15 @@
-import {
-  Component,
-  Output,
-  EventEmitter,
-  NgModule,
-  OnInit,
-  OnDestroy
-} from '@angular/core';
+import { Component, NgModule, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 import { SharedModule } from 'src/app/shared.module';
 import { appRoutesNames } from '@views/app.routes.names';
+import { AppState } from '@store/reducers';
+import * as fromCourses from '@store/courses';
 
 @Component({
   selector: 'app-panel',
@@ -21,22 +17,22 @@ import { appRoutesNames } from '@views/app.routes.names';
   styleUrls: ['./panel.component.scss']
 })
 export class PanelComponent implements OnInit, OnDestroy {
-  @Output() searchTerm = new EventEmitter<string>();
-
   search = new FormControl('');
   searchSub: Subscription;
   faPlus = faPlus;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   ngOnInit() {
     this.searchSub = this.search.valueChanges
       .pipe(
         debounceTime(500),
-        distinctUntilChanged(),
-        filter(this.isMoreThanCharsOrEmptyString(3))
+        filter(this.isMoreThanCharsOrEmptyString(3)),
+        distinctUntilChanged()
       )
-      .subscribe(searchValue => this.searchTerm.emit(searchValue));
+      .subscribe(search =>
+        this.store.dispatch(fromCourses.searchCourses({ search }))
+      );
   }
 
   isMoreThanCharsOrEmptyString(amount: number) {

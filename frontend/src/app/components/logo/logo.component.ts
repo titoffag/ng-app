@@ -1,6 +1,8 @@
 import { Component, NgModule } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import { RouterModule } from '@angular/router';
+
+import { SharedModule } from 'src/app/shared.module';
 
 @Component({
   selector: 'app-logo',
@@ -13,7 +15,7 @@ export class LogoComponent {
 
 @NgModule({
   declarations: [LogoComponent],
-  imports: [FontAwesomeModule],
+  imports: [SharedModule, RouterModule],
   exports: [LogoComponent]
 })
 export class LogoComponentModule {}

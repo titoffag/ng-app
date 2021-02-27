@@ -1,8 +1,11 @@
 import { Component, NgModule } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { select, Store } from '@ngrx/store';
 
-import { AuthService } from '@services/auth.service';
+import { AppState } from '@store/reducers';
+import * as fromAuth from '@store/auth';
+import { getUserName } from '@store/auth/auth.selectors';
+import { SharedModule } from 'src/app/shared.module';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,25 +15,18 @@ import { AuthService } from '@services/auth.service';
 export class UserProfileComponent {
   faSignOutAlt = faSignOutAlt;
   faUser = faUser;
+  userLogin$ = this.store.pipe(select(getUserName));
 
-  constructor(private authService: AuthService) {}
-
-  get userLogin(): string {
-    if (!this.authService.userInfo) {
-      return '';
-    }
-
-    return this.authService.userInfo;
-  }
+  constructor(private store: Store<AppState>) {}
 
   logoff() {
-    this.authService.logout();
+    this.store.dispatch(fromAuth.logout());
   }
 }
 
 @NgModule({
   declarations: [UserProfileComponent],
-  imports: [FontAwesomeModule],
+  imports: [SharedModule],
   exports: [UserProfileComponent]
 })
 export class UserProfileComponentModule {}

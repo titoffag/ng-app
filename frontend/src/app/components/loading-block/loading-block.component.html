@@ -1,4 +1,4 @@
-<div class="loading-block-wrapper" *ngIf="loading">
+<div class="loading-block-wrapper" *ngIf="loading$ | async">
   <div class="loading-block-icon">
     <p-progressSpinner></p-progressSpinner>
   </div>

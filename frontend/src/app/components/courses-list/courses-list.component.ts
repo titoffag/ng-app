@@ -1,10 +1,13 @@
 import { Component, OnInit, Input, NgModule } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
+import { Store, select } from '@ngrx/store';
 
 import { Course } from '@models/course';
-import { CoursesService } from '@services/courses.service';
 import { CourseItemComponentModule } from '@components/course-item/course-item.component';
 import { SharedModule } from 'src/app/shared.module';
+import { AppState } from '@store/reducers';
+import * as fromCourses from '@store/courses';
+import { selectAllCourses } from '@store/courses/course.selectors';
 
 @Component({
   selector: 'app-courses-list',
@@ -13,16 +16,18 @@ import { SharedModule } from 'src/app/shared.module';
 })
 export class CoursesListComponent implements OnInit {
   @Input() courses: Course[];
+  courses$: any;
 
   isMaxCountCourses: boolean;
 
   constructor(
-    private coursesService: CoursesService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
-    this.coursesService.getAll().subscribe(courses => (this.courses = courses));
+    this.store.dispatch(fromCourses.loadCourses());
+    this.courses$ = this.store.pipe(select(selectAllCourses));
   }
 
   trackByCourseId(index: number, course: Course): number | null {
@@ -30,14 +35,7 @@ export class CoursesListComponent implements OnInit {
   }
 
   loadMoreCourses() {
-    const loadedCoursesCount = this.courses.length;
-    this.isMaxCountCourses = this.coursesService.isMaxCountCourses;
-
-    if (!this.isMaxCountCourses) {
-      this.coursesService
-        .getAll({ loadedCoursesCount })
-        .subscribe(courses => (this.courses = courses));
-    }
+    this.store.dispatch(fromCourses.loadCourses());
   }
 
   onDeletedCourse(id: number, courseName: string) {
@@ -47,11 +45,7 @@ export class CoursesListComponent implements OnInit {
       acceptLabel: 'Yes, delete',
       rejectLabel: 'Cancel',
       accept: () => {
-        this.coursesService.remove(id).subscribe(() => {
-          this.coursesService
-            .getAll()
-            .subscribe(courses => (this.courses = courses));
-        });
+        this.store.dispatch(fromCourses.deleteCourse({ id }));
       }
     });
   }

@@ -11,7 +11,8 @@
       "@constants/*": ["src/app/constants/*"],
       "@guards/*": ["src/app/guards/*"],
       "@views/*": ["src/app/views/*"],
-      "@interceptors/*": ["src/app/interceptors/*"]
+      "@interceptors/*": ["src/app/interceptors/*"],
+      "@store/*": ["src/app/store/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
