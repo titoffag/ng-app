@@ -33,7 +33,7 @@
     "@wishtack/schematics": "^1.1.2",
     "date-fns": "^2.8.0",
     "ngrx-store-freeze": "^0.2.4",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "primeicons": "^2.0.0",
     "primeng": "^8.1.1",
     "rxjs": "~6.4.0",
